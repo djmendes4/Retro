@@ -2,10 +2,11 @@ body {
   padding: 0;
   margin: 0;
   background-color:#FFF;
-  
+  width:100%;
 }
 
 #game{
+  
   position:absolute;
   background-image:url(img/grass.jpg);
   background-repeat:repeat;
