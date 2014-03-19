@@ -1,4 +1,4 @@
-var img1 = "http://wdmccurdy.github.io/GAMEMAKING/zelda1.png"
+  var img1 = "http://wdmccurdy.github.io/GAMEMAKING/zelda1.png"
   var img2 = "http://wdmccurdy.github.io/GAMEMAKING/zelda1.png";
   var x = 50;
   var y = 50;
