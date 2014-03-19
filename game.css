@@ -6,8 +6,9 @@ body {
 }
 
 #game{
-  
-  position:absolute;
+  border:2px solid #000;
+  overflow:hidden;
+  position:relative;
   background-image:url(img/grass.jpg);
   background-repeat:repeat;
   width:800px;
