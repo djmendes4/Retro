@@ -1,7 +1,8 @@
 .terrain.img{
   width:20px;
   height: 20px;
-  background-image:url(img/terrain.png);
+  position:absolute;
+  background-image:url(../img/terrain.png);
 }
 .terrain.x0.y0.img{
   background-position:0px 0px;
