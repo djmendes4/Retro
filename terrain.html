@@ -55,10 +55,26 @@
       height:100px;
       z-index:200;
     }
+    #spritecss{
+      background-color:#FFF;
+      padding:0px;
+      border:2px solid #000;
+      border-radius:3px;
+      overflow:hidden;
+      position:absolute;
+      width:380px;
+      padding:10px;
+      top:30px;
+      left:410px;
+      height:490px;
+      z-index:200;
+      text-align:left;
+    }
     .img.grid{
       border-left:1px solid #000;
       border-top:1px solid #000;
       cursor:pointer;
+      z-index:20;
     } 
     #preview{
       text-align:center;
@@ -99,17 +115,26 @@
   <script src="lib/jquery-2.1.0.min.js"></script>
 </head>
 <body>
-<div id="container">
-<span style="font-size:20px;"><strong>Terrain Editor (Work In Progress)</strong></span>
-  <div id="edit">
-    <div id="preview"></div>
-    <div id="layer1"></div>
-    <div id="layer2"></div>
-    <div id="layer3"></div>
-    <div id="layer4"></div>
-  </div>
-  <div id="select"></div>
-  <div id="terrain"></div>
+  <div id="container">
+    <span style="font-size:20px;"><strong>Terrain Editor (Work In Progress)</strong></span>
+    <div id="spritecss">
+    <div style="width:200px;display:inline-block;clear:none;text-align:left;margin-bottom:5px;margin-left:18px;"><strong>Sheet Name </strong><br><input type="text" style="outline:none;border:1px solid grey;width:200px;"></input></div><br>
+      <div style="width:90px;display:inline-block;clear:none;text-align:center;"><strong>Tile W </strong><br><input type="text" style="outline:none;border:1px solid grey;width:50px;"></input></div>
+      <div style="width:90px;display:inline-block;clear:none;text-align:center;"><strong>Tile H </strong><br><input type="text" style="outline:none;border:1px solid grey;width:50px;"></input></div>
+      <div style="width:90px;display:inline-block;clear:none;text-align:center;"><strong>Tiles X </strong><br><input type="text" style="outline:none;border:1px solid grey;width:50px;"></input></div>
+      <div style="width:90px;display:inline-block;clear:none;text-align:center;"><strong>Tiles Y </strong><br><input type="text" style="outline:none;border:1px solid grey;width:50px;"></input></div>
+      <hr>
+    </div>
+
+    <div id="edit">
+      <div id="preview"></div>
+      <div id="layer1"></div>
+      <div id="layer2"></div>
+      <div id="layer3"></div>
+      <div id="layer4"></div>
+    </div>
+    <div id="select"></div>
+    <div id="terrain"></div>
   </div>
   <script>
     var edit = [];
@@ -146,21 +171,21 @@
 
     var layer1 = function(x,y){
       var data = "Layer 1" + '<div style="position:absolute;left:13px;top:35px;border:2px solid #000;border-radius:2px;width:50px;height:50px;overflow:hidden;">';
-        var z = 0;
-        if(terrain[x][y][z] != ""){
-          var w = 14*50;
-          var l = -terrain[x][y][z][0]*50;
-          var t = -terrain[x][y][z][1]*50;
-          data = data + '<img src="img/terrain.png" style="position:absolute;width:'+w+'px;left:'+l+'px;top:'+t+'px;z-index:'+z+';">';
+      var z = 0;
+      if(terrain[x][y][z] != ""){
+        var w = 14*50;
+        var l = -terrain[x][y][z][0]*50;
+        var t = -terrain[x][y][z][1]*50;
+        data = data + '<img src="img/terrain.png" style="position:absolute;width:'+w+'px;left:'+l+'px;top:'+t+'px;z-index:'+z+';">';
           //z-index:'+z+' class="'+terrain[x][y][z]+'"    
         }
-      
-      data = data + "</div>"
-      document.getElementById("layer1").innerHTML = data;
-    }
 
-    var layer2 = function(x,y){
-      var data = "Layer 2" + '<div style="position:absolute;left:13px;top:35px;border:2px solid #000;border-radius:2px;width:50px;height:50px;overflow:hidden;">';
+        data = data + "</div>"
+        document.getElementById("layer1").innerHTML = data;
+      }
+
+      var layer2 = function(x,y){
+        var data = "Layer 2" + '<div style="position:absolute;left:13px;top:35px;border:2px solid #000;border-radius:2px;width:50px;height:50px;overflow:hidden;">';
         var z = 1;
         if(terrain[x][y][z] != ""){
           var w = 14*50;
@@ -169,13 +194,13 @@
           data = data + '<img src="img/terrain.png" style="position:absolute;width:'+w+'px;left:'+l+'px;top:'+t+'px;z-index:'+z+';">';
           //z-index:'+z+' class="'+terrain[x][y][z]+'"    
         }
-      
-      data = data + "</div>"
-      document.getElementById("layer2").innerHTML = data;
-    }
 
-    var layer3 = function(x,y){
-      var data = "Layer 3" + '<div style="position:absolute;left:13px;top:35px;border:2px solid #000;border-radius:2px;width:50px;height:50px;overflow:hidden;">';
+        data = data + "</div>"
+        document.getElementById("layer2").innerHTML = data;
+      }
+
+      var layer3 = function(x,y){
+        var data = "Layer 3" + '<div style="position:absolute;left:13px;top:35px;border:2px solid #000;border-radius:2px;width:50px;height:50px;overflow:hidden;">';
         var z = 1;
         if(terrain[x][y][z] != ""){
           var w = 14*50;
@@ -184,13 +209,13 @@
           data = data + '<img src="img/terrain.png" style="position:absolute;width:'+w+'px;left:'+l+'px;top:'+t+'px;z-index:'+z+';">';
           //z-index:'+z+' class="'+terrain[x][y][z]+'"    
         }
-      
-      data = data + "</div>"
-      document.getElementById("layer3").innerHTML = data;
-    }
 
-    var layer4 = function(x,y){
-      var data = "Layer 4" + '<div style="position:absolute;left:13px;top:35px;border:2px solid #000;border-radius:2px;width:50px;height:50px;overflow:hidden;">';
+        data = data + "</div>"
+        document.getElementById("layer3").innerHTML = data;
+      }
+
+      var layer4 = function(x,y){
+        var data = "Layer 4" + '<div style="position:absolute;left:13px;top:35px;border:2px solid #000;border-radius:2px;width:50px;height:50px;overflow:hidden;">';
         var z = 1;
         if(terrain[x][y][z] != ""){
           var w = 14*50;
@@ -199,45 +224,58 @@
           data = data + '<img src="img/terrain.png" style="position:absolute;width:'+w+'px;left:'+l+'px;top:'+t+'px;z-index:'+z+';">';
           //z-index:'+z+' class="'+terrain[x][y][z]+'"    
         }
-      
-      data = data + "</div>"
-      document.getElementById("layer4").innerHTML = data;
-    }
 
-    var render = function(){
-      var data = "";
-      for(x = 0;x < 20; x++){
-        for(y = 0; y < 20; y++){
-          for(z = 0; z < 4; z++){
-            var l = x*20-1;
-            var t = y*20-1;
-            if(terrain[x][y][z] != ""){
-              data = data + '<div id="'+x+'-'+y+'" class="terrain x'+terrain[x][y][z][0]+' y'+terrain[x][y][z][1]+' img grid" style="left:'+l+'px;top:'+t+'px;"></div>';
+        data = data + "</div>"
+        document.getElementById("layer4").innerHTML = data;
+      }
+
+      var render = function(){
+        var data = "";
+        for(x = 0;x < 20; x++){
+          for(y = 0; y < 20; y++){
+            for(z = 0; z < 4; z++){
+              var l = x*20-1;
+              var t = y*20-1;
+              if(terrain[x][y][z] != ""){
+                data = data + '<div id="'+x+'-'+y+'" class="terrain x'+terrain[x][y][z][0]+' y'+terrain[x][y][z][1]+' img grid" style="left:'+l+'px;top:'+t+'px;"></div>';
+              }
             }
           }
         }
+        document.getElementById("terrain").innerHTML = data;
+        $(".terrain.img").click(function(event){
+          var position = event.currentTarget.id.split("-");
+          edit[0] = parseInt(position[0]);
+          edit[1] = parseInt(position[1]);
+          preview(edit[0],edit[1]);
+          layer1(edit[0],edit[1]);
+          layer2(edit[0],edit[1]);
+          layer3(edit[0],edit[1]);
+          layer4(edit[0],edit[1]);
+          $("#edit").show();
+        });
+
+        $(".terrain.img").mouseenter(function(event){
+          $("#"+event.currentTarget.id).html('<svg height="10" width="10">  <circle cx="5" cy="5" r="5" stroke="black" stroke-width="0" fill="white" /></svg>');
+          var position = event.currentTarget.id.split("-");
+          edit[0] = parseInt(position[0]);
+          edit[1] = parseInt(position[1]);
+          preview(edit[0],edit[1]);
+          layer1(edit[0],edit[1]);
+          layer2(edit[0],edit[1]);
+          layer3(edit[0],edit[1]);
+          layer4(edit[0],edit[1]);
+          $("#edit").show();
+        });
+         $(".terrain.img").mouseleave(function(event){
+          $("#"+event.currentTarget.id).html("");
+
+        });
       }
-      document.getElementById("terrain").innerHTML = data;
-      $(".terrain.img").click(function(event){
       render();
-      console.log(event.target.id);
-      $("#"+event.target.id).html("<div style='margin-top:-2px;color:white;width:100%;text-align:center;'><strong>ᐤ</strong></div>");
-      var position = event.target.id.split("-");
-      edit[0] = parseInt(position[0]);
-      edit[1] = parseInt(position[1]);
-      preview(edit[0],edit[1]);
-      layer1(edit[0],edit[1]);
-      layer2(edit[0],edit[1]);
-      layer3(edit[0],edit[1]);
-      layer4(edit[0],edit[1]);
-      $("#edit").show();
-      console.log(edit);
-    });
-    }
-    render();
-    $("#edit").hide();
-    $("#select").hide();
-    $("#0-0").click();
-  </script>
-</body>
-</html>
+      $("#edit").hide();
+      $("#select").hide();
+      $("#0-0").click();
+    </script>
+  </body>
+  </html>
