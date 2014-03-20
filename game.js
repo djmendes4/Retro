@@ -77,14 +77,34 @@ var input = function(){
   }
 }
 
+var Screen = function(){
+  var data = "";
+  this.draw = function(x, y, img){
+    data = data + '<div class="' + img + '" style="position:absolute;left:'+x+'px;top:'+y+'px;"></div>';
+  }
+  this.render = function(){
+    document.getElementById("game").innerHTML = data;
+  }
+  this.clear = function(){
+    data = "";
+  }
+} 
+
+
+var screen = new Screen();
+
 var tick = function(){
   input();
+  screen.clear();
   if(c<15){
-    document.getElementById("game").innerHTML = '<div class="stand'+d+' sprite" style="position:absolute;left:' + x + 'px;top:' + y + 'px;"></div>';//width:56px;
+    var img = "stand" + d + " sprite";
+    screen.draw(x,y,img);
   }
   else{
-    document.getElementById("game").innerHTML = '<div class="'+s+d+' sprite" style="position:absolute;left:' + x + 'px;top:' + y + 'px;"></div>';//width:56px;
+    var img = s + d + " sprite";
+    screen.draw(x,y,img);
   }
+  screen.render();
   c = c + 1;
   if(c>30){
     c = 0;
