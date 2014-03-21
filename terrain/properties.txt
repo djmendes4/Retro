@@ -1,0 +1,23 @@
+TILE PROPERTIES (DEFAULT values need not be declared)
+ 
+transparent = "boolean";
+	transparent = "false"; (DEFAULT) (represents a visually solid tile)
+	transparent = "true"; (represents a semi-transparent tile)
+
+collision = "boolean";
+	collision = "false"; (DEFAULT) (represents a tile that does not cause collision)
+	collision = "true"; (represents a tile that causes collision)
+
+movable = "boolean";
+	movable = "false"; (DEFAULT) (represents a tile that cannot be moved)
+	movable = "true"; (represents a tile that can be moved)
+
+climbable = "boolean";
+	climable = "false"; (DEFAULT) (represents a tile that cannot be climbed)
+	climable = "true"; (represents a tile that can be climbed)
+    
+destructible = "boolean";
+    destructible = "false"; (DEFAULT) represents a tile that cannot be destroyed)
+    destructible = "true"; (represents a tile that can be destroyed)
+    
+    health = "int"; (represents the amount of damage required to destroy the tile)
