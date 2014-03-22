@@ -14,6 +14,7 @@ var key_w=false;
 var key_a=false;
 var key_s=false;
 var key_d=false;
+var key_sp=false;
 
 function get(url, callback){
   var x;
@@ -45,6 +46,9 @@ function onKeyDown(event){
     case 65: //a
       key_a = true;
       break;
+    case 32: //space
+      key_sp = true;
+      break;
   }
 }
 
@@ -68,7 +72,13 @@ function onKeyUp(event){
 
 var input = function(){
   if (key_w||key_s||key_a||key_d){
-    s="walk";    
+    s="walk";
+    if(key_w&&key_s){
+      s="stand"
+    }
+    if(key_a&&key_d){
+      s="stand"
+    }    
   }
   else{
     s="stand";
