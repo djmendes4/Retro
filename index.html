@@ -3,10 +3,27 @@
 <head>
 	<title>GAME</title>
 	<link rel="shortcut icon" href="http://wdmccurdy.github.io/GAMEMAKING/img/zelda1.png">
-	<link rel="stylesheet" type="text/css" href="game.css">
+	<link rel="stylesheet" type="text/css" href="./game.css">
 </head>
 <body >
-  	<div id="game"></div>
-	<script src="game.js"></script>
+  	<div id="wrapper">
+    <section id="header"></section>
+        
+    <section id="main">
+        <script type="text/javascript">
+            var w = window,
+            d = document,
+            e = d.documentElement,
+            g = d.getElementsByTagName("body")[0],
+            wx = w.innerWidth || e.clientWidth || g.clientWidth,
+            wy = w.innerHeight|| e.clientHeight|| g.clientHeight;
+            document.getElementById("main").style.height=(wy-160)+'px';
+        </script>
+        <div id="game"></div>
+        <script src="game.js"></script>
+    </section>
+        
+    <section id="footer"></section>
+    </div>
 </body>
 </html>
