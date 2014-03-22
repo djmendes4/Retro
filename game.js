@@ -15,6 +15,20 @@ var key_a=false;
 var key_s=false;
 var key_d=false;
 
+function get(url, callback){
+  var x;
+  if (window.XMLHttpRequest){x=new XMLHttpRequest();}
+  else{x=new ActiveXObject("Microsoft.XMLHTTP");}
+  x.onreadystatechange = function(){
+    if (x.readyState == 4 && x.status == 200) {
+      callback(JSON.parse(x.responseText));
+    }
+  };			  	
+  x.open("GET", url, true);
+  x.setRequestHeader("Authorization", auth);
+  x.send();
+};
+
 function onKeyDown(event){
   var keyCode = event.keyCode;
   //console.log(keyCode);
