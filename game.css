@@ -3,7 +3,7 @@ body {
   margin: 0;
   background-color:#FFF;
   width:100%;
-  background-image: url(./img/bg/bg_central.jpg), url(.img/bg/bg_repeat.jpg);
+  background-image: url(./img/bg/bg_central.png), url(.img/bg/bg.jpg);
   background-repeat: no-repeat, repeat;
   background-position: center bottom, left top;
 }
