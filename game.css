@@ -3,8 +3,9 @@ body {
   margin: 0;
   background-color:#FFF;
   width:100%;
-  background-image: url(./img/bg/bg.jpg), url(.img/bg/bg_repeat.jpg);
+  background-image: url(./img/bg/bg_central.jpg), url(.img/bg/bg.jpg);
   background-repeat: repeat-x, repeat;
+  background-position: center bottom, left top;
 }
 
 #game{
@@ -20,7 +21,37 @@ body {
   margin-top:120px;
 }
 
-.sprite{
+#wrapper {
+    max-width: 960px;
+    margin: auto;
+}
+
+#header {
+    min-height: 60px;
+}
+
+#main {
+    margin: auto;
+}
+
+#footer {
+    min-height: 60px;
+}
+
+.terrain {
+}
+
+.grass {
+    background: url(./img/grass.jpg);
+    background-repeat: no-repeat;
+}
+
+.boulder {
+    background: url(./img/boulder.png);
+    background-repeat: no-repeat;
+}
+
+.sprite {
   width:16px;
   height:16px;
 }
