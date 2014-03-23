@@ -154,6 +154,7 @@
         }
       }
     }
+
     var preview = function(x,y){
       var data = "Preview" + '<div style="position:absolute;left:13px;top:35px;border:2px solid #000;border-radius:2px;width:50px;height:50px;overflow:hidden;">';
       for(z = 0; z < 4; z++){
@@ -221,7 +222,7 @@
           var w = 14*50;
           var l = -terrain[x][y][z][0]*50;
           var t = -terrain[x][y][z][1]*50;
-          data = data + '<img src="img/terrain.png" style="position:absolute;width:'+w+'px;left:'+2*l+'px;top:'+t+'px;z-index:'+z+';">';
+          data = data + '<img src="img/terrain.png" style="position:absolute;width:'+w+'px;left:'+dl+'px;top:'+t+'px;z-index:'+z+';">';
           //z-index:'+z+' class="'+terrain[x][y][z]+'"    
         }
 
@@ -242,6 +243,7 @@
             }
           }
         }
+        
         document.getElementById("terrain").innerHTML = data;
         $(".terrain.img").click(function(event){
           var position = event.currentTarget.id.split("-");

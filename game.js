@@ -98,9 +98,26 @@ var Person = function(){
   var x = 50;
   var y = 50;
   var speed = 1; 
-  var d = "S";
-  var s = "stand";
+  var s = "SS";
   var c = 0;
+
+  var a = {
+    "MN": new Animation(["moveN","standN"]),
+    "MS": new Animation(["moveS","standS"]),
+    "ME": new Animation(["moveE","standE"]),
+    "MW": new Animation(["moveW","standW"]),
+    "SN": new Animation(["standN"]),
+    "SS": new Animation(["standS"]),
+    "SE": new Animation(["standE"]),
+    "SW": new Animation(["standW"]),
+    "BN": new Animation(["swordE", "swordNE", "swordN"]),
+    "BS": new Animation(["swordW", "swordSW", "swordS"]),
+    "BE": new Animation(["swordS", "swordSE", "swordE"]),
+    "BW": new Animation(["swordN", "swordNW", "swordW"])
+  };
+
+
+
   this.draw = function(){  
     
   var img = s + d + " sprite";
@@ -111,9 +128,15 @@ var Person = function(){
       c = 0;
     }
   }
-  }
+}
   this.sword = function(){
-    s= "sword"
+    if(s == "SS" || s == "MS"){
+      s == "BS";
+      a["BS"].reset();
+    }
+    else if(s == "BS"){
+      a["BS"].next();
+    }
     
     if (c<10){
       s = "";
@@ -136,8 +159,6 @@ var Person = function(){
     else {
       s = "stand"
     }
-   
-
     if (direction == "N"){
       y= y-(1*speed);
     }
@@ -172,6 +193,27 @@ var Person = function(){
   }
 }
 
+var Animation = function(a){
+  var i = 0;
+  var a = a;
+  this.next = function(){
+    i = i + 1;
+    if(i >= a.length){
+      i = 0;
+    }
+  }
+  this.complete = function(){
+    if(i == a.length){
+      return true;
+    }
+  }
+  this.reset = function(){
+    i = 0;
+  }
+  this.img = function(){
+    return a[i];
+  }
+}
 
 
 var Screen = function(){
