@@ -83,12 +83,16 @@ var input = function(){
   else if ((key_w)&&(!key_a)&&(!key_s)&&(key_d)){person.move("NE");}
   else if ((!key_w)&&(key_a)&&(key_s)&&(!key_d)){person.move("SW");}
   else if ((!key_w)&&(!key_a)&&(key_s)&&(key_d)){person.move("SE");}
-  // 3 keys
+  // 3 ke;ys
   else if ((key_w)&&(key_a)&&(!key_s)&&(key_d)){person.move("N");} 
   else if ((key_w)&&(key_a)&&(key_s)&&(!key_d)){person.move("W");}
   else if ((!key_w)&&(key_a)&&(key_s)&&(key_d)){person.move("S");}
   else if ((key_w)&&(!key_a)&&(key_s)&&(key_d)){person.move("E");}
   else {person.stand();}
+
+  if (key_sp){
+    person.sword();
+  }
 }
 var Person = function(){
   var x = 50;
@@ -101,7 +105,27 @@ var Person = function(){
     
   var img = s + d + " sprite";
   scr.draw(x,y,img);
+  this.count = function(){
+    c = c + 1;
+    if(c>30){
+      c = 0;
+    }
+  }
+  }
+  this.sword = function(){
+    s= "sword"
+    
+    if (c<10){
+      s = "";
+    }
+    else if (c<20) {
+      s = "";
+    }
+    else {
+      s = "";
+    }
 
+   
   }
   this.move = function(direction){
     d = direction.charAt(0);
@@ -112,10 +136,7 @@ var Person = function(){
     else {
       s = "stand"
     }
-    c = c + 1;
-    if(c>30){
-      c = 0;
-    }
+   
 
     if (direction == "N"){
       y= y-(1*speed);
@@ -148,7 +169,6 @@ var Person = function(){
   }
   this.stand = function(){
     s = "stand";
-    c = 0;
   }
 }
 
@@ -169,12 +189,16 @@ var Screen = function(){
 
 
 
-
+var c = 0;
 var tick = function(){
   input();
   scr.clear();
   person.draw();
   scr.render();
+   c = c + 1;
+    if(c>30){
+      c = 0;
+    }
 }
 
 var scr = new Screen();
