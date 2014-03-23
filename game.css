@@ -3,9 +3,7 @@ body {
   margin: 0;
   background-color:#FFF;
   width:100%;
-  background-image: url(./img/bg/bg_central.png), url(./img/bg/bg.jpg);
-  background-repeat: no-repeat, repeat;
-  background-position: center bottom, left top;
+  background-image: url(./img/bg/bg.jpg);
 }
 
 #game{
@@ -18,12 +16,12 @@ body {
   width:300px;
   height:200px;
   margin:auto;
-  margin-top:120px;
 }
 
 #wrapper {
     max-width: 960px;
     margin: auto;
+    overflow: hidden;
 }
 
 #header {

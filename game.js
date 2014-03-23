@@ -84,6 +84,7 @@ var input = function(){
   else if ((!key_w)&&(key_a)&&(key_s)&&(!key_d)){person.move("SW");}
   else if ((!key_w)&&(!key_a)&&(key_s)&&(key_d)){person.move("SE");}
   // 3 ke;ys
+    
   else if ((key_w)&&(key_a)&&(!key_s)&&(key_d)){person.move("N");} 
   else if ((key_w)&&(key_a)&&(key_s)&&(!key_d)){person.move("W");}
   else if ((!key_w)&&(key_a)&&(key_s)&&(key_d)){person.move("S");}

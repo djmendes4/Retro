@@ -10,16 +10,26 @@
     <section id="header"></section>
         
     <section id="main">
-        <script type="text/javascript">
-            var w = window,
-            d = document,
-            e = d.documentElement,
-            g = d.getElementsByTagName("body")[0],
-            wx = w.innerWidth || e.clientWidth || g.clientWidth,
-            wy = w.innerHeight|| e.clientHeight|| g.clientHeight;
-            document.getElementById("main").style.height=(wy-160)+'px';
-        </script>
         <div id="game"></div>
+        <script type="text/javascript">
+            window.onresize = setHeight;
+            
+            function setHeight() {
+                var w = window,
+                d = document,
+                e = d.documentElement,
+                g = d.getElementsByTagName("body")[0],
+                wx = w.innerWidth || e.clientWidth || g.clientWidth,
+                wy = w.innerHeight|| e.clientHeight|| g.clientHeight,
+                game_height = document.getElementById("game").clientHeight;
+                
+                document.getElementById("main").style.height=(wy-160)+'px';
+                var main_height = document.getElementById("main").clientHeight;
+                document.getElementById("game").style.top=((main_height-game_height)/4)+'px';
+            }
+            
+            setHeight();
+        </script>
         <script src="game.js"></script>
     </section>
         
