@@ -278,7 +278,7 @@ var Map = function(){
           console.log("x:" + x + " y:" + y + " z:" + z);
           console.log(xxx + " " + yyy);
           if(dd[z][y][x] != ""){
-            var img = 'terrain x'+dd[x][y][z][0]+' y'+dd[x][y][z][1]+' img grid';
+            var img = 'terrain '+ xxx + ' ' + yyy + ' img grid';
             
           }
         }
