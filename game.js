@@ -269,7 +269,7 @@ var Map = function(){
     var data = "";
     for(z = 0;z < dd.length; z++){
       for(y = 0; y < dd[z].length; y++){
-        for(z = 0; z < dd[z][y].length; z++){
+        for(x = 0; x < dd[z][y].length; x++){
           var l = x*20-1;
           var t = y*20-1;
 
