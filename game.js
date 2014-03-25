@@ -266,25 +266,25 @@ var Map = function(){
   });
 
   this.render = function(){
-  var data = "";
-  for(z = 0;z < dd.length; z++){
-    for(y = 0; y < dd[z].length; y++){
-      for(z = 0; z < dd[z][y].length; z++){
-        var l = x*20-1;
-        var t = y*20-1;
+    var data = "";
+    for(z = 0;z < dd.length; z++){
+      for(y = 0; y < dd[z].length; y++){
+        for(z = 0; z < dd[z][y].length; z++){
+          var l = x*20-1;
+          var t = y*20-1;
 
-        var xxx = "x" + dd[z][y][x].charAt(0) + dd[z][y][x].charAt(1);
-        var yyy = "y" + dd[z][y][x].charAt(2) + dd[z][y][x].charAt(3);
-        console.log(xxx + " " + yyy);
-        if(terrain[x][y][z] != ""){
-          var img = 'terrain x'+terrain[x][y][z][0]+' y'+terrain[x][y][z][1]+' img grid';
-          
+          var xxx = "x" + dd[z][y][x].charAt(0) + dd[z][y][x].charAt(1);
+          var yyy = "y" + dd[z][y][x].charAt(2) + dd[z][y][x].charAt(3);
+          console.log(xxx + " " + yyy);
+          if(dd[x][y][z] != ""){
+            var img = 'terrain x'+dd[x][y][z][0]+' y'+dd[x][y][z][1]+' img grid';
+            
+          }
         }
       }
     }
   }
 }
-
 var tick = function(){
   input();
   person.tick();
