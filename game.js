@@ -25,7 +25,7 @@ function get(url, callback){
   x.send();
 };
 
-get("http://wdmccurdy.github.io/GAMEMAKING/terrain/8080.terrain",function(data){
+get("http://wdmccurdy.github.io/GAMEMAKING/terrain/8080.TERRAIN",function(data){
   console.log(data.split("|"));
 });
 
