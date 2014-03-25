@@ -14,7 +14,7 @@
     #container{
       padding:0px;
       position:relative;
-      width:404px;
+      width:1004px;
       margin:auto;
       margin-top:50px;
       z-index:0;
@@ -26,8 +26,8 @@
       border-radius:3px;
       overflow:hidden;
       position:absolute;
-      width:400px;
-      height:400px;
+      width:800px;
+      height:800px;
       z-index:0;
       top:140px;
     }
@@ -65,14 +65,14 @@
       width:380px;
       padding:10px;
       top:30px;
-      left:410px;
+      left:810px;
       height:490px;
       z-index:200;
       text-align:left;
     }
     .img.grid{
-      border-left:1px solid #000;
-      border-top:1px solid #000;
+      bborder-left:1px solid #000;
+      bborder-top:1px solid #000;
       cursor:pointer;
       z-index:20;
     } 
@@ -138,15 +138,28 @@
   </div>
   <script>
     var edit = [];
-
+    var tx = 30;
+    var ty = 20;
     var terrain = [];
-    for(x = 0;x < 20; x++){
+    for(x = 0;x < tx; x++){
       terrain[x] = [];
-      for(y = 0; y < 20; y++){
+      for(y = 0; y < ty; y++){
         terrain[x][y] = [];
         for(z = 0; z < 4; z++){
           if(z==0){
-            terrain[x][y][z] = [0,0];//"terrain x0 y0 img";
+            var xxx = Math.round(Math.random());
+            var yyy = Math.round(Math.random());
+            terrain[x][y][z] = [xxx,yyy];//"terrain x0 y0 img";
+          }
+          else if(z==1 && x == 4){
+            terrain[x][y][z] = [4,2];
+          }
+          else if(z==1 && x == 5){
+            var xxx = Math.round(Math.random());
+            terrain[x][y][z] = [xxx,2];
+          }
+          else if(z==1 && x == 6){
+            terrain[x][y][z] = [3,2];
           }
           else{
             terrain[x][y][z] = "";
@@ -202,7 +215,7 @@
 
       var layer3 = function(x,y){
         var data = "Layer 3" + '<div style="position:absolute;left:13px;top:35px;border:2px solid #000;border-radius:2px;width:50px;height:50px;overflow:hidden;">';
-        var z = 1;
+        var z = 2;
         if(terrain[x][y][z] != ""){
           var w = 14*50;
           var l = -terrain[x][y][z][0]*50;
@@ -217,7 +230,7 @@
 
       var layer4 = function(x,y){
         var data = "Layer 4" + '<div style="position:absolute;left:13px;top:35px;border:2px solid #000;border-radius:2px;width:50px;height:50px;overflow:hidden;">';
-        var z = 1;
+        var z = 3;
         if(terrain[x][y][z] != ""){
           var w = 14*50;
           var l = -terrain[x][y][z][0]*50;
@@ -232,8 +245,8 @@
 
       var render = function(){
         var data = "";
-        for(x = 0;x < 20; x++){
-          for(y = 0; y < 20; y++){
+        for(x = 0;x < tx; x++){
+          for(y = 0; y < ty; y++){
             for(z = 0; z < 4; z++){
               var l = x*20-1;
               var t = y*20-1;
@@ -243,7 +256,7 @@
             }
           }
         }
-        
+
         document.getElementById("terrain").innerHTML = data;
         $(".terrain.img").click(function(event){
           var position = event.currentTarget.id.split("-");
@@ -258,7 +271,7 @@
         });
 
         $(".terrain.img").mouseenter(function(event){
-          $("#"+event.currentTarget.id).html('<svg height="10" width="10">  <circle cx="5" cy="5" r="5" stroke="black" stroke-width="0" fill="white" /></svg>');
+          $("#"+event.currentTarget.id).html('<svg height="10" width="10" style="z-index:1000;">  <circle cx="5" cy="5" r="5" stroke="black" stroke-width="0" fill="white" /></svg>');
           var position = event.currentTarget.id.split("-");
           edit[0] = parseInt(position[0]);
           edit[1] = parseInt(position[1]);
@@ -268,6 +281,7 @@
           layer3(edit[0],edit[1]);
           layer4(edit[0],edit[1]);
           $("#edit").show();
+          console.log(edit[0] + " " + edit[1]);
         });
          $(".terrain.img").mouseleave(function(event){
           $("#"+event.currentTarget.id).html("");

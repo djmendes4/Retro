@@ -16,13 +16,19 @@ function get(url, callback){
   else{x=new ActiveXObject("Microsoft.XMLHTTP");}
   x.onreadystatechange = function(){
     if (x.readyState == 4 && x.status == 200) {
-      callback(JSON.parse(x.responseText));
+      
+      callback(x.responseText);
     }
   };			  	
   x.open("GET", url, true);
-  x.setRequestHeader("Authorization", auth);
+  //x.setRequestHeader("Authorization", auth);
   x.send();
 };
+
+get("http://wdmccurdy.github.com/GAMEMAKING/terrain/8080.terrain",function(data){
+  console.log(data.split("|"));
+});
+
 
 function onKeyDown(event){
   var keyCode = event.keyCode;
@@ -242,7 +248,7 @@ var Screen = function(){
   this.clear = function(){
     data = "";
   }
-} 
+}
 
 var tick = function(){
   input();
