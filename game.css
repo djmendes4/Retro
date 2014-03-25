@@ -51,21 +51,21 @@ body {
 
 
 
-.sprite.standS{background:url('img/zsprite.png')   0px 0px;height:16px; width:16px;}
-.sprite.standW{background:url('img/zsprite.png') -16px 0px;height:16px; width:16px;}
-.sprite.standN{background:url('img/zsprite.png') -32px 0px;height:16px; width:16px;}
-.sprite.standE{background:url('img/zsprite.png') -48px 0px;height:16px; width:16px;}
+.sprite.standS{background:url('img/zsprite.png')   0px 0px;height:48px; width:48px;}
+.sprite.standW{background:url('img/zsprite.png') -48px 0px;height:48px; width:48px;}
+.sprite.standN{background:url('img/zsprite.png') -96px 0px;height:48px; width:48px;}
+.sprite.standE{background:url('img/zsprite.png') -144px 0px;height:48px; width:48px;}
 
-.sprite.moveS{background:url('img/zsprite.png')   0px -16px;height:16px; width:16px;}
-.sprite.moveW{background:url('img/zsprite.png') -16px -16px;height:16px; width:16px;}
-.sprite.moveN{background:url('img/zsprite.png') -32px -16px;height:16px; width:16px;}
-.sprite.moveE{background:url('img/zsprite.png') -48px -16px;height:16px; width:16px;}
+.sprite.moveS{background:url('img/zsprite.png')   0px -48px;height:48px; width:48px;}
+.sprite.moveW{background:url('img/zsprite.png') -48px -48px;height:48px; width:48px;}
+.sprite.moveN{background:url('img/zsprite.png') -96px -48px;height:48px; width:48px;}
+.sprite.moveE{background:url('img/zsprite.png') -144px -48px;height:48px; width:48px;}
 
-.sprite.swordNW{background:url('img/zsprite.png')   0px -32px;height:32px; width: 32px;}
-.sprite.swordN {background:url('img/zsprite.png') -32px -32px;height:32px; width: 16px;}
-.sprite.swordNE{background:url('img/zsprite.png') -48px -32px;height:32px; width: 32px;}
-.sprite.swordW {background:url('img/zsprite.png')   0px -64px;height:16px; width: 32px;}
-.sprite.swordE {background:url('img/zsprite.png') -48px -64px;height:16px; width: 32px;}
-.sprite.swordSW{background:url('img/zsprite.png')   0px -80px;height:32px; width: 32px;}
-.sprite.swordS {background:url('img/zsprite.png') -32px -80px;height:32px; width: 16px;}
-.sprite.swordSE{background:url('img/zsprite.png') -48px -80px;height:32px; width: 32px;}
+.sprite.swordNW{background:url('img/zsprite.png')   0px -96px;height:48px; width: 48px;}
+.sprite.swordN {background:url('img/zsprite.png') -48px -96px;height:48px; width: 48px;}
+.sprite.swordNE{background:url('img/zsprite.png') -96px -96px;height:48px; width: 48px;}
+.sprite.swordW {background:url('img/zsprite.png')   0px -144px;height:48px; width: 48px;}
+.sprite.swordE {background:url('img/zsprite.png') -96px -144px;height:48px; width: 48px;}
+.sprite.swordSW{background:url('img/zsprite.png')   0px -192px;height:48px; width: 48px;}
+.sprite.swordS {background:url('img/zsprite.png') -48px -192px;height:48px; width: 48px;}
+.sprite.swordSE{background:url('img/zsprite.png') -96px -192px;height:48px; width: 48px;}

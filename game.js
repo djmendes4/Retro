@@ -2,9 +2,6 @@
 // 2014
 // Will McCurdy - Dillon Mendes - Ben McCurdy
 
-var c = 0;
-
-
 window.addEventListener("keydown", onKeyDown, false);
 window.addEventListener("keyup", onKeyUp, false);
 var key_w=false;
@@ -83,7 +80,7 @@ var input = function(){
   else if ((key_w)&&(!key_a)&&(!key_s)&&(key_d)){person.move("NE");}
   else if ((!key_w)&&(key_a)&&(key_s)&&(!key_d)){person.move("SW");}
   else if ((!key_w)&&(!key_a)&&(key_s)&&(key_d)){person.move("SE");}
-  // 3 ke;ys
+  // 3 keys
     
   else if ((key_w)&&(key_a)&&(!key_s)&&(key_d)){person.move("N");} 
   else if ((key_w)&&(key_a)&&(key_s)&&(!key_d)){person.move("W");}
@@ -95,71 +92,109 @@ var input = function(){
     person.sword();
   }
 }
+
+var Action = function(a){
+  var i = 0;
+  var a = a;
+  var c = 0;
+  var n = a[i][1];
+  this.tick = function(){
+    //console.log("i:" + i + " c:" + c + " n:" + n);
+    if(c < n){
+      c = c + 1;
+    }
+    if(i < a.length - 1){
+      if(c == n){
+        i = i + 1;
+        n = n + a[i][1];
+      }
+    }
+
+  }
+  this.complete = function(){
+    if(c == n){
+      return true;
+    }
+  }
+  this.reset = function(){
+    i = 0;
+    c = -1;
+    n = a[i][1];
+  }
+  this.img = function(){
+    return a[i][0];
+  }
+}
+
+
 var Person = function(){
   var x = 50;
   var y = 50;
   var speed = 1; 
   var s = "SS";
   var c = 0;
-
   var a = {
-    "MN": new Animation(["moveN","standN"]),
-    "MS": new Animation(["moveS","standS"]),
-    "ME": new Animation(["moveE","standE"]),
-    "MW": new Animation(["moveW","standW"]),
-    "SN": new Animation(["standN"]),
-    "SS": new Animation(["standS"]),
-    "SE": new Animation(["standE"]),
-    "SW": new Animation(["standW"]),
-    "BN": new Animation(["swordE", "swordNE", "swordN"]),
-    "BS": new Animation(["swordW", "swordSW", "swordS"]),
-    "BE": new Animation(["swordS", "swordSE", "swordE"]),
-    "BW": new Animation(["swordN", "swordNW", "swordW"])
+    "MN": new Action([["moveN",15],["standN",15]]),
+    "MS": new Action([["moveS",15],["standS",15]]),
+    "ME": new Action([["moveE",15],["standE",15]]),
+    "MW": new Action([["moveW",15],["standW",15]]),
+    "SN": new Action([["standN",15]]),
+    "SS": new Action([["standS",15]]),
+    "SE": new Action([["standE",15]]),
+    "SW": new Action([["standW",15]]),
+    "BN": new Action([["swordE",3], ["swordNE",3], ["swordN",3]]),
+    "BS": new Action([["swordW",3], ["swordSW",3], ["swordS",3]]),
+    "BE": new Action([["swordN",3], ["swordNE",3], ["swordE",3]]),
+    "BW": new Action([["swordN",3], ["swordNW",3], ["swordW",3]]),
+    "BNH": new Action([["swordN",3]]),
+    "BSH": new Action([["swordS",3]]),
+    "BEH": new Action([["swordE",3]]),
+    "BWH": new Action([["swordW",3]])
+
   };
+  this.tick = function(){
+    if(s.charAt(0)=="B" && a[s].complete() && s.charAt(2)!="H"){
+      s = "S" + s.charAt(1);
 
+    }
 
+    if(s.charAt(0)=="M" && a[s].complete()){
+       a[s].reset();
+    }
+    a[s].tick();
+  }
 
   this.draw = function(){  
-    
-  var img = s + d + " sprite";
-  scr.draw(x,y,img);
-  this.count = function(){
-    c = c + 1;
-    if(c>30){
-      c = 0;
-    }
+    var img = a[s].img() + " sprite";
+    scr.draw(x,y,img);
   }
-}
+
   this.sword = function(){
+    if(s == "SN" || s == "MN"){
+      s = "BN";
+      a["BN"].reset();
+    }
     if(s == "SS" || s == "MS"){
-      s == "BS";
+      s = "BS";
       a["BS"].reset();
     }
-    else if(s == "BS"){
-      a["BS"].next();
+    if(s == "SE" || s == "ME"){
+      s = "BE";
+      a["BE"].reset();
     }
-    
-    if (c<10){
-      s = "";
+    if(s == "SW" || s == "MW"){
+      s = "BW";
+      a["BW"].reset();
     }
-    else if (c<20) {
-      s = "";
+    if(s.charAt(0)=="B" && s.charAt(2) != "H" && a[s].complete()){
+      //s = s + "H";
     }
-    else {
-      s = "";
-    }
-
-   
   }
   this.move = function(direction){
-    d = direction.charAt(0);
-    s = "move";
-    if (c<15){
-      s = "move"
+    if(s.charAt(0)!="B"){
+      s = "M" + direction.charAt(0);
     }
-    else {
-      s = "stand"
-    }
+
     if (direction == "N"){
       y= y-(1*speed);
     }
@@ -190,32 +225,11 @@ var Person = function(){
     }
   }
   this.stand = function(){
-    s = "stand";
-  }
-}
-
-var Animation = function(a){
-  var i = 0;
-  var a = a;
-  this.next = function(){
-    i = i + 1;
-    if(i >= a.length){
-      i = 0;
+    if(s.charAt(0)!="B"){
+      s = "S" + s.charAt(1);
     }
   }
-  this.complete = function(){
-    if(i == a.length){
-      return true;
-    }
-  }
-  this.reset = function(){
-    i = 0;
-  }
-  this.img = function(){
-    return a[i];
-  }
 }
-
 
 var Screen = function(){
   var data = "";
@@ -230,18 +244,13 @@ var Screen = function(){
   }
 } 
 
-
-
-var c = 0;
 var tick = function(){
   input();
+  person.tick();
   scr.clear();
   person.draw();
   scr.render();
-   c = c + 1;
-    if(c>30){
-      c = 0;
-    }
+
 }
 
 var scr = new Screen();
