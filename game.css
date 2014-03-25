@@ -23,7 +23,7 @@ body {
   position:relative;
   background-image:url(img/grass.jpg);
   background-repeat:repeat;
-  margin-top:-400px;
+  top:-400px;
   width:600px;
   height:400px;
   margin:auto;
