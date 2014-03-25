@@ -263,12 +263,13 @@ var Map = function(){
       }
     }
   }
-  console.log(dd);
+  //console.log(dd);
   });
 
   this.draw = function(){
     var data = "";
-    for(z = 0;z < dd.length; z++){
+    for(z = 0;z < 1; z++){
+    //for(z = 0;z < dd.length; z++){
       for(y = 0; y < dd[z].length; y++){
         for(x = 0; x < dd[z][y].length; x++){
           var l = x*20-1;
