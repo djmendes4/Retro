@@ -4,7 +4,7 @@
   position:absolute;
   background-image:url(../img/terrain.png);
 }
-.terrain.x0.y0.img{
+.terrain.x00.y00.img{
   background-position:0px 0px;
 }
 .terrain.x0.y1.img{

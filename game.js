@@ -234,13 +234,14 @@ var Person = function(){
   }
 }
 
-var Screen = function(){
+var Screen = function(div){
+  var div = div;
   var data = "";
   this.draw = function(x, y, img){
     data = data + '<div class="' + img + '" style="position:absolute;left:'+Math.round(x)+'px;top:'+Math.round(y)+'px;"></div>';
   }
   this.render = function(){
-    document.getElementById("game").innerHTML = data;
+    document.getElementById(div).innerHTML = data;
   }
   this.clear = function(){
     data = "";
@@ -265,7 +266,7 @@ var Map = function(){
   console.log(dd);
   });
 
-  this.render = function(){
+  this.draw = function(){
     var data = "";
     for(z = 0;z < dd.length; z++){
       for(y = 0; y < dd[z].length; y++){
@@ -277,15 +278,16 @@ var Map = function(){
           var yyy = "y" + dd[z][y][x].charAt(2) + dd[z][y][x].charAt(3);
           console.log("x:" + x + " y:" + y + " z:" + z);
           console.log(xxx + " " + yyy);
-          if(dd[z][y][x] != ""){
+          if(dd[z][y][x] != "----"){
             var img = 'terrain '+ xxx + ' ' + yyy + ' img grid';
-            
+            scrbg.draw(l,t,img);
           }
         }
       }
     }
   }
 }
+
 var tick = function(){
   input();
   person.tick();
@@ -294,9 +296,11 @@ var tick = function(){
   scr.render();
 
 }
-var mp = new Map();
-mp.render();
-var scr = new Screen();
+
+var scr = new Screen("game");
+var scrbg = new Screen("gamebg");
 var person = new Person();
+var mp = new Map();
+mp.draw();
 
 setInterval(tick,1000/60);

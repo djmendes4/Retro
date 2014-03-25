@@ -17,6 +17,17 @@ body {
   height:400px;
   margin:auto;
 }
+#gamebg{
+  border:3px solid #000;
+  border-radius:10px;
+  overflow:hidden;
+  position:relative;
+  background-image:url(img/grass.jpg);
+  background-repeat:repeat;
+  width:600px;
+  height:400px;
+  margin:auto;
+}
 
 #wrapper {
     max-width: 960px;
