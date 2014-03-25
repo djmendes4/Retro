@@ -35,7 +35,7 @@ get("http://wdmccurdy.github.io/GAMEMAKING/terrain/8080.TERRAIN",function(data){
       dd[z][y] = []
       var xdat = ydat[y].split("+");
       for(x = 0;x < xdat.length;x++){
-        var dd[x][y][z] = xdat[x];
+        var dd[z][y][x] = xdat[x];
       }
     }
   }
