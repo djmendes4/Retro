@@ -14,21 +14,21 @@
         <div id="game"></div>
         <div id="gamebg"></div>
         <script type="text/javascript">
-            window.onresize = setHeight;
+            // window.onresize = setHeight;
             
-            function setHeight() {
-                var w = window,
-                d = document,
-                e = d.documentElement,
-                g = d.getElementsByTagName("body")[0],
-                wx = w.innerWidth || e.clientWidth || g.clientWidth,
-                wy = w.innerHeight|| e.clientHeight|| g.clientHeight,
-                game_height = document.getElementById("game").clientHeight;
+            // function setHeight() {
+            //     var w = window,
+            //     d = document,
+            //     e = d.documentElement,
+            //     g = d.getElementsByTagName("body")[0],
+            //     wx = w.innerWidth || e.clientWidth || g.clientWidth,
+            //     wy = w.innerHeight|| e.clientHeight|| g.clientHeight,
+            //     game_height = document.getElementById("game").clientHeight;
                 
-                document.getElementById("main").style.height=(wy-160)+'px';
-                var main_height = document.getElementById("main").clientHeight;
-                document.getElementById("game").style.top=((main_height-game_height)/4)+'px';
-            }
+            //     document.getElementById("main").style.height=(wy-160)+'px';
+            //     var main_height = document.getElementById("main").clientHeight;
+            //     document.getElementById("game").style.top=((main_height-game_height)/4)+'px';
+            // }
             
             setHeight();
         </script>
