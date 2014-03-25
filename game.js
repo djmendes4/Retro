@@ -15,34 +15,16 @@ function get(url, callback){
   if (window.XMLHttpRequest){x=new XMLHttpRequest();}
   else{x=new ActiveXObject("Microsoft.XMLHTTP");}
   x.onreadystatechange = function(){
-    if (x.readyState == 4 && x.status == 200) {
-      
+    if (x.readyState == 4 && x.status == 200) {  
       callback(x.responseText);
     }
   };			  	
-  x.open("GET", url, true);
+  x.open("GET", url, false);
   //x.setRequestHeader("Authorization", auth);
   x.send();
 };
 
-get("http://wdmccurdy.github.io/GAMEMAKING/terrain/8080.TERRAIN",function(data){
-  var dd = [];
-  var zdat = data.split("|");
-  for(z = 0;z < zdat.length;z++){
-    dd[z] = [];
-    var ydat = zdat[z].split(":");
-    for(y = 0;y < ydat.length;y++){
-      dd[z][y] = []
-      var xdat = ydat[y].split("+");
-      for(x = 0;x < xdat.length;x++){
-        dd[z][y][x] = xdat[x];
-      }
-    }
-  }
 
-console.log(dd);
-
-});
 
 
 function onKeyDown(event){
@@ -265,6 +247,44 @@ var Screen = function(){
   }
 }
 
+var Map = function(){
+  var dd = [];
+  get("http://wdmccurdy.github.io/GAMEMAKING/terrain/8080.TERRAIN",function(data){
+  var zdat = data.split("|");
+  for(z = 0;z < zdat.length;z++){
+    dd[z] = [];
+    var ydat = zdat[z].split(":");
+    for(y = 0;y < ydat.length;y++){
+      dd[z][y] = []
+      var xdat = ydat[y].split("+");
+      for(x = 0;x < xdat.length;x++){
+        dd[z][y][x] = xdat[x];
+      }
+    }
+  }
+  console.log(dd);
+  });
+
+  this.render = function(){
+  var data = "";
+  for(z = 0;z < dd.length; z++){
+    for(y = 0; y < dd[z].length; y++){
+      for(z = 0; z < dd[z][y].length; z++){
+        var l = x*20-1;
+        var t = y*20-1;
+
+        var xxx = "x" + dd[z][y][x].charAt(0) + dd[z][y][x].charAt(1);
+        var yyy = "y" + dd[z][y][x].charAt(2) + dd[z][y][x].charAt(3);
+        console.log(xxx + " " + yyy);
+        if(terrain[x][y][z] != ""){
+          var img = 'terrain x'+terrain[x][y][z][0]+' y'+terrain[x][y][z][1]+' img grid';
+          
+        }
+      }
+    }
+  }
+}
+
 var tick = function(){
   input();
   person.tick();
@@ -273,7 +293,8 @@ var tick = function(){
   scr.render();
 
 }
-
+var mp = new Map();
+mp.render();
 var scr = new Screen();
 var person = new Person();
 
