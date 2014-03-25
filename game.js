@@ -26,7 +26,20 @@ function get(url, callback){
 };
 
 get("http://wdmccurdy.github.io/GAMEMAKING/terrain/8080.TERRAIN",function(data){
-  console.log(data.split("|"));
+  var dd = [][][];
+  var zdat = data.split("|");
+  for(z = 0;z < zdat.length;z++){
+    var ydat = zdat[z].split(":");
+    for(y = 0;y < ydat.length;y++){
+      var xdat = ydat[y].split("+");
+      for(x = 0;x < xdat.length;x++){
+        var dd[x][y][z] = xdat[x];
+      }
+    }
+  }
+
+console.log(dd);
+
 });
 
 
