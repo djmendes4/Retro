@@ -268,6 +268,7 @@ var Map = function(){
 
   this.draw = function(){
     var data = "";
+    scrbg.clear();
     for(z = 0;z < 1; z++){
     //for(z = 0;z < dd.length; z++){
       for(y = 0; y < dd[z].length; y++){
@@ -287,6 +288,7 @@ var Map = function(){
       }
     }
   }
+  scrbg.render();
 }
 
 var tick = function(){
