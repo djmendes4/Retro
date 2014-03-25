@@ -29,8 +29,10 @@ get("http://wdmccurdy.github.io/GAMEMAKING/terrain/8080.TERRAIN",function(data){
   var dd = [];
   var zdat = data.split("|");
   for(z = 0;z < zdat.length;z++){
+    dd[z] = [];
     var ydat = zdat[z].split(":");
     for(y = 0;y < ydat.length;y++){
+      dd[z][y] = []
       var xdat = ydat[y].split("+");
       for(x = 0;x < xdat.length;x++){
         var dd[x][y][z] = xdat[x];
