@@ -168,7 +168,7 @@ var Person = function(){
   }
 
   this.draw = function(){  
-    var img = a[s].img() + " sprite";
+    var img = a[s].img() + " sprite2";
     scr.draw(x,y,img);
   }
 
