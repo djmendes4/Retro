@@ -250,7 +250,7 @@ var Screen = function(){
 var Map = function(){
   var dd = [];
   get("http://wdmccurdy.github.io/GAMEMAKING/terrain/8080.TERRAIN",function(data){
-  var zdat = data.split("|");
+  var zdat = data.replace(/(\r\n|\n|\r)/gm,"").split("|");
   for(z = 0;z < zdat.length;z++){
     dd[z] = [];
     var ydat = zdat[z].split(":");
