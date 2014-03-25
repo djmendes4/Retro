@@ -287,8 +287,9 @@ var Map = function(){
         }
       }
     }
+    scrbg.render();
   }
-  scrbg.render();
+  
 }
 
 var tick = function(){
