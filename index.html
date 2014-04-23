@@ -9,18 +9,19 @@
 </head>
 <body>
 
-        <script type="text/javascript">
-            document.write("Hello World");
-        </script> 
+    <script type="text/javascript">
+        document.write("Hello World");
+    </script> 
 
     <!-- THIS IS A TEST -->
-    <script>
+    <script type="text/javascript">
         var fs = require('fs');
         fs.readFile( __dirname + '/test.txt', function (err, data) {
         var terrain = data.toString().split('+');
 
         var terrain_rows = new array();
 
+        document.write("Hello World2!");
         document.write(terrain[1]);
             
         for (i=1; i<20; i++) {
