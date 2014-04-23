@@ -4,12 +4,37 @@
 	<title>GAME</title>
 	<link rel="shortcut icon" href="http://wdmccurdy.github.io/GAMEMAKING/img/zelda1.png">
 	<link rel="stylesheet" type="text/css" href="./game.css">
-      <link rel="stylesheet" type="text/css" href="./spritesheets/terrain.css">
+    <link rel="stylesheet" type="text/css" href="./spritesheets/terrain.css">
+    <script src="./lib/pixi.js"></script>
 </head>
-<body >
+<body>
+
+    <!-- THIS IS A TEST -->
+    <script>
+        var fs = require('fs');
+        fs.readFile( __dirname + '/test.txt', function (err, data) {
+        var terrain = data.toString().split('+');
+
+        var terrain_rows = new array();
+
+        for (i=1; i<20; i++) {
+            var terrain_rows[i] = new array();
+
+            for (j=1; j<20; J++) {
+                var terrain_cols[i][j] = terrain[(20*(i-1)+j)]
+            }
+        } 
+        });
+
+        for (i=1; i<20; i++) {
+            for (j=1; j<20; j++) {
+                document.write(terrain_cols[i][j]);
+            }
+        }
+    </script>
+
   	<div id="wrapper">
     <section id="header"></section>
-        
     <section id="main">
         <div id="game"></div>
         <div id="gamebg"></div>
