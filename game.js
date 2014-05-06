@@ -10,19 +10,41 @@ var key_s=false;
 var key_d=false;
 var key_sp=false;
 
-function get(url, callback){
-  var x;
-  if (window.XMLHttpRequest){x=new XMLHttpRequest();}
-  else{x=new ActiveXObject("Microsoft.XMLHTTP");}
-  x.onreadystatechange = function(){
-    if (x.readyState == 4 && x.status == 200) {  
-      callback(x.responseText);
+// function get(url, callback){
+//   var x;
+//   if (window.XMLHttpRequest){x=new XMLHttpRequest();}
+//   else{x=new ActiveXObject("Microsoft.XMLHTTP");}
+//   x.onreadystatechange = function(){
+//     if (x.readyState == 4 && x.status == 200) {  
+//       callback(x.responseText);
+//     }
+//   };			  	
+//   x.open("GET", url, false);
+//   //x.setRequestHeader("Authorization", auth);
+//   x.send();
+// };
+
+var get = function(url, callback){
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url ,false);
+        xhr.onload = function(e) {
+            if(this.status == 200){
+                var data = (this.response);
+                console.log(data);
+                callback(data);
+            }
+            else{
+                console.log("error");
+            }
+        }
+        xhr.onerror = function(){
+            console.log("error");
+        }
+        xhr.ontimeout = function(){
+            console.log("timeout");
+        }
+        xhr.send();
     }
-  };			  	
-  x.open("GET", url, false);
-  //x.setRequestHeader("Authorization", auth);
-  x.send();
-};
 
 
 
@@ -250,22 +272,28 @@ var Screen = function(div){
 
 var Map = function(){
   var dd = [];
-  get("http://wdmccurdy.github.io/GAMEMAKING/terrain/8080.TERRAIN",function(data){
-  var zdat = data.replace(/(\r\n|\n|\r)/gm,"").split("|");
-  for(z = 0;z < zdat.length;z++){
-    dd[z] = [];
-    var ydat = zdat[z].split(":");
-    for(y = 0;y < ydat.length;y++){
-      dd[z][y] = []
-      var xdat = ydat[y].split("+");
-      for(x = 0;x < xdat.length;x++){
-        dd[z][y][x] = xdat[x];
+  var map_url = "";
+  var parse_map = function(data){
+    var zdat = data.replace(/(\r\n|\n|\r)/gm,"").split("|");
+    for(z = 0;z < zdat.length;z++){
+      dd[z] = [];
+      var ydat = zdat[z].split(":");
+      for(y = 0;y < ydat.length;y++){
+        dd[z][y] = []
+        var xdat = ydat[y].split("+");
+        for(x = 0;x < xdat.length;x++){
+          dd[z][y][x] = xdat[x];
+        }
       }
     }
-  }
-  //console.log(dd);
-  });
+    console.log(dd);
+  };
 
+  this.lload = function(url){
+    map_url = url;
+    get(map_url, parse_map);
+  }
+  
   this.draw = function(){
     var data = "";
     scrbg.clear();
@@ -278,8 +306,8 @@ var Map = function(){
 
           var xxx = "x" + dd[z][y][x].charAt(0) + dd[z][y][x].charAt(1);
           var yyy = "y" + dd[z][y][x].charAt(2) + dd[z][y][x].charAt(3);
-          console.log("x:" + x + " y:" + y + " z:" + z);
-          console.log(xxx + " " + yyy);
+         // console.log("x:" + x + " y:" + y + " z:" + z);
+         // console.log(xxx + " " + yyy);
           if(dd[z][y][x] != "----"){
             var img = 'terrain '+ xxx + ' ' + yyy + ' img grid';
             scrbg.draw(l,t,img);
@@ -305,6 +333,7 @@ var scr = new Screen("game");
 var scrbg = new Screen("gamebg");
 var person = new Person();
 var mp = new Map();
+mp.lload("./terrain/8080.TERRAIN");
 mp.draw();
 
 setInterval(tick,1000/60);
