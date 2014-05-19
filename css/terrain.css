@@ -1,8 +1,8 @@
 .terrain.img{
-  width:20px;
-  height: 20px;
-  position:absolute;
   background-image:url(../img/terrain.png);
+}
+.terrain.x--.y--.img{
+  opacity:0;
 }
 .terrain.x00.y00.img{
   background-position:0px 0px;
@@ -112,30 +112,30 @@
 .terrain.x11.y02.img{
   background-position:-220px -40px;
 }
-.terrain.x00.y00.img{
+.terrain.x12.y00.img{
   background-position:-240px 0px;
 }
-.terrain.x00.y01.img{
+.terrain.x12.y01.img{
   background-position:-240px -20px;
 }
-.terrain.x00.y02.img{
+.terrain.x12.y02.img{
   background-position:-240px -40px;
 }
-.terrain.x00.y00.img{
+.terrain.x13.y00.img{
   background-position:-260px 0px;
 }
-.terrain.x00.y01.img{
+.terrain.x13.y01.img{
   background-position:-260px -20px;
 }
-.terrain.x00.y02.img{
+.terrain.x13.y02.img{
   background-position:-260px -40px;
 }
-.terrain.x00.y00.img{
+.terrain.x14.y00.img{
   background-position:-280px 0px;
 }
-.terrain.x00.y01.img{
+.terrain.x14.y01.img{
   background-position:-280px -20px;
 }
-.terrain.x00.y02.img{
+.terrain.x14.y02.img{
   background-position:-280px -40px;
 }

@@ -1,5 +1,4 @@
-// Game
-// 2014
+// Game(Unknown) - 2014
 // Will McCurdy - Dillon Mendes - Ben McCurdy
 
 window.addEventListener("keydown", onKeyDown, false);
@@ -24,7 +23,7 @@ var key_sp=false;
 //   x.send();
 // };
 
-var get = function(url, callback){
+    var get = function(url, callback){
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url ,false);
         xhr.onload = function(e) {
@@ -45,9 +44,6 @@ var get = function(url, callback){
         }
         xhr.send();
     }
-
-
-
 
 function onKeyDown(event){
   var keyCode = event.keyCode;
@@ -273,6 +269,7 @@ var Screen = function(div){
 var Map = function(){
   var dd = [];
   var map_url = "";
+  
   var parse_map = function(data){
     var zdat = data.replace(/(\r\n|\n|\r)/gm,"").split("|");
     for(z = 0;z < zdat.length;z++){
@@ -297,17 +294,13 @@ var Map = function(){
   this.draw = function(){
     var data = "";
     scrbg.clear();
-    for(z = 0;z < 1; z++){
-    //for(z = 0;z < dd.length; z++){
+    for(z = 0;z < dd.length; z++){
       for(y = 0; y < dd[z].length; y++){
         for(x = 0; x < dd[z][y].length; x++){
           var l = x*20-1;
           var t = y*20-1;
-
           var xxx = "x" + dd[z][y][x].charAt(0) + dd[z][y][x].charAt(1);
           var yyy = "y" + dd[z][y][x].charAt(2) + dd[z][y][x].charAt(3);
-         // console.log("x:" + x + " y:" + y + " z:" + z);
-         // console.log(xxx + " " + yyy);
           if(dd[z][y][x] != "----"){
             var img = 'terrain '+ xxx + ' ' + yyy + ' img grid';
             scrbg.draw(l,t,img);
@@ -317,23 +310,21 @@ var Map = function(){
     }
     scrbg.render();
   }
-  
 }
 
-var tick = function(){
-  input();
-  person.tick();
-  scr.clear();
-  person.draw();
-  scr.render();
-
-}
+  var tick = function(){
+    input();
+    person.tick();
+    scr.clear();
+    person.draw();
+    scr.render();
+  }
 
 var scr = new Screen("game");
 var scrbg = new Screen("gamebg");
 var person = new Person();
 var mp = new Map();
-mp.lload("./terrain/8080.TERRAIN");
+mp.lload("./map/8080.TERRAIN");
 mp.draw();
 
 setInterval(tick,1000/60);
