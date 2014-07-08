@@ -118,8 +118,8 @@ var previewLayers = function(x,y) {
     for (z = 0; z < 4; z++) {
         tempId[z] = 'terrain img x' + terrain[x][y][z][0] + ' y' + terrain[x][y][z][1];
         $(document.getElementById("preview" + z)).removeClass();
-        $(document.getElementById("preview" + z)).addClass(tempId[z]);
         $(document.getElementById("previewAll" + z)).removeClass();
+        $(document.getElementById("preview" + z)).addClass(tempId[z]);
         $(document.getElementById("previewAll" + z)).addClass(tempId[z]);
     }
 }
@@ -142,21 +142,6 @@ window.onload = function() {
         }
     });
 }
-    // $("#"+event.currentTarget.id).html(data);
-    // var position = event.currentTarget.id.split("-");
-    // edit[0] = parseInt(position[0]);
-    // edit[1] = parseInt(position[1]);
-    // preview(edit[0],edit[1]);
-    // layer0(edit[0],edit[1]);
-    // layer1(edit[0],edit[1]);
-    // layer2(edit[0],edit[1]);
-    // layer3(edit[0],edit[1]);
-    // $("#edit").show();
-    // //console.log(edit[0] + ' ' + edit[1]);
-    // });
-    // $(".terrain.img").mouseleave(function(event){
-    // $("#"+event.currentTarget.id).html("");
-    // });
 
 function grid() {
     var tempID='';
