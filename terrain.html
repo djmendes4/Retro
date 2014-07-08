@@ -15,21 +15,25 @@
   <div id="container">
     <div class="pageTitle">Terrain Editor</div>
 
-
     <section id="preview">
       <div class="title">Preview</div><hr>
-      <div id="previewLayerAll">All<div><div><div id="previewAll" class="terrain img x00 y00"></div></div></div></div>
-      <div id="previewLayer0">0<div><div><div id="preview0" class="terrain img x00 y00"></div></div></div></div>
-      <div id="previewLayer1">1<div><div><div id="preview1" class="terrain img x00 y00"></div></div></div></div>
-      <div id="previewLayer2">2<div><div><div id="preview2" class="terrain img x00 y00"></div></div></div></div>
-      <div id="previewLayer3">3<div><div><div id="preview3" class="terrain img x00 y00"></div></div></div></div>
+      <div id="previewLayerAll">All<div><div>
+        <div class="preview0 terrain img"></div>
+        <div class="preview1 terrain img"></div>
+        <div class="preview2 terrain img"></div>
+        <div class="preview3 terrain img"></div>
+      </div></div></div>
+      <div id="previewLayer0">0<div><div><div id="preview0" class="terrain img"></div></div></div></div>
+      <div id="previewLayer1">1<div><div><div id="preview1" class="terrain img"></div></div></div></div>
+      <div id="previewLayer2">2<div><div><div id="preview2" class="terrain img"></div></div></div></div>
+      <div id="previewLayer3">3<div><div><div id="preview3" class="terrain img"></div></div></div></div>
     </section>
 
 
     <section id="options">
       <div class="title">Options</div><hr>
       <input id="grid" type="checkbox" onchange="grid();" checked></input>Display Grid</br>
-      <input id="prerender" type="checkbox" name="option2" value="Mousover Preview"></input>Mouseover Preview</br>
+      <input id="prerender" type="checkbox" name="option2" value="Mousover Preview" checked></input>Mouseover Preview</br>
       <input id="dot" type="checkbox" name="option3" value="Show dot"></input>Show Dot</br>
       Layer:<input id="layerNum0" type="radio" onchange="layerNumber=0;" name="layer" value="0" checked>0</input>
       <input id="layerNum1" type="radio" onchange="layerNumber=1;" name="layer" value="1">1</input>
@@ -94,6 +98,7 @@
     terrain = defaultMap.getTerrain();
 
     grid();
+    previewLayers(1,1);
   </script> 
 
 </body>

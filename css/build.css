@@ -82,9 +82,10 @@
       height:50px;
       border:2px solid black;
     }
-    #previewAll, #preview0, #preview1, #preview2, #preview3{
-      position:relative;
-      top:15px;
+    #previewAll0, #previewAll1, #previewAll2, #previewAll3, #preview0, #preview1, #preview2, #preview3{
+      position:absolute;
+      top:40px;
+      left:17px;
       -ms-transform:scale(2.5);
       -webkit-transform:scale(2.5);
       transform:scale(2.5);
