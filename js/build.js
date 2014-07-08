@@ -117,19 +117,10 @@ var previewLayers = function(x,y) {
 
     for (z = 0; z < 4; z++) {
         tempId[z] = 'terrain img x' + terrain[x][y][z][0] + ' y' + terrain[x][y][z][1];
+        $(document.getElementById("preview" + z)).removeClass();
+        $(document.getElementById("preview" + z)).addClass(tempId[z]);
+        $(document.getElementById("previewAll" + z)).addClass(tempId[z]);
     }
-
-    $('.preview0').removeClass();
-    $('.preview0').addClass(tempId[0]);
-
-    $('.preview1').removeClass();
-    $('.preview1').addClass(tempId[1]);
-
-    $('.preview2').removeClass();
-    $('.preview2').addClass(tempId[2]);
-
-    $('.preview3').removeClass();
-    $('.preview3').addClass(tempId[3]);
 }
 
 window.onload = function() {
@@ -139,6 +130,7 @@ window.onload = function() {
             $(document.getElementById(tempId[0] + "," + tempId[1] + "," + layerNumber)).removeClass("x" + terrain[tempId[0]][tempId[1]][layerNumber][0] + " y" + terrain[tempId[0]][tempId[1]][layerNumber][1]);
             $(document.getElementById(tempId[0] + "," + tempId[1] + "," + layerNumber)).addClass("temp x" + tileId.split(",")[0] + " y" + tileId.split(",")[1]);
         }
+        previewLayers(tempId[0],tempId[1]);
     });
     $('.terrain.img.grid').mouseout(function(event) {
         if (prerender.checked) {
