@@ -119,6 +119,7 @@ var previewLayers = function(x,y) {
         tempId[z] = 'terrain img x' + terrain[x][y][z][0] + ' y' + terrain[x][y][z][1];
         $(document.getElementById("preview" + z)).removeClass();
         $(document.getElementById("preview" + z)).addClass(tempId[z]);
+        $(document.getElementById("previewAll" + z)).removeClass();
         $(document.getElementById("previewAll" + z)).addClass(tempId[z]);
     }
 }
