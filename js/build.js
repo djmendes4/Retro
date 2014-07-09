@@ -15,6 +15,36 @@ function determineKey(event) {
     }
 }
 
+window.onload = function() {
+    $("#container").mousedown(function() {
+        paintByDrag.start();
+    });
+    $("#container").mouseover(function() {
+        paintByDrag.move();
+    });
+    $("#container").mouseup(function() {
+        paintByDrag.end();
+    });
+    $("#container").mouseleave(function() {
+        paintByDrag.clear();
+    });
+    $('.terrain.img.grid').mouseenter(function(event) {
+        if (prerender.checked) {
+            var tempId = event.target.id.split(",");
+            $(document.getElementById(tempId[0] + "," + tempId[1] + "," + layerNumber)).removeClass("x" + terrain[tempId[0]][tempId[1]][layerNumber][0] + " y" + terrain[tempId[0]][tempId[1]][layerNumber][1]);
+            $(document.getElementById(tempId[0] + "," + tempId[1] + "," + layerNumber)).addClass("temp x" + tileId.split(",")[0] + " y" + tileId.split(",")[1]);
+        }
+        previewLayers(tempId[0],tempId[1]);
+    });
+    $('.terrain.img.grid').mouseout(function(event) {
+        if (prerender.checked) {
+            var tempId = event.target.id.split(",");
+            $(document.getElementById(tempId[0] + "," + tempId[1] + "," + layerNumber)).removeClass("temp x" + tileId.split(",")[0] + " y" + tileId.split(",")[1]);
+            $(document.getElementById(tempId[0] + "," + tempId[1] + "," + layerNumber)).addClass("x" + terrain[tempId[0]][tempId[1]][layerNumber][0] + " y" + terrain[tempId[0]][tempId[1]][layerNumber][1]);
+        }
+    });
+};
+
 function mapInitialization() {
     var data = '';
 
@@ -39,7 +69,6 @@ var Map = function() {
         xhr.onload = function(e) {
             if(this.status == 200) {
                 var data = (this.response);
-                //console.log(data);
                 callback(data);
             } else {
                 console.log("error");
@@ -122,25 +151,6 @@ var previewLayers = function(x,y) {
         $(document.getElementById("preview" + z)).addClass(tempId[z]);
         $(document.getElementById("previewAll" + z)).addClass(tempId[z]);
     }
-}
-
-window.onload = function() {
-    $('.terrain.img.grid').mouseenter(function(event) {
-        if (prerender.checked) {
-            var tempId = event.target.id.split(",");
-            $(document.getElementById(tempId[0] + "," + tempId[1] + "," + layerNumber)).removeClass("x" + terrain[tempId[0]][tempId[1]][layerNumber][0] + " y" + terrain[tempId[0]][tempId[1]][layerNumber][1]);
-            $(document.getElementById(tempId[0] + "," + tempId[1] + "," + layerNumber)).addClass("temp x" + tileId.split(",")[0] + " y" + tileId.split(",")[1]);
-        }
-        previewLayers(tempId[0],tempId[1]);
-    });
-    $('.terrain.img.grid').mouseout(function(event) {
-        if (prerender.checked) {
-            var tempId = event.target.id.split(",");
-
-            $(document.getElementById(tempId[0] + "," + tempId[1] + "," + layerNumber)).removeClass("temp x" + tileId.split(",")[0] + " y" + tileId.split(",")[1]);
-            $(document.getElementById(tempId[0] + "," + tempId[1] + "," + layerNumber)).addClass("x" + terrain[tempId[0]][tempId[1]][layerNumber][0] + " y" + terrain[tempId[0]][tempId[1]][layerNumber][1]);
-        }
-    });
 }
 
 function grid() {
@@ -253,6 +263,78 @@ function paint(position) {
     terrain[tempPos[0]][tempPos[1]][layerNumber][1] = tempTileId[1];
     previewLayers(tempPos[0],tempPos[1]);
 }
+
+var Paint = function() {
+    this.tempPos = [];
+    this.deltaX = [], this.deltaY = [];
+
+    this.painting = function() {
+        for(x=Math.min(this.tempPos[0][0],this.tempPos[2][0]);x<=Math.max(this.tempPos[0][0],this.tempPos[2][0]);x++) {
+            for(y=Math.min(this.tempPos[0][1],this.tempPos[2][1]);y<=Math.max(this.tempPos[0][1],this.tempPos[2][1]);y++) {
+                $(document.getElementById(x + "," + y + "," + layerNumber)).removeClass("temp" + " x" + terrain[x][y][layerNumber][0] + " y" + terrain[x][y][layerNumber][1]);
+                $(document.getElementById(x + "," + y + "," + layerNumber)).removeClass("temp" + " x" + tileId.split(",")[0] + " y" + tileId.split(",")[1]);
+                $(document.getElementById(x + "," + y + "," + layerNumber)).addClass(" x" + tileId.split(",")[0] + " y" + tileId.split(",")[1]);
+                //console.log(terrain[x][y][layerNumber]);
+                terrain[x][y][layerNumber] = [tileId.split(",")[0], tileId.split(",")[1]];
+            }
+        }
+    }
+    this.preview = function() {
+        this.removeRangeMinX, this.removeRangeMaxX, this.removeRangeMinY, this.removeRangeMaxY;
+
+        this.removeRangeMinX = Math.min(this.tempPos[0][0],this.tempPos[1][0],this.tempPos[2][0]);
+        this.removeRangeMaxX = Math.max(this.tempPos[0][0],this.tempPos[1][0],this.tempPos[2][0]);
+
+        this.removeRangeMinY = Math.min(this.tempPos[0][1],this.tempPos[1][1],this.tempPos[2][1]);
+        this.removeRangeMaxY = Math.max(this.tempPos[0][1],this.tempPos[1][1],this.tempPos[2][1]);
+
+        for(x=this.removeRangeMinX;x<=this.removeRangeMaxX;x++) {
+            for(y=this.removeRangeMinY;y<=this.removeRangeMaxY;y++) {
+                //console.log("x" + terrain[x][y][layerNumber][0] + " y" + terrain[x][y][layerNumber][1]);
+                //console.log(x + "," + y + "," + layerNumber);
+                $(document.getElementById(x + "," + y + "," + layerNumber)).removeClass("temp" + " x" + tileId.split(",")[0] + " y" + tileId.split(",")[1]);
+                $(document.getElementById(x + "," + y + "," + layerNumber)).addClass("temp" + " x" + terrain[x][y][layerNumber][0] + " y" + terrain[x][y][layerNumber][1]);
+            }
+        }
+        for(x=Math.min(this.tempPos[0][0],this.tempPos[2][0]);x<=Math.max(this.tempPos[0][0],this.tempPos[2][0]);x++) {
+            for(y=Math.min(this.tempPos[0][1],this.tempPos[2][1]);y<=Math.max(this.tempPos[0][1],this.tempPos[2][1]);y++) {
+                //console.log("x" + tileId.split(",")[0] + " y" + tileId.split(",")[1]);
+                $(document.getElementById(x + "," + y + "," + layerNumber)).removeClass("temp" + " x" + terrain[x][y][layerNumber][0] + " y" + terrain[x][y][layerNumber][1]);
+                $(document.getElementById(x + "," + y + "," + layerNumber)).addClass("temp" + " x" + tileId.split(",")[0] + " y" + tileId.split(",")[1]);
+            }
+        }
+    }
+}
+
+var PaintByDrag = function() {
+    this.mouseDown = false;
+
+    this.start = function() {
+        parent.mouseDown = true;
+
+        this.tempPos[0] = event.target.id.split(",");
+        this.tempPos[1] = this.tempPos[0];
+        this.tempPos[2] = this.tempPos[0];
+        this.preview();
+    }
+    this.move = function() {
+        if(parent.mouseDown) {
+            this.tempPos[1] = this.tempPos[2];
+            this.tempPos[2] = event.target.id.split(",");
+            this.preview();
+        }
+    }
+    this.end = function() {
+        parent.mouseDown = false;
+        this.painting();
+    }
+    this.clear = function() {
+        console.log("This was a blast!");
+    }
+}
+
+PaintByDrag.prototype = new Paint();
+var paintByDrag = new PaintByDrag();
 
 function paintLeft() {
     var tempPos = latestPosition.split(',');
