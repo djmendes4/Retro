@@ -28,6 +28,14 @@ window.onload = function() {
     $("#container").mouseleave(function() {
         paintByDrag.clear();
     });
+    $('#changelogOptionsOpen').click(function() {
+		$('#changelogOptions').addClass('translate');
+		$('#changelogOptionsOpen').addClass('hidden');
+	});
+	$('#changelogOptionsClose').click(function() {
+		$('#changelogOptions').removeClass('translate');
+		$('#changelogOptionsOpen').removeClass('hidden');
+	});
     $('.terrain.img.grid').mouseenter(function(event) {
         if (prerender.checked) {
             var tempId = event.target.id.split(",");

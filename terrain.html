@@ -1,79 +1,101 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Terrain Editor</title>
-  <link rel="shortcut icon" href="./img/zelda1.png">
-  <link rel="stylesheet" type="text/css" href="css/terrain.css">
-  <link rel="stylesheet" type="text/css" href="css/build.css">
-  <script language="javascript" type="text/javascript" src="js/build.js"></script>
-  <script src="lib/jquery-2.1.0.min.js"></script>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Terrain Editor</title>
+        <link rel="shortcut icon" href="./img/zelda1.png">
+        <link rel="stylesheet" type="text/css" href="css/terrain.css">
+        <link rel="stylesheet" type="text/css" href="css/build.css">
+        <script language="javascript" type="text/javascript" src="js/build.js"></script>
+        <script src="lib/jquery-2.1.0.min.js"></script>
+    </head>
 
-<body>
-  <div id="container">
-    <div class="pageTitle">Terrain Editor</div>
+    <body>
+        <div id="container">
+            <div class="pageTitle">Terrain Editor</div>
 
-    <section id="preview">
-      <div class="title">Preview</div><hr>
-      <div id="previewLayerAll">All<div><div>
-        <div id="previewAll0" class="terrain img"></div>
-        <div id="previewAll1" class="terrain img"></div>
-        <div id="previewAll2" class="terrain img"></div>
-        <div id="previewAll3" class="terrain img"></div>
-      </div></div></div>
-      <div id="previewLayer0">0<div><div><div id="preview0" class="terrain img"></div></div></div></div>
-      <div id="previewLayer1">1<div><div><div id="preview1" class="terrain img"></div></div></div></div>
-      <div id="previewLayer2">2<div><div><div id="preview2" class="terrain img"></div></div></div></div>
-      <div id="previewLayer3">3<div><div><div id="preview3" class="terrain img"></div></div></div></div>
-    </section>
-
-
-    <section id="options">
-      <div class="title">Options</div><hr>
-      <input id="grid" type="checkbox" onchange="grid();" checked></input>Display Grid</br>
-      <input id="prerender" type="checkbox" name="option2" value="Mousover Preview" checked></input>Mouseover Preview</br>
-      <input id="dot" type="checkbox" name="option3" value="Show dot"></input>Show Dot</br>
-      Layer:<input id="layerNum0" type="radio" onchange="layerNumber=0;" name="layer" value="0" checked>0</input>
-      <input id="layerNum1" type="radio" onchange="layerNumber=1;" name="layer" value="1">1</input>
-      <input id="layerNum2" type="radio" onchange="layerNumber=2;" name="layer" value="2">2</input>
-      <input id="layerNum3" type="radio" onchange="layerNumber=3;" name="layer" value="3">3</input>
-    </section>
+            <section id="preview">
+                <div class="title">Preview</div><hr>
+                <div id="previewLayerAll">All<div><div>
+                    <div id="previewAll0" class="terrain img"></div>
+                    <div id="previewAll1" class="terrain img"></div>
+                    <div id="previewAll2" class="terrain img"></div>
+                    <div id="previewAll3" class="terrain img"></div>
+                    </div></div></div>
+                <div id="previewLayer0">0<div><div><div id="preview0" class="terrain img"></div></div></div></div>
+                <div id="previewLayer1">1<div><div><div id="preview1" class="terrain img"></div></div></div></div>
+                <div id="previewLayer2">2<div><div><div id="preview2" class="terrain img"></div></div></div></div>
+                <div id="previewLayer3">3<div><div><div id="preview3" class="terrain img"></div></div></div></div>
+            </section>
 
 
-    <section id="mapData">
-      <div class="title">Sheet Coordinates</div><hr>
-        <input class="coords" type="text"></input>
-        <input class="coords" type="text"></input>
-        <input id="save" class="button" type="button" value="Save Map" onclick="printMap();"></input></br>
-        <input id="loadX" class="coords" type="text"></input>
-        <input id="loadY" class="coords" type="text"></input>
-        <input id="load" class="button" type="button" value="Load Map" onclick="loadMap(document.getElementById('loadX').value,document.getElementById('loadY').value)"></input>
-    </section>
+            <section id="options">
+                <div class="title">Options</div><hr>
+                <input id="grid" type="checkbox" onchange="grid();" checked></input>Display Grid</br>
+                <input id="prerender" type="checkbox" name="option2" value="Mousover Preview" checked></input>Mouseover Preview</br>
+                <input id="dot" type="checkbox" name="option3" value="Show dot"></input>Show Dot</br>
+                Layer:<input id="layerNum0" type="radio" onchange="layerNumber=0;" name="layer" value="0" checked>0</input>
+                <input id="layerNum1" type="radio" onchange="layerNumber=1;" name="layer" value="1">1</input>
+                <input id="layerNum2" type="radio" onchange="layerNumber=2;" name="layer" value="2">2</input>
+                <input id="layerNum3" type="radio" onchange="layerNumber=3;" name="layer" value="3">3</input>
+            </section>
 
 
-    <section id="tilesets">
-      <div class="title">Solid Tiles</div><hr>
-        <div id="solidTiles" class="tiles solid"></div>
-      <div class="title">Semi-transparent Tiles</div><hr>
-        <div id="semiTiles" class="tiles semi"></div>
-      <div class="title">Transparent Tiles</div><hr>
-        <div id="transTiles" class="tiles trans"></div>
-    </section>
-    
-
-    <section id="terrain" onmousedown="event.preventDefault();">
-      <div id="layer0"></div>
-      <div id="layer1"></div>
-      <div id="layer2"></div>
-      <div id="layer3"></div>
-    </section>
+            <section id="mapData">
+                <div class="title">Sheet Coordinates</div><hr>
+                <input class="coords" type="text"></input>
+                <input class="coords" type="text"></input>
+                <input id="save" class="button" type="button" value="Save Map" onclick="printMap();"></input></br>
+                <input id="loadX" class="coords" type="text"></input>
+                <input id="loadY" class="coords" type="text"></input>
+                <input id="load" class="button" type="button" value="Load Map" onclick="loadMap(document.getElementById('loadX').value,document.getElementById('loadY').value)"></input>
+            </section>
 
 
-  </div>
-  
-  <script>
+            <section id="tilesets">
+                <div class="title">Solid Tiles</div><hr>
+                <div id="solidTiles" class="tiles solid"></div>
+                <div class="title">Semi-transparent Tiles</div><hr>
+                <div id="semiTiles" class="tiles semi"></div>
+                <div class="title">Transparent Tiles</div><hr>
+                <div id="transTiles" class="tiles trans"></div>
+            </section>
+
+
+            <section id="terrain" onmousedown="event.preventDefault();">
+                <div id="layer0"></div>
+                <div id="layer1"></div>
+                <div id="layer2"></div>
+                <div id="layer3"></div>
+            </section>
+
+            <section id="changelog">
+                <div id="changelogContainer">
+                    <header></header>
+                </div>
+                <div id="changelogOptions">
+                    <div id="changelogOptionsClose">
+                        <div class="toggle"></div>
+                    </div>
+                    <div id="changelogOptionsOpen">
+                        <div class="toggle"></div>
+                    </div>
+                    <div id="changelogOptionsContent">
+                        <p><input id="changelogEventNumber" class="changelog" name="eventNumber" type="checkbox" disabled="true" checked>EventNumber</p>
+                        <p><input id="changelogLineNumber" class="changelog" name="lineNumber" type="checkbox" disabled="true" checked>Line Number</p>
+                        <p><input id="changelogID" class="changelog" name="ID" type="checkbox" checked>ID</p>
+                        <p><input id="changelogClass" class="changelog" name="class" type="checkbox" checked>Class</p>
+                        <p><input id="changelogAction" class="changelog" name="action" type="checkbox" disabled="true" checked>Action</p>
+                        <p><input id="changelogDescription" class="changelog" name="description" type="checkbox" disabled="true" checked>Description</p>
+                        <p><input id="changelogDetails" class="changelog" name="descriptionDetails" type="checkbox">Details</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+<script>
     var localX = 30;
     var localY = 20;
     var tileId = "00,00";
@@ -99,7 +121,7 @@
 
     grid();
     previewLayers(1,1);
-  </script> 
+</script>
 
 </body>
 

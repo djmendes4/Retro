@@ -1,150 +1,256 @@
-    body{
-      background-image:url(../img/bg/bg.jpg);
-      padding:0px;
-      margin:0px;
-      font-family:"Arial Black", Gadget, sans-serif;
-    }
-    section{
-      background-color:#ccc;
-      border:2px solid black;
-      border-radius:3px;
-      overflow:hidden;
-      position:absolute;
-      z-index:0;
-    }
-    .pageTitle{
-      position:relative;
-      top:58px;
-      font-size:24px;
-      font-weight:bold;
-      color:white;
-    }
-    .title{
-      height:18px;
-      text-align:center;
-      font-size:16px;
-    }
-    #preview, #options, #mapData{
-      top:100px;
-      height:120px;
-    }
-    #terrain, #tilesets{
-      top:228px;
-    }
-    #container{
-      width:1000px;
-      position:relative; 
-      margin:auto;
-      margin-top:50px;
-      z-index:0;
-      text-align:center;
-    }
+body{
+  background-image:url(../img/bg/bg.jpg);
+  padding:0px;
+  margin:0px;
+  font-family:"Arial Black", Gadget, sans-serif;
+}
+section{
+  background-color:#ccc;
+  border:2px solid black;
+  border-radius:3px;
+  overflow:hidden;
+  position:absolute;
+  z-index:0;
+}
+.pageTitle{
+  position:relative;
+  top:58px;
+  font-size:24px;
+  font-weight:bold;
+  color:white;
+}
+.title{
+  height:18px;
+  text-align:center;
+  font-size:16px;
+}
+#preview, #options, #mapData{
+  top:100px;
+  height:120px;
+}
+#terrain, #tilesets{
+  top:228px;
+}
+#container{
+  width:1000px;
+  position:relative;
+  margin:auto;
+  margin-top:50px;
+  z-index:0;
+  text-align:center;
+}
 
-    /* ---------- SECTION: TERRAIN ---------- */
-    #terrain{
-      width:600px;
-      height:400px;
-      font-size:0px;
-    }
-    .terrain{
-      width:20px;
-      height:20px;
-      display:inline-block;
-    }
-    #layer0, #layer1, #layer2, #layer3{
-      position:absolute;
-    }
+/* ---------- SECTION: TERRAIN ---------- */
+#terrain{
+  width:600px;
+  height:400px;
+  font-size:0px;
+}
+.terrain{
+  width:20px;
+  height:20px;
+  display:inline-block;
+}
+#layer0, #layer1, #layer2, #layer3{
+  position:absolute;
+}
 
-    /* ---------- SECTION: PREVIEW ---------- */
-    #preview{
-      width:400px;
-    }
-    #preview > div:not(.title){
-      width:auto;
-      position:absolute;
-      left:13px;
-      top:32px;
-    }
-    #preview #previewLayer0{
-      left:93px;
-    }
-    #preview #previewLayer1{
-      left:173px;
-    }
-    #preview #previewLayer2{
-      left:253px;
-    }
-    #preview #previewLayer3{
-      left:333px;
-    }
-    #preview > div > div{
-      width:50px;
-      height:50px;
-      border:2px solid black;
-    }
-    #previewAll0, #previewAll1, #previewAll2, #previewAll3, #preview0, #preview1, #preview2, #preview3{
-      position:absolute;
-      top:40px;
-      left:17px;
-      -ms-transform:scale(2.5);
-      -webkit-transform:scale(2.5);
-      transform:scale(2.5);
-    }
+/* ---------- SECTION: PREVIEW ---------- */
+#preview{
+  width:400px;
+}
+#preview > div:not(.title){
+  width:auto;
+  position:absolute;
+  left:13px;
+  top:32px;
+}
+#preview #previewLayer0{
+  left:93px;
+}
+#preview #previewLayer1{
+  left:173px;
+}
+#preview #previewLayer2{
+  left:253px;
+}
+#preview #previewLayer3{
+  left:333px;
+}
+#preview > div > div{
+  width:50px;
+  height:50px;
+  border:2px solid black;
+}
+#previewAll0, #previewAll1, #previewAll2, #previewAll3, #preview0, #preview1, #preview2, #preview3{
+  position:absolute;
+  top:40px;
+  left:17px;
+  -ms-transform:scale(2.5);
+  -webkit-transform:scale(2.5);
+  transform:scale(2.5);
+}
 
-    /* ---------- SECTION: OPTIONS ---------- */
-    #options{
-      width:192px;
-      left:408px;
-      font-size:14px;
-    }
-    .grid{
-      width:19px;
-      height:19px;
-      border-right:1px solid #000;
-      border-bottom:1px solid #000;
-    }
+/* ---------- SECTION: OPTIONS ---------- */
+#options{
+  width:192px;
+  left:408px;
+  font-size:14px;
+}
+.grid{
+  width:19px;
+  height:19px;
+  border-right:1px solid #000;
+  border-bottom:1px solid #000;
+}
 
-    /* ---------- SECTION: MAPDATA ---------- */
-    #mapData{
-      width:380px;
-      left:608px;
-    }
-    #mapData input{
-      background-color:#555;
-      border:2px solid #222;
-      color:white;
-    }
-    #mapData .coords{
-      width:40px;
-      border-radius:3px;
-      text-align:center;
-    }
-    #mapData .button{
-      width:80px;
-      border-radius:18px;
-    }
+/* ---------- SECTION: MAPDATA ---------- */
+#mapData{
+  width:380px;
+  left:608px;
+}
+#mapData input{
+  background-color:#555;
+  border:2px solid #222;
+  color:white;
+}
+#mapData .coords{
+  width:40px;
+  border-radius:3px;
+  text-align:center;
+}
+#mapData .button{
+  width:80px;
+  border-radius:18px;
+}
 
-    /* ---------- SECTION: TILESETS ---------- */
-    #tilesets{
-      width:380px;
-      height:400px;
-      left:608px;
-      text-align:left;
-    }
-    .solid, .semi, .trans{
-      margin:10px;
-      text-align:left;
-      font-size:0px;
-    }
-    .tileset{
-      width:20px;
-      height:20px;
-      background-color:#000;
-      display:inline-block;
-      position:relative;
-      margin:0px 1px 1px 0px;
-      text-align:left;
-    }
-    #tilesets .tileset:hover{
-      outline:1px solid black;
-    }
+/* ---------- SECTION: TILESETS ---------- */
+#tilesets{
+  width:380px;
+  height:400px;
+  left:608px;
+  text-align:left;
+}
+.solid, .semi, .trans{
+  margin:10px;
+  text-align:left;
+  font-size:0px;
+}
+.tileset{
+  width:20px;
+  height:20px;
+  background-color:#000;
+  display:inline-block;
+  position:relative;
+  margin:0px 1px 1px 0px;
+  text-align:left;
+}
+#tilesets .tileset:hover{
+  outline:1px solid black;
+}
+
+/* ----------- SECTION: CHANGELOG ----------- */
+#changelogContainer{
+	width:600px;
+	height:240px;
+	background-color:rgba(120,120,120,1.0);
+	margin:0 auto;
+	position:relative;
+    z-index:2;
+}
+
+#changelogContainer header{
+	width:600px;
+	height:20px;
+	background-color:rgba(0,255,0,1.0);
+}
+
+#changelogOptions{
+	width:128px;
+	height:200px;
+	position:absolute;
+	left:447px;
+	top:20px;
+	padding-left:25px;
+	padding-right:20px;
+	transition: left 0.35s ease-out;
+	-webkit-transition: left 0.35s ease-out;
+}
+
+#changelogOptions.translate{
+	transition: left 0.35s ease-out;
+	-webkit-transition: left 0.35s ease-out;
+	left:595px;
+}
+
+#changelogOptions .toggle{
+	height:20px;
+	position:relative;
+	top:90px;
+}
+
+#changelogOptionsClose, #changelogOptionsOpen{
+	height:200px;
+}
+
+#changelogOptionsClose{
+	width:25px;
+	position:absolute;
+	left:0px;
+    background-color:yellow;
+/*	background: url("./images/slideIn.png") no-repeat center center;*/
+}
+
+#changelogOptionsOpen{
+	width:20px;
+	position:absolute;
+	left:153px;
+	transition: left 0.35s ease-out;
+	-webkit-transition: left 0.35s ease-out;
+    background-color:yellow;
+/*	background: url("./images/slideOut.png") no-repeat center center;*/
+}
+
+#changelogOptionsOpen.hidden{
+	transition: left,opacity 0.35s ease-out;
+	-webkit-transition: left,opacity 0.35s ease-out;
+	opacity:0.0;
+}
+
+#changelogOptionsContent .changelog{
+
+}
+
+#changelogOptionsContent{
+	height:150px;
+	width:128px;
+	padding:25px 0px;
+	background-color:rgba(0,255,0,1.0);
+}
+
+#changelogOptionsContent p{
+    margin:0px;
+    font-family:arial;
+    text-align:left;
+}
+
+#changelog{
+	width:600px;
+	height:240px;
+	background-color:rgba(0,0,0,1.0);
+	position:relative;
+    top:603px;
+}
+
+section#changelog{
+    overflow:visible;
+}
+
+ul{
+	padding:0px;
+	margin:0px;
+}
+
+ul li{
+	list-style-type:none;
+}
