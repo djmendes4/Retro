@@ -5,8 +5,9 @@
         <meta charset="UTF-8">
         <title>Terrain Editor</title>
         <link rel="shortcut icon" href="./img/zelda1.png">
-        <link rel="stylesheet" type="text/css" href="css/terrain.css">
+        <link rel="stylesheet" type="text/css" href="css/editor.css">
         <link rel="stylesheet" type="text/css" href="css/build.css">
+        <link rel="stylesheet" type="text/css" href="css/terrain.css">
         <script language="javascript" type="text/javascript" src="js/build.js"></script>
         <script src="lib/jquery-2.1.0.min.js"></script>
     </head>
@@ -75,15 +76,11 @@
                     <header></header>
                 </div>
                 <div id="changelogOptions">
-                    <div id="changelogOptionsClose">
-                        <div class="toggle"></div>
-                    </div>
-                    <div id="changelogOptionsOpen">
-                        <div class="toggle"></div>
-                    </div>
+                    <div class="toggle left"></div>
+                    <div class="toggle right"></div>
                     <div id="changelogOptionsContent">
-                        <p><input id="changelogEventNumber" class="changelog" name="eventNumber" type="checkbox" disabled="true" checked>EventNumber</p>
-                        <p><input id="changelogLineNumber" class="changelog" name="lineNumber" type="checkbox" disabled="true" checked>Line Number</p>
+                        <p><input id="changelogEventNumber" class="changelog" name="eventNumber" type="checkbox" disabled="true" checked>Event #</p>
+                        <p><input id="changelogLineNumber" class="changelog" name="lineNumber" type="checkbox" disabled="true" checked>Line #</p>
                         <p><input id="changelogID" class="changelog" name="ID" type="checkbox" checked>ID</p>
                         <p><input id="changelogClass" class="changelog" name="class" type="checkbox" checked>Class</p>
                         <p><input id="changelogAction" class="changelog" name="action" type="checkbox" disabled="true" checked>Action</p>

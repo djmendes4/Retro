@@ -1,0 +1,203 @@
+body{
+  background-image:url(../img/bg/bg.jpg);
+  padding:0px;
+  margin:0px;
+  font-family:"Arial Black", Gadget, sans-serif;
+}
+section{
+  background-color:#ccc;
+  border:2px solid black;
+  border-radius:3px;
+  overflow:hidden;
+  position:absolute;
+  z-index:0;
+}
+.pageTitle{
+  position:relative;
+  top:58px;
+  font-size:24px;
+  font-weight:bold;
+  color:white;
+}
+.title{
+  height:18px;
+  text-align:center;
+  font-size:16px;
+}
+#preview, #options, #mapData{
+  top:100px;
+  height:120px;
+}
+#terrain, #tilesets{
+  top:228px;
+}
+#container{
+  width:1000px;
+  position:relative;
+  margin:auto;
+  margin-top:50px;
+  z-index:0;
+  text-align:center;
+}
+
+/* ---------- SECTION: TERRAIN ---------- */
+#terrain{
+  width:600px;
+  height:400px;
+  font-size:0px;
+}
+.terrain{
+  width:20px;
+  height:20px;
+  display:inline-block;
+}
+#layer0, #layer1, #layer2, #layer3{
+  position:absolute;
+}
+
+/* ---------- SECTION: OPTIONS ---------- */
+#options{
+  width:192px;
+  left:408px;
+  font-size:14px;
+}
+.grid{
+  width:19px;
+  height:19px;
+  border-right:1px solid #000;
+  border-bottom:1px solid #000;
+}
+
+/* ---------- SECTION: MAPDATA ---------- */
+#mapData{
+  width:380px;
+  left:608px;
+}
+#mapData input{
+  background-color:#555;
+  border:2px solid #222;
+  color:white;
+}
+#mapData .coords{
+  width:40px;
+  border-radius:3px;
+  text-align:center;
+}
+#mapData .button{
+  width:80px;
+  border-radius:18px;
+}
+
+/* ---------- SECTION: TILESETS ---------- */
+#tilesets{
+  width:380px;
+  height:400px;
+  left:608px;
+  text-align:left;
+}
+.solid, .semi, .trans{
+  margin:10px;
+  text-align:left;
+  font-size:0px;
+}
+.tileset{
+  width:20px;
+  height:20px;
+  background-color:#000;
+  display:inline-block;
+  position:relative;
+  margin:0px 1px 1px 0px;
+  text-align:left;
+}
+#tilesets .tileset:hover{
+  outline:1px solid black;
+}
+
+/* ----------- SECTION: CHANGELOG ----------- */
+#changelog{
+	width:600px;
+	height:240px;
+    position:relative;
+    top:603px;
+	background-color:rgba(0,0,0,1.0);
+    overflow:visible;
+}
+
+#changelogContainer{
+	width:600px;
+	height:240px;
+    position:relative;
+    margin:0 auto;
+	background-color:rgba(120,120,120,1.0);
+    z-index:2;
+}
+
+#changelogContainer header{
+	width:600px;
+	height:20px;
+	background-color:rgba(0,255,0,1.0);
+}
+
+#changelogOptions{
+	width:197px;
+	height:209px;
+	position:absolute;
+	left:440px;
+	top:20px;
+    background:url("/images/slideOutMenu.png") no-repeat center;
+	transition: left 0.35s ease-out;
+	-webkit-transition: left 0.35s ease-out;
+}
+
+#changelogOptions.translate{
+	left:600px;
+}
+
+#changelogOptions .toggle{
+	width:20px;
+    height:30px;
+	position:absolute;
+}
+
+#changelogOptions .toggle.left{
+    top:90px;
+    left:1px;
+    background:url("/images/slideOutClose_normal.png") no-repeat center;
+}
+
+#changelogOptions .toggle.left:hover{
+    background:url("/images/slideOutClose_scroll.png") no-repeat center;
+}
+
+#changelogOptions .toggle.right{
+    top:93px;
+    left:171px;
+    background:url("/images/slideOutOpen_normal.png") no-repeat center;
+    transition: left,opacity 0.35s ease-out;
+	-webkit-transition: left,opacity 0.35s ease-out;
+}
+
+#changelogOptions .toggle.right:hover{
+    background:url("/images/slideOutOpen_scroll.png") no-repeat center;
+}
+
+#changelogOptions .toggle.right.hidden{
+	opacity:0.0;
+}
+
+#changelogOptionsContent{
+    margin: 35px 0px 34px 35px;
+}
+
+#changelogOptionsContent p{
+    margin:-1px 0px;
+    font-family:Arial, Helvetica, sans-serif;
+    text-align:left;
+    font-weight:bold;
+    color:black;
+    text-shadow:0px 0px 10px rgba(20,89,19,0.8);
+}
+
+#changelogOptionsContent input{
+    margin-right:5px;
+}

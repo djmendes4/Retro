@@ -28,13 +28,14 @@ window.onload = function() {
     $("#container").mouseleave(function() {
         paintByDrag.clear();
     });
-    $('#changelogOptionsOpen').click(function() {
-		$('#changelogOptions').addClass('translate');
-		$('#changelogOptionsOpen').addClass('hidden');
-	});
-	$('#changelogOptionsClose').click(function() {
+    $('#changelogOptions .toggle.left').click(function() {
 		$('#changelogOptions').removeClass('translate');
-		$('#changelogOptionsOpen').removeClass('hidden');
+		$('#changelogOptions .toggle.right').removeClass('hidden');
+        $('#changelogOptions .toggle.right').removeClass('scroll');
+	});
+	$('#changelogOptions .toggle.right').click(function() {
+		$('#changelogOptions').addClass('translate');
+        $('#changelogOptions .toggle.right').addClass('hidden');
 	});
     $('.terrain.img.grid').mouseenter(function(event) {
         if (prerender.checked) {
