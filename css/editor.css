@@ -144,7 +144,7 @@ section{
 	position:absolute;
 	left:440px;
 	top:20px;
-    background:url("/images/slideOutMenu.png") no-repeat center;
+    background:url("../images/slideOutMenu.png") no-repeat center;
 	transition: left 0.35s ease-out;
 	-webkit-transition: left 0.35s ease-out;
 }
@@ -162,23 +162,23 @@ section{
 #changelogOptions .toggle.left{
     top:90px;
     left:1px;
-    background:url("/images/slideOutClose_normal.png") no-repeat center;
+    background:url("../images/slideOutClose_normal.png") no-repeat center;
 }
 
 #changelogOptions .toggle.left:hover{
-    background:url("/images/slideOutClose_scroll.png") no-repeat center;
+    background:url("../images/slideOutClose_scroll.png") no-repeat center;
 }
 
 #changelogOptions .toggle.right{
     top:93px;
     left:171px;
-    background:url("/images/slideOutOpen_normal.png") no-repeat center;
+    background:url("../images/slideOutOpen_normal.png") no-repeat center;
     transition: left,opacity 0.35s ease-out;
 	-webkit-transition: left,opacity 0.35s ease-out;
 }
 
 #changelogOptions .toggle.right:hover{
-    background:url("/images/slideOutOpen_scroll.png") no-repeat center;
+    background:url("../images/slideOutOpen_scroll.png") no-repeat center;
 }
 
 #changelogOptions .toggle.right.hidden{
