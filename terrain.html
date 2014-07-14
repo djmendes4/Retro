@@ -9,7 +9,7 @@
         <link rel="stylesheet" type="text/css" href="css/build.css">
         <link rel="stylesheet" type="text/css" href="css/terrain.css">
         <script language="javascript" type="text/javascript" src="js/build.js"></script>
-        <script src="lib/jquery-2.1.0.min.js"></script>
+        <script src="lib/jquery-1.10.2.js"></script>
     </head>
 
     <body>
@@ -35,7 +35,6 @@
                 <div class="title">Options</div><hr>
                 <input id="grid" type="checkbox" onchange="grid();" checked></input>Display Grid</br>
                 <input id="prerender" type="checkbox" name="option2" value="Mousover Preview" checked></input>Mouseover Preview</br>
-                <input id="dot" type="checkbox" name="option3" value="Show dot"></input>Show Dot</br>
                 Layer:<input id="layerNum0" type="radio" onchange="layerNumber=0;" name="layer" value="0" checked>0</input>
                 <input id="layerNum1" type="radio" onchange="layerNumber=1;" name="layer" value="1">1</input>
                 <input id="layerNum2" type="radio" onchange="layerNumber=2;" name="layer" value="2">2</input>
@@ -73,20 +72,28 @@
 
             <section id="changelog">
                 <div id="changelogContainer">
-                    <header></header>
+                    <div id="changelogTableContainer">
+                        <table id="changelogTable">
+                            <thead id="changelogTableHeader">
+                                <tr><th><div></div></th><th><div>#</div></th><th><div>ID</div></th><th><div>Class</div></th><th><div>Action</div></th><th><div>Description</div></th><th><div>Details</div></th></tr>
+                            </thead>
+                            <tbody id="changelogTableBody">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div id="changelogOptions">
                     <div class="toggle left"></div>
                     <div class="toggle right"></div>
                     <div id="changelogOptionsOpen"></div>
                     <div id="changelogOptionsContent">
-                        <p><input id="changelogEventNumber" class="changelog" name="eventNumber" type="checkbox" disabled="true" checked>Event #</p>
-                        <p><input id="changelogLineNumber" class="changelog" name="lineNumber" type="checkbox" disabled="true" checked>Line #</p>
-                        <p><input id="changelogID" class="changelog" name="ID" type="checkbox" checked>ID</p>
-                        <p><input id="changelogClass" class="changelog" name="class" type="checkbox" checked>Class</p>
-                        <p><input id="changelogAction" class="changelog" name="action" type="checkbox" disabled="true" checked>Action</p>
-                        <p><input id="changelogDescription" class="changelog" name="description" type="checkbox" disabled="true" checked>Description</p>
-                        <p><input id="changelogDetails" class="changelog" name="descriptionDetails" type="checkbox">Details</p>
+                        <p><input id="changelogEventNumber" class="changelog" name="eventNumber" type="checkbox" disabled="true" onchange="changelog.changeWidth('EventNumber',1)" checked>Event #</p>
+                        <p><input id="changelogActionNumber" class="changelog" name="actionNumber" type="checkbox" onchange="changelog.changeWidth('ActionNumber',2)" checked>Action #</p>
+                        <p><input id="changelogID" class="changelog" name="id" type="checkbox" disabled="true" onchange="changelog.changeWidth('ID',3)" checked>ID</p>
+                        <p><input id="changelogClass" class="changelog" name="class" type="checkbox" onchange="changelog.changeWidth('Class',4);" checked>Class</p>
+                        <p><input id="changelogAction" class="changelog" name="action" type="checkbox" disabled="true" onchange="changelog.changeWidth('Action',5)" checked>Action</p>
+                        <p><input id="changelogDescription" class="changelog" name="description" type="checkbox" disabled="true" onchange="changelog.changeWidth('Description',6)" checked>Description</p>
+                        <p><input id="changelogDetails" class="changelog" name="descriptionDetails" type="checkbox" onchange="changelog.changeWidth('Details',7)">Details</p>
                     </div>
                 </div>
             </section>

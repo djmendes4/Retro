@@ -16,16 +16,17 @@ function determineKey(event) {
 }
 
 window.onload = function() {
-    $("#container").mousedown(function() {
+    changelog.checkToggled();
+    $("#terrain").mousedown(function() {
         paintByDrag.start();
     });
-    $("#container").mouseover(function() {
+    $("#terrain").mouseover(function() {
         paintByDrag.move();
     });
-    $("#container").mouseup(function() {
+    $("#terrain").mouseup(function() {
         paintByDrag.end();
     });
-    $("#container").mouseleave(function() {
+    $("#terrain").mouseleave(function() {
         paintByDrag.clear();
     });
     $('#changelogOptions .toggle.left').click(function() {
@@ -319,26 +320,28 @@ var PaintByDrag = function() {
     this.mouseDown = false;
 
     this.start = function() {
-        parent.mouseDown = true;
+        this.mouseDown = true;
 
         this.tempPos[0] = event.target.id.split(",");
         this.tempPos[1] = this.tempPos[0];
         this.tempPos[2] = this.tempPos[0];
         this.preview();
+        changelog.paintByDrag(event,0);
     }
     this.move = function() {
-        if(parent.mouseDown) {
+        if(this.mouseDown) {
             this.tempPos[1] = this.tempPos[2];
             this.tempPos[2] = event.target.id.split(",");
             this.preview();
         }
     }
     this.end = function() {
-        parent.mouseDown = false;
+        this.mouseDown = false;
         this.painting();
+        changelog.paintByDrag(event,1);
     }
     this.clear = function() {
-        console.log("This was a blast!");
+        //console.log("This was a blast!");
     }
 }
 
@@ -406,3 +409,105 @@ function printMap() {
     alert(name.value);
     console.log(data);
 }
+
+/* ------------ CHANGELOG ------------*/
+var Changelog = function() {
+    this.tempEventNumber = 1;
+    this.changelogData = [];
+    this.changelogData[0] = ['EventNumber','ActionNumber','ID','Class','Action','Description','Details'];
+    this.numChecked = [];
+    this.tempWidth = [];
+    this.tempChangelogData = [];
+
+    this.paintByDrag = function(event,eventState) {
+        var tempActionNumber = 1;
+        var tempID = event.target.id.split(',');
+        var tempClass = document.getElementById(tempID[0] + ',' + tempID[1] + ',' + layerNumber).getAttribute('class');
+
+        this.tempChangelogData[eventState] = [tempActionNumber,tempID[0] + ',' + tempID[1] + ',' + layerNumber,tempClass,tempAction];
+
+        if(eventState == 1) {
+
+
+            this.changelogData[this.tempEventNumber] = [this.tempEventNumber,this.tempChangelogData[0][0],this.tempChangelogData[0][1],this.tempChangelogData[0][2],this.tempChangelogData[0][3],this.tempChangelogData[0][4],this.tempChangelogData[0][5] + ' --> ' + this.tempChangelogData[1][5],'ID:(' + tempID + ') changed from <div class="' + tempClass + '"></div> to <div class="' + tempClass + '"></div>'];
+            console.log(this.changelogData[this.tempEventNumber]);
+            this.write();
+        }
+    }
+
+    this.write = function() {
+        //this.changelogData[this.tempEventNumber] = [this.tempEventNumber,"1","0,0","terrain img grid x00 y00","Paint(By Click)","Grass 1 --> Sand 2","Extended Description"];
+        var newRow = document.createElement("tr");
+
+        for(x = 0; x < 7; x++) {
+            var newCell = document.createElement("td");
+            var newDiv = document.createElement("div");
+
+            newDiv.appendChild(document.createTextNode(this.changelogData[this.tempEventNumber][x]));
+            newCell.appendChild(newDiv);
+
+            if(this.numChecked[x + 1] == 0) {
+                newCell.style.display = "none";
+            }
+
+            newRow.appendChild(newCell);
+        }
+        document.getElementById("changelogTableBody").insertBefore(newRow,document.getElementById("changelogTableBody").firstChild);
+
+        this.tempEventNumber++;
+        this.flushData();
+    }
+    this.flushData = function() {
+        this.tempChangelogData.length = 0;
+    }
+    this.clear = function() {
+        this.lineNumber = 1;
+    }
+    this.toggleField = function(fieldName, fieldNumber) {
+        var tempName = 'changelog' + fieldName;
+        var tempHeader = '#changelogTable th:nth-child(' + fieldNumber + ')';
+        var tempCellData = '#changelogTable tr td:nth-child(' + fieldNumber + ')';
+
+        if(document.getElementById(tempName).checked) {
+            $(tempHeader).show();
+            $(tempCellData).show();
+            this.numChecked[fieldNumber] = 1;
+            this.tempWidth[fieldNumber] = $(tempHeader).width();
+        } else {
+            $(tempHeader).hide();
+            $(tempCellData).hide();
+            this.numChecked[fieldNumber] = 0;
+            this.tempWidth[fieldNumber] = $(tempHeader).width();
+        }
+    }
+    this.changeWidth = function(fieldName, fieldNumber) {
+        this.toggleField(fieldName, fieldNumber);
+        var finalWidth = 0;
+        var finalAdjustment = 0;
+
+        for(x = 1; x < 8;x ++) {
+            finalWidth += this.numChecked[x] * this.tempWidth[x] + 3 * this.numChecked[x];
+        }
+
+        finalWidth++;
+
+        finalAdjustment = 588 - finalWidth;
+
+        if(this.numChecked[6]==1) {
+            var temp = finalAdjustment + this.tempWidth[6];
+            $('#changelogTable th:nth-child(6) div').css("width",temp);
+            $('#changelogTable td:nth-child(6) div').css("width",temp);
+        } else {
+            var temp = finalAdjustment + this.tempWidth[7];
+            $('#changelogTable th:nth-child(7) div').css("width",temp);
+            $('#changelogTable td:nth-child(7) div').css("width",temp);
+        }
+    }
+    this.checkToggled = function() {
+        for(x = 0; x < 7; x++) {
+            this.toggleField(this.changelogData[0][x],x+1);
+        }
+    }
+}
+
+var changelog = new Changelog();
