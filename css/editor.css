@@ -12,9 +12,11 @@ section{
   position:absolute;
   z-index:0;
 }
+h4{
+  margin:0px;
+}
 .pageTitle{
   position:relative;
-  top:58px;
   font-size:24px;
   font-weight:bold;
   color:white;
@@ -24,12 +26,21 @@ section{
   text-align:center;
   font-size:16px;
 }
-#preview, #options, #mapData{
-  top:100px;
-  height:120px;
+section.toprow{
+  height:100px;
+  position:relative;
+  display:inline-block;
 }
-#terrain, #tilesets{
-  top:228px;
+section.middlerow{
+  height:400px;
+  position:relative;
+  display:inline-block;
+}
+section.bottomrow{
+  height:240px;
+  position:relative;
+  display:inline-block;
+  margin-right:399px;
 }
 #container{
   width:1000px;
@@ -40,10 +51,32 @@ section{
   text-align:center;
 }
 
+/* ---------- SECTION: PREVIEW ---------- */
+section#preview{
+  width:400px;
+}
+section#preview > div{
+  position:relative;
+  display:inline-block;
+  margin:0px 8px;
+}
+section#preview > div > div{
+  width:50px;
+  height:50px;
+  border:2px solid black;
+}
+section#preview > div > div > div{
+  position:absolute;
+  top:15px;
+  left:15px;
+  -ms-transform:scale(2.5);
+  -webkit-transform:scale(2.5);
+  transform:scale(2.5);
+}
+
 /* ---------- SECTION: TERRAIN ---------- */
 #terrain{
   width:600px;
-  height:400px;
   font-size:0px;
 }
 .terrain{
@@ -57,8 +90,7 @@ section{
 
 /* ---------- SECTION: OPTIONS ---------- */
 #options{
-  width:192px;
-  left:408px;
+  width:191px;
   font-size:14px;
 }
 .grid{
@@ -70,8 +102,7 @@ section{
 
 /* ---------- SECTION: MAPDATA ---------- */
 #mapData{
-  width:380px;
-  left:608px;
+  width:387px;
 }
 #mapData input{
   background-color:#555;
@@ -90,9 +121,7 @@ section{
 
 /* ---------- SECTION: TILESETS ---------- */
 #tilesets{
-  width:380px;
-  height:400px;
-  left:608px;
+  width:387px;
   text-align:left;
 }
 .solid, .semi, .trans{
@@ -116,9 +145,6 @@ section{
 /* ----------- SECTION: CHANGELOG ----------- */
 #changelog{
 	width:600px;
-	height:240px;
-    position:relative;
-    top:603px;
     border:none;
     background-color:transparent;
     overflow:visible;

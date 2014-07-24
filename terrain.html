@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
     <head>
         <meta charset="UTF-8">
         <title>Terrain Editor</title>
@@ -9,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="css/build.css">
         <link rel="stylesheet" type="text/css" href="css/terrain.css">
         <script language="javascript" type="text/javascript" src="js/build.js"></script>
+        <script language="javascript" type="text/javascript" src="js/editor.js"></script>
         <script src="lib/jquery-1.10.2.js"></script>
     </head>
 
@@ -16,23 +16,21 @@
         <div id="container">
             <div class="pageTitle">Terrain Editor</div>
 
-            <section id="preview">
-                <div class="title">Preview</div><hr>
-                <div id="previewLayerAll">All<div><div>
-                    <div id="previewAll0" class="terrain img"></div>
-                    <div id="previewAll1" class="terrain img"></div>
-                    <div id="previewAll2" class="terrain img"></div>
-                    <div id="previewAll3" class="terrain img"></div>
+            <section id="preview" class="toprow">
+                <div><h4>All</h4><div><div>
+                    <div class="preview0"></div>
+                    <div class="preview1"></div>
+                    <div class="preview2"></div>
+                    <div class="preview3"></div>
                     </div></div></div>
-                <div id="previewLayer0">0<div><div><div id="preview0" class="terrain img"></div></div></div></div>
-                <div id="previewLayer1">1<div><div><div id="preview1" class="terrain img"></div></div></div></div>
-                <div id="previewLayer2">2<div><div><div id="preview2" class="terrain img"></div></div></div></div>
-                <div id="previewLayer3">3<div><div><div id="preview3" class="terrain img"></div></div></div></div>
+                <div class="preview0"><h4>0</h4><div><div></div></div></div>
+                <div class="preview1"><h4>1</h4><div><div></div></div></div>
+                <div class="preview2"><h4>2</h4><div><div></div></div></div>
+                <div class="preview3"><h4>3</h4><div><div></div></div></div>
             </section>
 
 
-            <section id="options">
-                <div class="title">Options</div><hr>
+            <section id="options" class="toprow">
                 <input id="grid" type="checkbox" onchange="grid();" checked></input>Display Grid</br>
                 <input id="prerender" type="checkbox" name="option2" value="Mousover Preview" checked></input>Mouseover Preview</br>
                 Layer:<input id="layerNum0" type="radio" onchange="layerNumber=0;" name="layer" value="0" checked>0</input>
@@ -42,8 +40,7 @@
             </section>
 
 
-            <section id="mapData">
-                <div class="title">Sheet Coordinates</div><hr>
+            <section id="mapData" class="toprow">
                 <input class="coords" type="text"></input>
                 <input class="coords" type="text"></input>
                 <input id="save" class="button" type="button" value="Save Map" onclick="printMap();"></input></br>
@@ -53,24 +50,23 @@
             </section>
 
 
-            <section id="tilesets">
-                <div class="title">Solid Tiles</div><hr>
-                <div id="solidTiles" class="tiles solid"></div>
-                <div class="title">Semi-transparent Tiles</div><hr>
-                <div id="semiTiles" class="tiles semi"></div>
-                <div class="title">Transparent Tiles</div><hr>
-                <div id="transTiles" class="tiles trans"></div>
-            </section>
-
-
-            <section id="terrain" onmousedown="event.preventDefault();">
+            <section id="terrain" class="middlerow">
                 <div id="layer0"></div>
                 <div id="layer1"></div>
                 <div id="layer2"></div>
                 <div id="layer3"></div>
             </section>
 
-            <section id="changelog">
+
+            <section id="tilesets" class="middlerow">
+                <div class="title">Solid Tiles</div><hr>
+                <div id="solid" class="tiles solid"></div>
+                <div class="title">Semi-transparent Tiles</div><hr>
+                <div id="semitransparent" class="tiles semi"></div>
+            </section>
+
+
+            <section id="changelog" class="bottomrow">
                 <div id="changelogContainer">
                     <div id="changelogTableContainer">
                         <table id="changelogTable">
@@ -101,31 +97,29 @@
         </div>
 
 <script>
-    var localX = 30;
-    var localY = 20;
-    var tileId = "00,00";
-    var latestPosition = "0,0,0";
-    var layerNumber = 0;
-    var terrain;
+    var tileID = '00,00';
 
-    mapInitialization();
+    var map = new Map();
+    map.initialize();
+
     var tilesetMap = new Map();
     tilesetMap.load(0,0);
     tilesetMap.render();
 
-    var tiles = new Tileset();
-    tiles.solid();
-    tiles.semiTransparent();
-    tiles.transparent();
+    var tileset = new Tileset();
+    tileset.create('solid', 0);
+    tileset.create('semitransparent', 1);
 
     var defaultMap = new Map();
     defaultMap.load(1,1);
     defaultMap.render();
 
-    terrain = defaultMap.getTerrain();
-
     grid();
     previewLayers(1,1);
+
+//    for(x = 0; x < 7; x++) {
+//        changelog.toggleField(changelog.changelogData[0][x],x+1);
+//    }
 </script>
 
 </body>

@@ -4,6 +4,9 @@
 .terrain.x--.y--.img{
   opacity:0;
 }
+.terrain.img.temp{
+  opacity:0.75;
+}
 .terrain.x00.y00.img{
   background-position:0px 0px;
 }
