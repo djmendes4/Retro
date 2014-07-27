@@ -51,11 +51,11 @@
             <section id="map" class="top row">
                 <section class="subtitle">Save & Load</section>
                 <section class="content">
-                    <input id="map_saveX" type="text" onchange="map.validate();">
-                    <input id="map_saveY" type="text" onchange="map.validate();">
+                    <input id="map_saveX" type="text" onchange="map.validate(event);">
+                    <input id="map_saveY" type="text" onchange="map.validate(event);">
                     <input id="map_save" type="button" onclick="map.save();" value="Save Map">
-                    <input id="map_loadX" type="text" onchange="map.validate();">
-                    <input id="map_loadY" type="text" onchange="map.validate();">
+                    <input id="map_loadX" type="text" onchange="map.validate(event);">
+                    <input id="map_loadY" type="text" onchange="map.validate(event);">
                     <input id="map_load" type="button" onclick="map.load();" value="Load Map">
                 </section>
             </section>
@@ -63,6 +63,13 @@
 
             <section id="options" class="top row">
                 <section class="subtitle">Options</section>
+                    <div>
+                        Layer:
+                        <input id="options_layer0" type="radio" onchange="options.layer(0);" name="layer" value="0" checked>0
+                        <input id="options_layer1" type="radio" onchange="options.layer(1);" name="layer" value="1">1
+                        <input id="options_layer2" type="radio" onchange="options.layer(2);" name="layer" value="2">2
+                        <input id="options_layer3" type="radio" onchange="options.layer(3);" name="layer" value="3">3
+                    </div>
                 <section class="content">
                     <div><input id="options_light" class="mode" type="button" onclick="options.light();" value="Light Mode"></div>
                     <div><input id="options_dark" class="mode" type="button" onclick="options.dark();" value="Dark Mode"></div>
@@ -83,30 +90,32 @@
 
 
             <section id="tileset" class="middle row">
-                <section class="subtitle">
-                    <div>
-                        Layer:
-                        <input id="options_layer0" type="radio" onchange="options.layer(0);" name="layer" value="0" checked>0
-                        <input id="options_layer1" type="radio" onchange="options.layer(1);" name="layer" value="1">1
-                        <input id="options_layer2" type="radio" onchange="options.layer(2);" name="layer" value="2">2
-                        <input id="options_layer3" type="radio" onchange="options.layer(3);" name="layer" value="3">3
-                    </div>
-                </section>
             </section>
 
 
             <section id="changelog" class="bottom row">
-                <div id="changelogContainer">
-                    <div id="changelogTableContainer">
-                        <table id="changelogTable">
-                            <thead id="changelogTableHeader">
-                                <tr><th><div></div></th><th><div>#</div></th><th><div>ID</div></th><th><div>Class</div></th><th><div>Action</div></th><th><div>Description</div></th><th><div>Details</div></th></tr>
-                            </thead>
-                            <tbody id="changelogTableBody">
-                            </tbody>
-                        </table>
+                <section class="subtitle"></section>
+                <section class="content">
+                    <div id="changelogContainer">
+                        <div id="changelogTableContainer">
+                            <table id="changelogTable">
+                                <thead id="changelogTableHeader">
+                                    <tr>
+                                        <th><div></div></th>
+                                        <th><div>#</div></th>
+                                        <th><div>ID</div></th>
+                                        <th><div>Class</div></th>
+                                        <th><div>Action</div></th>
+                                        <th><div>Description</div></th>
+                                        <th><div>Details</div></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="changelogTableBody">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
+                </section>
                 <div id="changelogOptions">
                     <div class="toggle left"></div>
                     <div class="toggle right"></div>
@@ -126,31 +135,17 @@
         </div>
 
 <script>
-    var tileID = '00,00';
-
     var map = new Map();
-    map.initialize();
-
-    var tilesetMap = new Map();
-    tilesetMap.load(0,0);
-    tilesetMap.render();
-
-    var tileset = new Tileset();
-    tileset.create('Solid Tiles', 0);
-    tileset.create('Semi Transparent Tiles', 1);
-
-    var defaultMap = new Map();
-    defaultMap.load(1,1);
-    defaultMap.render();
-
     var options = new Options();
+    var paintByArrows = new PaintByArrows();
+    var paintByDrag = new PaintByDrag();
+
+    map.initialize();
+    map.load(0,0); //standard tileset
+    map.load(128,128); //standard grass map
+    //map.render();
 
     options.grid();
-    previewLayers(1,1);
-
-//    for(x = 0; x < 7; x++) {
-//        changelog.toggleField(changelog.changelogData[0][x],x+1);
-//    }
 </script>
 
 </body>

@@ -1,13 +1,10 @@
 var gridDimensions = [30,20,4];
 var currentPosition = [0,0];
 var tileID = ['x00','y00'];
-var terrain = [];
+var terrain = [], atlas = [];
 var layer = 0;
 
 window.onload = function() {
-    paintByArrows = new PaintByArrows();
-    paintByDrag = new PaintByDrag();
-
     window.addEventListener('keydown', determineKey);
     function determineKey(event) {
         // keyCode 37: Down Arrow Key
@@ -52,7 +49,7 @@ window.onload = function() {
     $('#terrain').mouseleave(function() {
         paintByDrag.clear();
     });
-    $('#solid div').click(function() {
+    $('section#tileset > section.content.solid > div').click(function() {
         tileID = [event.target.id.split(',')[0],event.target.id.split(',')[1]];
         options_layer0.checked = true;
         options.layer(0);
@@ -205,8 +202,6 @@ var PaintByDrag = function() {
 /* Map Functions */
 
 var Map = function() {
-    var temp = [];
-
     this.initialize = function() {
         var data = '';
 
@@ -218,6 +213,26 @@ var Map = function() {
             }
             document.getElementById('terrain_layer' + z).innerHTML = data;
         }
+    }
+
+    this.validate = function(event) {
+        if (document.getElementById(event.target.id).value < 0 || document.getElementById(event.target.id).value > 255) {
+            alert('This field will only accept numbers between 0 and 255');
+        } else {
+            return;
+        }
+    }
+
+    this.load = function(x,y) {
+        x = x || document.getElementById('map_loadX').value || '0';
+        y = y || document.getElementById('map_loadY').value || '0';
+
+        var hexX = Number(parseInt(x)).toString(16);
+        var hexY = Number(parseInt(y)).toString(16);
+        var url = './map/' + hexX + '' + hexY + '.TERRAIN';
+
+        this.loadMap(url, this.parse);
+        this.render();
     }
 
     this.loadMap = function(url, callback) {
@@ -244,6 +259,7 @@ var Map = function() {
     this.parse = function(data) {
         var zData, yData, xData;
         var xTile, yTile;
+        var temp = [], tempTerrain = [];
 
         zData = data.replace(/(\r\n|\n|\r)/gm,"").split("|");
         for(z = 0; z < zData.length; z++) {
@@ -257,26 +273,78 @@ var Map = function() {
                 }
             }
         }
+
         for (x = 0; x < gridDimensions[0]; x++) {
-            terrain[x] = [];
+            tempTerrain[x] = [];
             for (y = 0; y < gridDimensions[1]; y++) {
-                terrain[x][y] = [];
-                for (z = 0; z < 4; z++) {
+                tempTerrain[x][y] = [];
+                for (z = 0; z < gridDimensions[2]; z++) {
                     xTile = 'x' + temp[z][y][x].charAt(0) + temp[z][y][x].charAt(1);
                     yTile = 'y' + temp[z][y][x].charAt(2) + temp[z][y][x].charAt(3);
-                    terrain[x][y][z] = [xTile,yTile];
-                    //console.log(terrain[x][y][z]);
+                    tempTerrain[x][y][z] = [xTile,yTile];
                 }
             }
         }
+
+        terrain = tempTerrain;
+
+        if (temp[4][0][0] === 'tileset') {
+            atlas[temp[4][0][2]] = tempTerrain;
+            this.addTileset(atlas[temp[4][0][2]]);
+        }
+    }
+
+    this.addTileset = function(tilemap) {
+        var tilesetID = [], tileClass = [];
+        var newTile = {}, newTileset = {}, newBreak = {}, newTitle = {}, newInput = {};
+        var x = 0, y = 0, z = 0;
+
+//        if (type != 'solid' && type != 'semitransparent' && type != 'transparent') {
+//            alert('The tile type being added is not supported.');
+//            return;
+//        }
+
+        newTileset = document.createElement('section');
+        newTileset.setAttribute('class','subtitle');
+
+        newTitle = document.createTextNode(name);
+        newTileset.appendChild(newTitle);
+
+        document.getElementById('tileset').appendChild(newTileset);
+
+        newTileset = document.createElement('section');
+        newTileset.setAttribute('class','content');
+
+        for (z = 0; z < 4; z++) {
+            y = 0;
+            while ([0][y][z][1] != 'y--') {
+                x = 0;
+                while(tilemap[x][y][z][0] != 'x--') {
+                    tileID = tilemap[x][y][z][0] + ',' + tilemap[x][y][z][1];
+                    tileClass = 'tile terrain img ' + tilemap[x][y][z][0] + ' ' + tilemap[x][y][z][1];
+
+                    newTile = document.createElement('div');
+                    newTile.setAttribute('id',tileID);
+                    newTile.setAttribute('class',tileClass);
+
+                    newTileset.appendChild(newTile);
+                    x++;
+                }
+                newBreak = document.createElement('br');
+                newTileset.appendChild(newBreak);
+
+                y++;
+            }
+        }
+        document.getElementById('tileset').appendChild(newTileset);
     }
 
     this.render = function() {
         var tempID = '';
         var tempData = '';
 
-        for(z = 0; z < 4; z++) {
-            for(x = 0;x < gridDimensions[0]; x++) {
+        for(z = 0; z < gridDimensions[2]; z++) {
+            for(x = 0; x < gridDimensions[0]; x++) {
                 for(y = 0; y < gridDimensions[1]; y++) {
                     tempID = document.getElementById(x + ',' + y + ',' + z);
                     tempData = 'terrain img grid ' + terrain[x][y][z][0] + ' ' + terrain[x][y][z][1];
@@ -285,14 +353,6 @@ var Map = function() {
                 }
             }
         }
-    }
-
-    this.load = function(x,y){
-        var hexX = Number(x).toString(16);
-        var hexY = Number(y).toString(16);
-        var url = './map/' + hexX + '' + hexY + '.TERRAIN';
-
-        this.loadMap(url, this.parse);
     }
 }
 
@@ -334,53 +394,9 @@ var Options = function() {
             }
         }
     }
+
     this.layer = function(level) {
         layer = level;
-    }
-}
-
-var Tileset = function() {
-    this.create = function(name,layer) {
-        var tilesetID = [], tileClass = [];
-        var newTile = {}, newTileset = {}, newBreak = {}, newTitle = {};
-        var x = 0, y = 0;
-
-//        if (type != 'solid' && type != 'semitransparent' && type != 'transparent') {
-//            alert('The tile type being added is not supported.');
-//            return;
-//        }
-
-        newTileset = document.createElement('section');
-        newTileset.setAttribute('class','subtitle');
-
-        newTitle = document.createTextNode(name);
-        newTileset.appendChild(newTitle);
-
-        document.getElementById('tileset').appendChild(newTileset);
-
-        newTileset = document.createElement('section');
-        newTileset.setAttribute('class','content');
-
-        y = 0;
-        while (terrain[0][y][layer][1] != 'y--') {
-            x = 0;
-            while(terrain[x][y][layer][0] != 'x--') {
-                tileID = terrain[x][y][layer][0] + ',' + terrain[x][y][layer][1];
-                tileClass = 'tile terrain img ' + terrain[x][y][layer][0] + ' ' + terrain[x][y][layer][1];
-
-                newTile = document.createElement('div');
-                newTile.setAttribute('id',tileID);
-                newTile.setAttribute('class',tileClass);
-
-                newTileset.appendChild(newTile);
-                x++;
-            }
-            newBreak = document.createElement('br');
-            newTileset.appendChild(newBreak);
-
-            y++;
-        }
-        document.getElementById('tileset').appendChild(newTileset);
     }
 }
 
