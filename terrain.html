@@ -5,64 +5,101 @@
         <title>Terrain Editor</title>
         <link rel="shortcut icon" href="./img/zelda1.png">
         <link rel="stylesheet" type="text/css" href="css/editor.css">
-        <link rel="stylesheet" type="text/css" href="css/build.css">
         <link rel="stylesheet" type="text/css" href="css/terrain.css">
-        <script language="javascript" type="text/javascript" src="js/build.js"></script>
         <script language="javascript" type="text/javascript" src="js/editor.js"></script>
         <script src="lib/jquery-1.10.2.js"></script>
     </head>
 
     <body>
         <div id="container">
-            <div class="pageTitle">Terrain Editor</div>
 
-            <section id="preview" class="toprow">
-                <div><h4>All</h4><div><div>
-                    <div class="preview0"></div>
-                    <div class="preview1"></div>
-                    <div class="preview2"></div>
-                    <div class="preview3"></div>
-                    </div></div></div>
-                <div class="preview0"><h4>0</h4><div><div></div></div></div>
-                <div class="preview1"><h4>1</h4><div><div></div></div></div>
-                <div class="preview2"><h4>2</h4><div><div></div></div></div>
-                <div class="preview3"><h4>3</h4><div><div></div></div></div>
+
+            <header>Terrain Editor</header>
+
+
+            <section id="preview" class="top row">
+                <section class="subtitle">
+                    <div>All</div>
+                    <div>0</div>
+                    <div>1</div>
+                    <div>2</div>
+                    <div>3</div>
+                </section>
+                <section class="content">
+                    <div>
+                        <div class="layer0"></div>
+                        <div class="layer1"></div>
+                        <div class="layer2"></div>
+                        <div class="layer3"></div>
+                    </div>
+                    <div>
+                        <div class="layer0"></div>
+                    </div>
+                    <div>
+                        <div class="layer1"></div>
+                    </div>
+                    <div>
+                        <div class="layer2"></div>
+                    </div>
+                    <div>
+                        <div class="layer3"></div>
+                    </div>
+                </section>
             </section>
 
 
-            <section id="options" class="toprow">
-                <input id="grid" type="checkbox" onchange="grid();" checked></input>Display Grid</br>
-                <input id="prerender" type="checkbox" name="option2" value="Mousover Preview" checked></input>Mouseover Preview</br>
-                Layer:<input id="layerNum0" type="radio" onchange="layerNumber=0;" name="layer" value="0" checked>0</input>
-                <input id="layerNum1" type="radio" onchange="layerNumber=1;" name="layer" value="1">1</input>
-                <input id="layerNum2" type="radio" onchange="layerNumber=2;" name="layer" value="2">2</input>
-                <input id="layerNum3" type="radio" onchange="layerNumber=3;" name="layer" value="3">3</input>
+            <section id="options" class="top row">
+                <section class="content">
+                    <div><input id="options_toggleGrid" type="checkbox" onchange="options.grid();" checked>Show Grid</div>
+                    <div><input id="options_togglePreview" type="checkbox" onchange="options.preview();" checked>Show Preview</div>
+                    <div><input id="options_light" type="button" onclick="options.light();" value="Light Mode">Light Mode</div>
+                    <div><input id="options_dark" type="button" onclick="options.dark();" value="Dark Mode">Dark Mode</div>
+                </section>
+                <section class="subtitle">Layer:</section>
+                <section class="content">
+                    <div>
+                        <input id="options_layer0" type="radio" onchange="options.layer(0);" name="layer" value="0" checked>0
+                        <input id="options_layer1" type="radio" onchange="options.layer(1);" name="layer" value="1">1
+                        <input id="options_layer2" type="radio" onchange="options.layer(2);" name="layer" value="2">2
+                        <input id="options_layer3" type="radio" onchange="options.layer(3);" name="layer" value="3">3
+                    </div>
+                </section>
             </section>
 
 
-            <section id="mapData" class="toprow">
-                <input class="coords" type="text"></input>
-                <input class="coords" type="text"></input>
-                <input id="save" class="button" type="button" value="Save Map" onclick="printMap();"></input></br>
-                <input id="loadX" class="coords" type="text"></input>
-                <input id="loadY" class="coords" type="text"></input>
-                <input id="load" class="button" type="button" value="Load Map" onclick="loadMap(document.getElementById('loadX').value,document.getElementById('loadY').value)"></input>
+            <section id="maps" class="top row">
+                <section class="content">
+                    <input id="maps_saveX" type="text" onchange="maps.validate();">
+                    <input id="maps_saveY" type="text" onchange="maps.validate();">
+                    <input id="maps_save" type="button" onclick="maps.save();" value="Save Map">
+                </section>
+                <section class="content">
+                    <input id="maps_loadX" type="text" onchange="maps.validate();">
+                    <input id="maps_loadY" type="text" onchange="maps.validate();">
+                    <input id="maps_load" type="button" onclick="options.load();" value="Load Map">
+                </section>
             </section>
 
 
-            <section id="terrain" class="middlerow">
-                <div id="layer0"></div>
-                <div id="layer1"></div>
-                <div id="layer2"></div>
-                <div id="layer3"></div>
+            <section id="terrain" class="middle row">
+                <section class="content">
+                    <div id="terrain_layer0"></div>
+                    <div id="terrain_layer1"></div>
+                    <div id="terrain_layer2"></div>
+                    <div id="terrain_layer3"></div>
+                </section>
             </section>
 
 
-            <section id="tilesets" class="middlerow">
-                <div class="title">Solid Tiles</div><hr>
-                <div id="solid" class="tiles solid"></div>
-                <div class="title">Semi-transparent Tiles</div><hr>
-                <div id="semitransparent" class="tiles semi"></div>
+            <section id="tilesets" class="middle row">
+                <section class="subtitle">Solid Tiles</section>
+                <section class="content">
+                    <div id="solid" class="tile solid"></div>
+                </section>
+                <section class="subtitle">Semi-transparent Tiles</section>
+                <section class="content">
+                    <div id="semitransparent" class="tile semi"></div>
+                </section>
             </section>
 
 

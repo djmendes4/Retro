@@ -1,162 +1,152 @@
 body{
-  background-image:url(../img/bg/bg.jpg);
-  padding:0px;
-  margin:0px;
-  font-family:"Arial Black", Gadget, sans-serif;
+    background:url(../img/bg/bg.jpg) repeat left top;
+    padding:0px;
+    margin:0px;
+    font-family:"Arial Black", Gadget, sans-serif;
 }
 section{
-  background-color:#ccc;
-  border:2px solid black;
-  border-radius:3px;
-  overflow:hidden;
-  position:absolute;
-  z-index:0;
+    background-color:#ccc;
+    overflow:hidden;
 }
-h4{
-  margin:0px;
+header{
+    height:50px;
+    position:relative;
+    font-size:28px;
+    font-weight:bold;
+    text-shadow:0x 0px 8px rgba(80,140,50,1.0);
 }
-.pageTitle{
-  position:relative;
-  font-size:24px;
-  font-weight:bold;
-  color:white;
+footer{
+    height:50px;
+    position:relative;
 }
-.title{
-  height:18px;
-  text-align:center;
-  font-size:16px;
+section.row{
+    position:relative;
+    display:inline-block;
 }
-section.toprow{
-  height:100px;
-  position:relative;
-  display:inline-block;
+section.top.row{
+    height:100px;
 }
-section.middlerow{
-  height:400px;
-  position:relative;
-  display:inline-block;
+section.middle.row{
+    height:400px;
 }
-section.bottomrow{
-  height:240px;
-  position:relative;
-  display:inline-block;
-  margin-right:399px;
+section.bottom.row{
+    height:240px;
+    margin-right:399px;
 }
 #container{
-  width:1000px;
-  position:relative;
-  margin:auto;
-  margin-top:50px;
-  z-index:0;
-  text-align:center;
+    width:1000px;
+    position:relative;
+    margin:auto;
+    margin-top:120px;
 }
 
 /* ---------- SECTION: PREVIEW ---------- */
 section#preview{
-  width:400px;
+    width:400px;
 }
-section#preview > div{
-  position:relative;
-  display:inline-block;
-  margin:0px 8px;
+section#preview > section > div{
+    position:relative;
+    width:50px;
+    display:inline-block;
+    margin:5px 10px 0px 10px;
 }
-section#preview > div > div{
-  width:50px;
-  height:50px;
-  border:2px solid black;
+section#preview > section.content > div{
+    height:50px;
+    margin:0px 8px;
+    border:2px solid black;
 }
-section#preview > div > div > div{
-  position:absolute;
-  top:15px;
-  left:15px;
-  -ms-transform:scale(2.5);
-  -webkit-transform:scale(2.5);
-  transform:scale(2.5);
+section#preview > section.content > div > div{
+    position:absolute;
+    top:15px;
+    left:15px;
+    -ms-transform:scale(2.5);
+    -webkit-transform:scale(2.5);
+    transform:scale(2.5);
 }
 
 /* ---------- SECTION: TERRAIN ---------- */
-#terrain{
-  width:600px;
-  font-size:0px;
+section#terrain{
+    width:600px;
+    font-size:0px;
 }
-.terrain{
-  width:20px;
-  height:20px;
-  display:inline-block;
+section#terrain .terrain{
+    width:20px;
+    height:20px;
+    display:inline-block;
 }
-#layer0, #layer1, #layer2, #layer3{
-  position:absolute;
+section#terrain > div{
+    position:absolute;
 }
 
 /* ---------- SECTION: OPTIONS ---------- */
-#options{
-  width:191px;
-  font-size:14px;
+section#options{
+    width:191px;
+    font-size:14px;
 }
-.grid{
-  width:19px;
-  height:19px;
-  border-right:1px solid #000;
-  border-bottom:1px solid #000;
+section#terrain .grid{
+    width:19px;
+    height:19px;
+    border-right:1px solid #000;
+    border-bottom:1px solid #000;
 }
 
 /* ---------- SECTION: MAPDATA ---------- */
-#mapData{
-  width:387px;
+section#maps{
+    width:387px;
 }
-#mapData input{
-  background-color:#555;
-  border:2px solid #222;
-  color:white;
+section#maps input{
+    background-color:#555;
+    border:2px solid #222;
+    color:white;
 }
-#mapData .coords{
-  width:40px;
-  border-radius:3px;
-  text-align:center;
+section#maps input[type=text]{
+    width:40px;
+    border-radius:3px;
+    text-align:center;
 }
-#mapData .button{
-  width:80px;
-  border-radius:18px;
+section#maps input[type=button]{
+    width:80px;
+    border-radius:18px;
 }
 
 /* ---------- SECTION: TILESETS ---------- */
-#tilesets{
-  width:387px;
-  text-align:left;
+section#tilesets{
+    width:387px;
+    text-align:left;
 }
-.solid, .semi, .trans{
-  margin:10px;
-  text-align:left;
-  font-size:0px;
+section#tilesets > section.content > div{
+    margin:10px;
+    text-align:left;
+    font-size:0px;
 }
-.tileset{
-  width:20px;
-  height:20px;
-  background-color:#000;
-  display:inline-block;
-  position:relative;
-  margin:0px 1px 1px 0px;
-  text-align:left;
+section#tilesets .tile{
+    width:20px;
+    height:20px;
+    background-color:#000;
+    display:inline-block;
+    position:relative;
+    margin:0px 1px 1px 0px;
+    text-align:left;
 }
-#tilesets .tileset:hover{
-  outline:1px solid black;
+section#tilesets .tile:hover{
+    outline:1px solid black;
 }
 
 /* ----------- SECTION: CHANGELOG ----------- */
 #changelog{
-	width:600px;
+    width:600px;
     border:none;
     background-color:transparent;
     overflow:visible;
 }
 
 #changelogContainer{
-	width:600px;
-	height:240px;
+    width:600px;
+    height:240px;
     position:relative;
     padding:5px 9px;
     margin:-5px -7px;
-	background:url("../images/changelogBackground.png") no-repeat center;
+    background:url("../images/changelogBackground.png") no-repeat center;
     z-index:2;
 }
 
@@ -252,18 +242,18 @@ section#preview > div > div > div{
 
 /* ----------- SECTION: CHANGELOG OPTIONS ----------- */
 #changelogOptions{
-	width:179px;
-	height:209px;
-	position:absolute;
-	left:443px;
-	top:33px;
+    width:179px;
+    height:209px;
+    position:absolute;
+    left:443px;
+    top:33px;
     background:url("../images/slideOutMenu.png") no-repeat center;
-	transition: left 0.35s ease-out;
-	-webkit-transition: left 0.35s ease-out;
+    transition: left 0.35s ease-out;
+    -webkit-transition: left 0.35s ease-out;
 }
 
 #changelogOptions.translate{
-	left:603px;
+    left:603px;
 }
 
 #changelogOptionsOpen{
@@ -275,9 +265,9 @@ section#preview > div > div > div{
 }
 
 #changelogOptions .toggle{
-	width:20px;
+    width:20px;
     height:30px;
-	position:absolute;
+    position:absolute;
 }
 
 #changelogOptions .toggle.left{
@@ -296,7 +286,7 @@ section#preview > div > div > div{
     background:url("../images/slideOutOpen_normal.png") no-repeat center;
     z-index:10;
     transition: left,opacity 0.35s ease-out;
-	-webkit-transition: left,opacity 0.35s ease-out;
+    -webkit-transition: left,opacity 0.35s ease-out;
 }
 
 #changelogOptions .toggle.right:hover{
@@ -304,7 +294,7 @@ section#preview > div > div > div{
 }
 
 #changelogOptions .toggle.right.hidden{
-	opacity:0.0;
+    opacity:0.0;
 }
 
 #changelogOptionsContent{
