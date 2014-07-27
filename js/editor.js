@@ -1,4 +1,4 @@
-var gridDimensions = [30,20];
+var gridDimensions = [30,20,4];
 var currentPosition = [0,0];
 var tileID = ['x00','y00'];
 var terrain = [];
@@ -54,14 +54,14 @@ window.onload = function() {
     });
     $('#solid div').click(function() {
         tileID = [event.target.id.split(',')[0],event.target.id.split(',')[1]];
-        layerNum0.checked = true;
-        layer = 0;
+        options_layer0.checked = true;
+        options.layer(0);
     });
     $('#semitransparent div').click(function() {
         tileID = [event.target.id.split(',')[0],event.target.id.split(',')[1]];
-        if (layerNum0.checked) {
-            layerNum1.checked = true;
-            layer = 1;
+        if (options_layer0.checked) {
+            options_layer1.checked = true;
+            options.layer(1);
         }
     });
 }
@@ -99,10 +99,9 @@ var PaintByArrows = function() {
         tileType = terrain[x][y][layer];
         paintID = x + ',' + y + ',' + layer;
         currentPosition = [x,y];
-        $(document.getElementById(paintID)).removeClass('x' + tileType[0] + ' y' + tileType[1]);
+        $(document.getElementById(paintID)).removeClass(tileType[0] + ' ' + tileType[1]);
         $(document.getElementById(paintID)).addClass(tileID[0] + ' ' + tileID[1]);
         terrain[x][y][layer] = [tileID[0],tileID[1]];
-        console.log(terrain);
     }
 }
 
@@ -211,13 +210,13 @@ var Map = function() {
     this.initialize = function() {
         var data = '';
 
-        for(z = 0; z < 4; z++) {
+        for(z = 0; z < gridDimensions[2]; z++) {
             for(y = 0; y < gridDimensions[1]; y++) {
                 for(x = 0; x < gridDimensions[0]; x++) {
                     data = data + '<div id="' + x + ',' + y + ',' + z + '"></div>';
                 }
             }
-            document.getElementById('layer' + z).innerHTML = data;
+            document.getElementById('terrain_layer' + z).innerHTML = data;
         }
     }
 
@@ -311,49 +310,63 @@ var previewLayers = function(x,y) {
     }
 }
 
-function grid() {
-    var tempID='';
+var Options = function() {
+    this.grid = function() {
+        var tempID='';
 
-    if (document.getElementById('grid').checked == true) {
-        for(z = 0; z < 4; z++) {
-            for(x = 0;x < gridDimensions[0]; x++) {
-                for(y = 0; y < gridDimensions[1]; y++) {
-                    tempID = document.getElementById(x + ',' + y + ',' + z);
-                    $(tempID).addClass('grid');
+        if (document.getElementById('options_toggleGrid').checked == true) {
+            for(z = 0; z < gridDimensions[2]; z++) {
+                for(x = 0;x < gridDimensions[0]; x++) {
+                    for(y = 0; y < gridDimensions[1]; y++) {
+                        tempID = document.getElementById(x + ',' + y + ',' + z);
+                        $(tempID).addClass('grid');
+                    }
                 }
             }
-        }
-    } else {
-        for(z = 0; z < 4; z++) {
-            for(x = 0;x < gridDimensions[0]; x++) {
-                for(y = 0; y < gridDimensions[1]; y++) {
-                    tempID = document.getElementById(x + ',' + y + ',' + z);
-                    $(tempID).removeClass('grid');
+        } else {
+            for(z = 0; z < gridDimensions[2]; z++) {
+                for(x = 0;x < gridDimensions[0]; x++) {
+                    for(y = 0; y < gridDimensions[1]; y++) {
+                        tempID = document.getElementById(x + ',' + y + ',' + z);
+                        $(tempID).removeClass('grid');
+                    }
                 }
             }
         }
     }
+    this.layer = function(level) {
+        layer = level;
+    }
 }
 
 var Tileset = function() {
-    this.create = function(type,layer) {
+    this.create = function(name,layer) {
         var tilesetID = [], tileClass = [];
-        var newTile = {}, newTileset = {}, newBreak = {};
+        var newTile = {}, newTileset = {}, newBreak = {}, newTitle = {};
         var x = 0, y = 0;
 
-        if (type != 'solid' && type != 'semitransparent' && type != 'transparent') {
-            alert('The tile type being added is not supported.');
-            return;
-        }
+//        if (type != 'solid' && type != 'semitransparent' && type != 'transparent') {
+//            alert('The tile type being added is not supported.');
+//            return;
+//        }
 
-        newTileset = document.createElement('div');
+        newTileset = document.createElement('section');
+        newTileset.setAttribute('class','subtitle');
+
+        newTitle = document.createTextNode(name);
+        newTileset.appendChild(newTitle);
+
+        document.getElementById('tileset').appendChild(newTileset);
+
+        newTileset = document.createElement('section');
+        newTileset.setAttribute('class','content');
 
         y = 0;
         while (terrain[0][y][layer][1] != 'y--') {
             x = 0;
             while(terrain[x][y][layer][0] != 'x--') {
                 tileID = terrain[x][y][layer][0] + ',' + terrain[x][y][layer][1];
-                tileClass = 'tileset terrain img ' + terrain[x][y][layer][0] + ' ' + terrain[x][y][layer][1];
+                tileClass = 'tile terrain img ' + terrain[x][y][layer][0] + ' ' + terrain[x][y][layer][1];
 
                 newTile = document.createElement('div');
                 newTile.setAttribute('id',tileID);
@@ -367,9 +380,7 @@ var Tileset = function() {
 
             y++;
         }
-        document.getElementById(type).appendChild(newBreak);
-        document.getElementById(type).appendChild(newTileset);
-        //console.log(newTileset);
+        document.getElementById('tileset').appendChild(newTileset);
     }
 }
 

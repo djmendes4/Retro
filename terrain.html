@@ -48,35 +48,26 @@
             </section>
 
 
-            <section id="options" class="top row">
+            <section id="map" class="top row">
+                <section class="subtitle">Save & Load</section>
                 <section class="content">
-                    <div><input id="options_toggleGrid" type="checkbox" onchange="options.grid();" checked>Show Grid</div>
-                    <div><input id="options_togglePreview" type="checkbox" onchange="options.preview();" checked>Show Preview</div>
-                    <div><input id="options_light" type="button" onclick="options.light();" value="Light Mode">Light Mode</div>
-                    <div><input id="options_dark" type="button" onclick="options.dark();" value="Dark Mode">Dark Mode</div>
-                </section>
-                <section class="subtitle">Layer:</section>
-                <section class="content">
-                    <div>
-                        <input id="options_layer0" type="radio" onchange="options.layer(0);" name="layer" value="0" checked>0
-                        <input id="options_layer1" type="radio" onchange="options.layer(1);" name="layer" value="1">1
-                        <input id="options_layer2" type="radio" onchange="options.layer(2);" name="layer" value="2">2
-                        <input id="options_layer3" type="radio" onchange="options.layer(3);" name="layer" value="3">3
-                    </div>
+                    <input id="map_saveX" type="text" onchange="map.validate();">
+                    <input id="map_saveY" type="text" onchange="map.validate();">
+                    <input id="map_save" type="button" onclick="map.save();" value="Save Map">
+                    <input id="map_loadX" type="text" onchange="map.validate();">
+                    <input id="map_loadY" type="text" onchange="map.validate();">
+                    <input id="map_load" type="button" onclick="map.load();" value="Load Map">
                 </section>
             </section>
 
 
-            <section id="maps" class="top row">
+            <section id="options" class="top row">
+                <section class="subtitle">Options</section>
                 <section class="content">
-                    <input id="maps_saveX" type="text" onchange="maps.validate();">
-                    <input id="maps_saveY" type="text" onchange="maps.validate();">
-                    <input id="maps_save" type="button" onclick="maps.save();" value="Save Map">
-                </section>
-                <section class="content">
-                    <input id="maps_loadX" type="text" onchange="maps.validate();">
-                    <input id="maps_loadY" type="text" onchange="maps.validate();">
-                    <input id="maps_load" type="button" onclick="options.load();" value="Load Map">
+                    <div><input id="options_light" class="mode" type="button" onclick="options.light();" value="Light Mode"></div>
+                    <div><input id="options_dark" class="mode" type="button" onclick="options.dark();" value="Dark Mode"></div>
+                    <div><input id="options_toggleGrid" type="checkbox" onchange="options.grid();" checked>Show Grid</div>
+                    <div><input id="options_togglePreview" type="checkbox" onchange="options.preview();" checked>Show Preview</div>
                 </section>
             </section>
 
@@ -91,19 +82,20 @@
             </section>
 
 
-            <section id="tilesets" class="middle row">
-                <section class="subtitle">Solid Tiles</section>
-                <section class="content">
-                    <div id="solid" class="tile solid"></div>
-                </section>
-                <section class="subtitle">Semi-transparent Tiles</section>
-                <section class="content">
-                    <div id="semitransparent" class="tile semi"></div>
+            <section id="tileset" class="middle row">
+                <section class="subtitle">
+                    <div>
+                        Layer:
+                        <input id="options_layer0" type="radio" onchange="options.layer(0);" name="layer" value="0" checked>0
+                        <input id="options_layer1" type="radio" onchange="options.layer(1);" name="layer" value="1">1
+                        <input id="options_layer2" type="radio" onchange="options.layer(2);" name="layer" value="2">2
+                        <input id="options_layer3" type="radio" onchange="options.layer(3);" name="layer" value="3">3
+                    </div>
                 </section>
             </section>
 
 
-            <section id="changelog" class="bottomrow">
+            <section id="changelog" class="bottom row">
                 <div id="changelogContainer">
                     <div id="changelogTableContainer">
                         <table id="changelogTable">
@@ -144,14 +136,16 @@
     tilesetMap.render();
 
     var tileset = new Tileset();
-    tileset.create('solid', 0);
-    tileset.create('semitransparent', 1);
+    tileset.create('Solid Tiles', 0);
+    tileset.create('Semi Transparent Tiles', 1);
 
     var defaultMap = new Map();
     defaultMap.load(1,1);
     defaultMap.render();
 
-    grid();
+    var options = new Options();
+
+    options.grid();
     previewLayers(1,1);
 
 //    for(x = 0; x < 7; x++) {

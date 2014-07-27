@@ -2,10 +2,10 @@ body{
     background:url(../img/bg/bg.jpg) repeat left top;
     padding:0px;
     margin:0px;
+    text-align:center;
     font-family:"Arial Black", Gadget, sans-serif;
 }
 section{
-    background-color:#ccc;
     overflow:hidden;
 }
 header{
@@ -13,7 +13,7 @@ header{
     position:relative;
     font-size:28px;
     font-weight:bold;
-    text-shadow:0x 0px 8px rgba(80,140,50,1.0);
+    text-shadow:0px 0px 8px rgba(80,140,50,1.0);
 }
 footer{
     height:50px;
@@ -21,10 +21,15 @@ footer{
 }
 section.row{
     position:relative;
+    background:url(../images/section_border_bottom.png), url(../images/section_border_bottom.png), url(../images/section_border_left.png), url(../images/section_border_right.png), url(../images/section_background.jpg);
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y, repeat;
+    background-position:left top, left bottom, left top, right top, center;
+    box-shadow:0px 0px 8px 2px black;
+    border-radius:4px 4px 2px 2px;
     display:inline-block;
 }
 section.top.row{
-    height:100px;
+    height:110px;
 }
 section.middle.row{
     height:400px;
@@ -33,22 +38,37 @@ section.bottom.row{
     height:240px;
     margin-right:399px;
 }
+section.subtitle{
+    height:26px;
+    padding-top:2px;
+    background:url(../images/section_subtitle.jpg) no-repeat center bottom;
+    box-shadow:0px 4px 3px 0px rgba(50,50,50,0.75) inset;
+    text-shadow:0px 0px 6px rgba(50,180,50,0.6);
+}
+section.content{
+    padding:6px;
+    box-shadow:0px -6px 5px -2px rgba(50,50,50,0.60);
+    color:white;
+}
 #container{
     width:1000px;
     position:relative;
     margin:auto;
-    margin-top:120px;
+    margin-top:80px;
 }
 
 /* ---------- SECTION: PREVIEW ---------- */
 section#preview{
     width:400px;
 }
+section#preview > section.content{
+    padding-top:10px;
+}
 section#preview > section > div{
     position:relative;
     width:50px;
     display:inline-block;
-    margin:5px 10px 0px 10px;
+    margin:0px 10px;
 }
 section#preview > section.content > div{
     height:50px;
@@ -68,20 +88,12 @@ section#preview > section.content > div > div{
 section#terrain{
     width:600px;
     font-size:0px;
+    border-radius:0px;
 }
 section#terrain .terrain{
     width:20px;
     height:20px;
     display:inline-block;
-}
-section#terrain > div{
-    position:absolute;
-}
-
-/* ---------- SECTION: OPTIONS ---------- */
-section#options{
-    width:191px;
-    font-size:14px;
 }
 section#terrain .grid{
     width:19px;
@@ -89,52 +101,80 @@ section#terrain .grid{
     border-right:1px solid #000;
     border-bottom:1px solid #000;
 }
-
-/* ---------- SECTION: MAPDATA ---------- */
-section#maps{
-    width:387px;
+section#terrain > section.content{
+    padding:0px;
+    margin:0px;
 }
-section#maps input{
+section#terrain > section.content > div{
+    position:absolute;
+}
+
+/* ---------- SECTION: OPTIONS ---------- */
+section#options{
+    width:395px;
+}
+section#options > section.content{
+    font-size:14px;
+    text-shadow:0px 0px 6px rgba(50,180,50,0.4);
+}
+section#options input[type=button]{
+    background-color:#555;
+    border-radius:18px;
+    border:2px solid #222;
+    font-weight:bold;
+}
+section#options #options_dark{
+    display:none;
+}
+
+/* ---------- SECTION: MAPS ---------- */
+section#map{
+    width:195px;
+}
+section#map > section.content{
+    padding-top:10px;
+}
+section#map input{
     background-color:#555;
     border:2px solid #222;
-    color:white;
+    font-weight:bold;
 }
-section#maps input[type=text]{
+section#map input[type=text]{
     width:40px;
     border-radius:3px;
     text-align:center;
 }
-section#maps input[type=button]{
+section#map input[type=button]{
     width:80px;
     border-radius:18px;
 }
 
 /* ---------- SECTION: TILESETS ---------- */
-section#tilesets{
-    width:387px;
-    text-align:left;
+section#tileset{
+    width:395px;
 }
-section#tilesets > section.content > div{
-    margin:10px;
+section#tileset > section.content{
+    padding:6px 12px;
     text-align:left;
     font-size:0px;
 }
-section#tilesets .tile{
+section#tileset .tile{
     width:20px;
     height:20px;
     background-color:#000;
     display:inline-block;
     position:relative;
-    margin:0px 1px 1px 0px;
+    margin:1px;
     text-align:left;
 }
-section#tilesets .tile:hover{
-    outline:1px solid black;
+section#tileset .tile:hover{
+    outline:1px solid yellow;
 }
 
 /* ----------- SECTION: CHANGELOG ----------- */
 #changelog{
     width:600px;
+    position:relative;
     border:none;
     background-color:transparent;
     overflow:visible;
