@@ -59,14 +59,14 @@ window.onload = function() {
         options_layer1.checked = true;
         options.layer(1);
     });
-    $('section#changelog > section.pull-out .toggle.left').click(function() {
-        $('#changelogOptions').removeClass('translate');
-        $('#changelogOptions .toggle.right').removeClass('hidden');
-        $('#changelogOptions .toggle.right').removeClass('scroll');
+    $('section#changelog section.pull-out .toggle.left').click(function() {
+        $('section#changelog section.pull-out').removeClass('translate');
+        $('section#changelog section.pull-out .toggle.right').removeClass('hidden');
+        $('section#changelog section.pull-out .toggle.right').removeClass('scroll');
     });
-    $('section#changelog > section.pull-out .toggle.right').click(function() {
-        $('#changelogOptions').addClass('translate');
-        $('#changelogOptions .toggle.right').addClass('hidden');
+    $('section#changelog section.pull-out .toggle.right').click(function() {
+        $('section#changelog section.pull-out').addClass('translate');
+        $('section#changelog section.pull-out .toggle.right').addClass('hidden');
     });
 }
 
@@ -213,12 +213,12 @@ var Preview = function() {
         var x = x || 1, y = y || 1, z = 0;
         var tempId = [];
 
-        console.log(x + ',' + y + ',' + z);
+        //console.log(x + ',' + y + ',' + z);
 
         for (z = 0; z < gridDimensions[2]; z++) {
             tempId[z] = terrain[x][y][z][0] + ' ' + terrain[x][y][z][1];
-            $('section#preview > section.content > div > div.layer' + z).removeClass(previous[z]);
-            $('section#preview > section.content > div > div.layer' + z).addClass(tempId[z]);
+            $('section#preview section.content > div > div.layer' + z).removeClass(previous[z]);
+            $('section#preview section.content > div > div.layer' + z).addClass(tempId[z]);
             previous[z] = tempId[z];
         }
     }
@@ -436,21 +436,17 @@ var Options = function() {
         var tempID='';
 
         if (document.getElementById('options_toggleGrid').checked == true) {
-            for(z = 0; z < gridDimensions[2]; z++) {
-                for(x = 0;x < gridDimensions[0]; x++) {
-                    for(y = 0; y < gridDimensions[1]; y++) {
-                        tempID = document.getElementById(x + ',' + y + ',' + z);
-                        $(tempID).addClass('grid');
-                    }
+            for(x = 0;x < gridDimensions[0]; x++) {
+                for(y = 0; y < gridDimensions[1]; y++) {
+                    tempID = document.getElementById(x + ',' + y + ',' + z);
+                    $(tempID).addClass('grid');
                 }
             }
         } else {
-            for(z = 0; z < gridDimensions[2]; z++) {
-                for(x = 0;x < gridDimensions[0]; x++) {
-                    for(y = 0; y < gridDimensions[1]; y++) {
-                        tempID = document.getElementById(x + ',' + y + ',' + z);
-                        $(tempID).removeClass('grid');
-                    }
+            for(x = 0;x < gridDimensions[0]; x++) {
+                for(y = 0; y < gridDimensions[1]; y++) {
+                    tempID = document.getElementById(x + ',' + y + ',' + z);
+                    $(tempID).removeClass('grid');
                 }
             }
         }
