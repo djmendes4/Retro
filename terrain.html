@@ -11,9 +11,7 @@
     </head>
 
     <body>
-        <div id="container">
-
-
+        <section id="container">
             <header>Terrain Editor</header>
 
 
@@ -91,19 +89,25 @@
             </section>
 
 
-            <section id="tileset" class="middle row">
-            </section>
+            <section id="tileset" class="middle row"></section>
 
 
-            <section id="changelog" class="bottom row">
-                <section class="subtitle">
-                    <div class="first column"></div>
-                    <div class="second column">#</div>
-                    <div class="third column">ID</div>
-                    <div class="fourth column">Class</div>
-                    <div class="fifth column">Action</div>
-                    <div class="sixth column">Description</div>
-                    <div class="seventh column">Details</div>
+            <section id="changelog">
+                <section class="bottom row">
+                    <section class="subtitle">
+                        <div class="first column"></div>
+                        <div class="second column">#</div>
+                        <div class="third column">ID</div>
+                        <div class="fourth column">Class</div>
+                        <div class="fifth column">Action</div>
+                        <div class="sixth column">Description</div>
+                        <div class="seventh column">Details</div>
+                    </section>
+                    <section class="content">
+                        <table>
+                            <tbody id="changelogTableBody"></tbody>
+                        </table>
+                    </section>
                 </section>
                 <section class="pull-out">
                     <div class="toggle left"></div>
@@ -119,30 +123,27 @@
                         <p><input id="changelogDetails" class="changelog" name="descriptionDetails" type="checkbox" onchange="changelog.changeWidth('Details',7)">Details</p>
                     </div>
                 </section>
-                <section class="content">
-                    <table>
-                        <tbody id="changelogTableBody"></tbody>
-                    </table>
-                </section>
             </section>
 
-        </div>
 
-<script>
-    var map = new Map();
-    var options = new Options();
-    var paintByArrows = new PaintByArrows();
-    var paintByDrag = new PaintByDrag();
-    var preview = new Preview();
+        <footer></footer>
+        </section>
+    <script>
+        var map = new Map();
+        var options = new Options();
+        var paintByArrows = new PaintByArrows();
+        var paintByDrag = new PaintByDrag();
+        var preview = new Preview();
 
-    map.initialize();
-    map.load(0,0); //standard tileset
-    map.load(128,128); //standard grass map
+        map.initialize();
+        map.load(0,0); //standard tileset
+        map.load(128,128); //standard grass map
 
-    options.grid();
-    preview.layers(0,0);
-</script>
+        options.grid();
+        preview.layers(0,0);
+    </script>
 
-</body>
+    </body>
 
 </html>
+
