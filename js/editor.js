@@ -435,17 +435,17 @@ var Options = function() {
     this.grid = function() {
         var tempID='';
 
-        if (document.getElementById('options_toggleGrid').checked == true) {
+        if (document.getElementById('options_toggleGrid').checked === true) {
             for(x = 0;x < gridDimensions[0]; x++) {
                 for(y = 0; y < gridDimensions[1]; y++) {
-                    tempID = document.getElementById(x + ',' + y + ',' + z);
+                    tempID = document.getElementById(x + ',' + y + ',0');
                     $(tempID).addClass('grid');
                 }
             }
         } else {
             for(x = 0;x < gridDimensions[0]; x++) {
                 for(y = 0; y < gridDimensions[1]; y++) {
-                    tempID = document.getElementById(x + ',' + y + ',' + z);
+                    tempID = document.getElementById(x + ',' + y + ',0');
                     $(tempID).removeClass('grid');
                 }
             }
