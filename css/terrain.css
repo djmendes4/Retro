@@ -2,7 +2,7 @@
   background-image:url(../img/terrain.png);
 }
 .terrain.x--.y--.img{
-  opacity:0;
+  background:transparent;
 }
 .terrain.img.temp{
   opacity:0.75;
