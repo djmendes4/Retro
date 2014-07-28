@@ -67,7 +67,6 @@ section.middle.row{
     overflow:hidden;
 }
 section.bottom.row{
-    width:600px;
     height:240px;
     position:relative;
     z-index:2;
@@ -265,8 +264,8 @@ section#changelog section.pull-out{
     -webkit-transition: left 0.35s ease-out;
     z-index:0;
 }
-section#changelog section.pull-out .translate{
-    left:603px;
+section#changelog section.pull-out.translate{
+    left:162px;
 }
 section#changelog section.pull-out #changelog_open{
     width:58px;
