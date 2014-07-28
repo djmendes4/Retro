@@ -393,7 +393,7 @@ var Map = function() {
             for(x = 0; x < gridDimensions[0]; x++) {
                 for(y = 0; y < gridDimensions[1]; y++) {
                     tempID = document.getElementById(x + ',' + y + ',' + z);
-                    tempData = 'terrain img grid ' + terrain[x][y][z][0] + ' ' + terrain[x][y][z][1];
+                    tempData = 'terrain img ' + terrain[x][y][z][0] + ' ' + terrain[x][y][z][1];
                     $(tempID).removeClass();
                     $(tempID).addClass(tempData);
                 }
@@ -435,7 +435,7 @@ var Options = function() {
     this.grid = function() {
         var tempID='';
 
-        if (document.getElementById('options_toggleGrid').checked === true) {
+        if (document.getElementById('options_toggleGrid').checked == true) {
             for(x = 0;x < gridDimensions[0]; x++) {
                 for(y = 0; y < gridDimensions[1]; y++) {
                     tempID = document.getElementById(x + ',' + y + ',0');
