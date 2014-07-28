@@ -27,39 +27,46 @@ window.onload = function() {
             paintByArrows.down(currentPosition[0],currentPosition[1]);
         }
     }
-    $('#changelogOptions .toggle.left').click(function() {
-		$('#changelogOptions').removeClass('translate');
-		$('#changelogOptions .toggle.right').removeClass('hidden');
-        $('#changelogOptions .toggle.right').removeClass('scroll');
-	});
-	$('#changelogOptions .toggle.right').click(function() {
-		$('#changelogOptions').addClass('translate');
-        $('#changelogOptions .toggle.right').addClass('hidden');
-	});
-    $('#terrain').mousedown(function() {
+    $('section#terrain').mousedown(function() {
         event.preventDefault();
         paintByDrag.start();
     });
-    $('#terrain').mouseover(function() {
+    $('section#terrain').mouseover(function() {
         paintByDrag.move();
+        preview.layers(event.target.id.split(',')[0],event.target.id.split(',')[1]);
     });
-    $('#terrain').mouseup(function() {
+    $('section#terrain').mouseup(function() {
         paintByDrag.end();
     });
-    $('#terrain').mouseleave(function() {
+    $('section#terrain').mouseleave(function() {
         paintByDrag.clear();
     });
     $('section#tileset > section.content.solid > div').click(function() {
         tileID = [event.target.id.split(',')[0],event.target.id.split(',')[1]];
+        document.getElementById('options_layer0').disabled = false;
         options_layer0.checked = true;
+        document.getElementById('options_layer1').disabled = true;
+        document.getElementById('options_layer2').disabled = true;
+        document.getElementById('options_layer3').disabled = true;
         options.layer(0);
     });
-    $('#semitransparent div').click(function() {
+    $('section#tileset > section.content.semi > div').click(function() {
         tileID = [event.target.id.split(',')[0],event.target.id.split(',')[1]];
-        if (options_layer0.checked) {
-            options_layer1.checked = true;
-            options.layer(1);
-        }
+        document.getElementById('options_layer0').disabled = true;
+        document.getElementById('options_layer1').disabled = false;
+        document.getElementById('options_layer2').disabled = false;
+        document.getElementById('options_layer3').disabled = false;
+        options_layer1.checked = true;
+        options.layer(1);
+    });
+    $('section#changelog > section.pull-out .toggle.left').click(function() {
+        $('#changelogOptions').removeClass('translate');
+        $('#changelogOptions .toggle.right').removeClass('hidden');
+        $('#changelogOptions .toggle.right').removeClass('scroll');
+    });
+    $('section#changelog > section.pull-out .toggle.right').click(function() {
+        $('#changelogOptions').addClass('translate');
+        $('#changelogOptions .toggle.right').addClass('hidden');
     });
 }
 
@@ -199,6 +206,24 @@ var PaintByDrag = function() {
     }
 }
 
+var Preview = function() {
+    var previous = [];
+
+    this.layers = function(x,y) {
+        var x = x || 1, y = y || 1, z = 0;
+        var tempId = [];
+
+        console.log(x + ',' + y + ',' + z);
+
+        for (z = 0; z < gridDimensions[2]; z++) {
+            tempId[z] = terrain[x][y][z][0] + ' ' + terrain[x][y][z][1];
+            $('section#preview > section.content > div > div.layer' + z).removeClass(previous[z]);
+            $('section#preview > section.content > div > div.layer' + z).addClass(tempId[z]);
+            previous[z] = tempId[z];
+        }
+    }
+}
+
 /* Map Functions */
 
 var Map = function() {
@@ -212,6 +237,7 @@ var Map = function() {
                 }
             }
             document.getElementById('terrain_layer' + z).innerHTML = data;
+            data = '';
         }
     }
 
@@ -231,18 +257,18 @@ var Map = function() {
         var hexY = Number(parseInt(y)).toString(16);
         var url = './map/' + hexX + '' + hexY + '.TERRAIN';
 
-        this.loadMap(url, this.parse);
-        this.render();
+        var tempData = this.loadMap(url);
+        this.parse(tempData);
     }
 
-    this.loadMap = function(url, callback) {
+    this.loadMap = function(url) {
         var xhr = new XMLHttpRequest();
+        var data = '';
 
         xhr.open('GET', url, false);
         xhr.onload = function(e) {
             if(this.status == 200) {
-                var data = (this.response);
-                callback(data);
+                data = this.response;
             } else {
                 console.log("error");
             }
@@ -254,21 +280,71 @@ var Map = function() {
             console.log("timeout");
         }
         xhr.send();
+        xhr.abort();
+
+        return data;
+    }
+
+    this.addTileset = function(tilemap,properties) {
+        var tilesetID = [], tileClass = [];
+        var newTile = {}, newTileset = {}, newBreak = {}, newTitle = {}, newInput = {};
+        var x = 0, y = 0, z = 0;
+
+        for (z = 0; z < 4; z++) {
+
+            if (tilemap[0][0][z][0] != 'x--' && tilemap[0][0][z][1] != 'y--') {
+                //console.log('Pulled layer: ' + z);
+                //console.log(tilemap);
+                //console.log(properties);
+
+                newTileset = document.createElement('section');
+                newTileset.setAttribute('class','subtitle');
+
+                newTitle = document.createTextNode(properties[(z + 1)][0][0]);
+                newTileset.appendChild(newTitle);
+
+                document.getElementById('tileset').appendChild(newTileset);
+
+                newTileset = document.createElement('section');
+                newTileset.setAttribute('class','content ' + properties[(z + 1)][0][1]);
+            }
+
+            y = 0;
+            while (tilemap[0][y][z][1] != 'y--') {
+                x = 0;
+                while(tilemap[x][y][z][0] != 'x--') {
+                    tileID = tilemap[x][y][z][0] + ',' + tilemap[x][y][z][1];
+                    tileClass = 'tile terrain img ' + tilemap[x][y][z][0] + ' ' + tilemap[x][y][z][1];
+
+                    newTile = document.createElement('div');
+                    newTile.setAttribute('id',tileID);
+                    newTile.setAttribute('class',tileClass);
+
+                    newTileset.appendChild(newTile);
+                    x++;
+                }
+                newBreak = document.createElement('br');
+                newTileset.appendChild(newBreak);
+
+                y++;
+            }
+            document.getElementById('tileset').appendChild(newTileset);
+        }
     }
 
     this.parse = function(data) {
         var zData, yData, xData;
         var xTile, yTile;
-        var temp = [], tempTerrain = [];
+        var temp = [], tempTerrain = [], properties = [];
 
-        zData = data.replace(/(\r\n|\n|\r)/gm,"").split("|");
-        for(z = 0; z < zData.length; z++) {
+        zData = data.replace(/(\r\n|\n|\r)/gm,'').split('|');
+        for(z = 0; z < gridDimensions[2]; z++) {
             temp[z] = [];
-            yData = zData[z].split(":");
-            for(y = 0; y < yData.length; y++) {
+            yData = zData[z].split(':');
+            for(y = 0; y < gridDimensions[1]; y++) {
                 temp[z][y] = [];
-                xData = yData[y].split("+");
-                for(x = 0; x < xData.length; x++) {
+                xData = yData[y].split('+');
+                for(x = 0; x < gridDimensions[0]; x++) {
                     temp[z][y][x] = xData[x];
                 }
             }
@@ -288,55 +364,25 @@ var Map = function() {
 
         terrain = tempTerrain;
 
-        if (temp[4][0][0] === 'tileset') {
-            atlas[temp[4][0][2]] = tempTerrain;
-            this.addTileset(atlas[temp[4][0][2]]);
-        }
-    }
-
-    this.addTileset = function(tilemap) {
-        var tilesetID = [], tileClass = [];
-        var newTile = {}, newTileset = {}, newBreak = {}, newTitle = {}, newInput = {};
-        var x = 0, y = 0, z = 0;
-
-//        if (type != 'solid' && type != 'semitransparent' && type != 'transparent') {
-//            alert('The tile type being added is not supported.');
-//            return;
-//        }
-
-        newTileset = document.createElement('section');
-        newTileset.setAttribute('class','subtitle');
-
-        newTitle = document.createTextNode(name);
-        newTileset.appendChild(newTitle);
-
-        document.getElementById('tileset').appendChild(newTileset);
-
-        newTileset = document.createElement('section');
-        newTileset.setAttribute('class','content');
-
-        for (z = 0; z < 4; z++) {
-            y = 0;
-            while ([0][y][z][1] != 'y--') {
-                x = 0;
-                while(tilemap[x][y][z][0] != 'x--') {
-                    tileID = tilemap[x][y][z][0] + ',' + tilemap[x][y][z][1];
-                    tileClass = 'tile terrain img ' + tilemap[x][y][z][0] + ' ' + tilemap[x][y][z][1];
-
-                    newTile = document.createElement('div');
-                    newTile.setAttribute('id',tileID);
-                    newTile.setAttribute('class',tileClass);
-
-                    newTileset.appendChild(newTile);
-                    x++;
+        if (zData.length > gridDimensions[2]) {
+            for (z = 4; z < zData.length; z++) {
+                properties[(z - gridDimensions[2])] = [];
+                yData = zData[z].split(':');
+                for (y = 0; y < yData.length; y++) {
+                    properties[(z - gridDimensions[2])][y] = [];
+                    xData = yData[y].split('+');
+                    for (x = 0; x < xData.length; x++) {
+                        properties[(z - gridDimensions[2])][y][x] = xData[x];
+                    }
                 }
-                newBreak = document.createElement('br');
-                newTileset.appendChild(newBreak);
-
-                y++;
             }
+            atlas[properties[0][0][2]] = tempTerrain;
+            this.addTileset(atlas[properties[0][0][2]],properties);
+            //console.log(atlas[properties[0][0][2]]);
+            //console.log(properties);
+        } else {
+            this.render();
         }
-        document.getElementById('tileset').appendChild(newTileset);
     }
 
     this.render = function() {
@@ -354,21 +400,36 @@ var Map = function() {
             }
         }
     }
+
+    this.save = function() {
+        var data = '';
+
+        for(z = 0; z < gridDimensions[2]; z++) {
+            for(y = 0; y < gridDimensions[1]; y++) {
+                for(x = 0; x < gridDimensions[0]; x++) {
+                    for(n = 0; n < 2; n++) {
+                        if (terrain[x][y][z] != "") {
+                            data += terrain[x][y][z][n].charAt(1) + terrain[x][y][z][n].charAt(2);
+                        } else {
+                            data += '--';
+                        }
+                    }
+                    if (x === 29 && y === 19 && z != 3) {
+                        data = data + '|\n';
+                    } else if (x == 29){
+                        data = data + ':\n';
+                    } else {
+                        data = data + '+';
+                    }
+                }
+            }
+        }
+        //alert(name.value);
+        console.log(data);
+    }
 }
 
 /* Map Functions */
-
-var previewLayers = function(x,y) {
-    var tempId = [];
-
-    for (z = 0; z < 4; z++) {
-        tempId[z] = 'terrain img x' + terrain[x][y][z][0] + ' y' + terrain[x][y][z][1];
-        $(document.getElementById("preview" + z)).removeClass();
-        $(document.getElementById("previewAll" + z)).removeClass();
-        $(document.getElementById("preview" + z)).addClass(tempId[z]);
-        $(document.getElementById("previewAll" + z)).addClass(tempId[z]);
-    }
-}
 
 var Options = function() {
     this.grid = function() {
@@ -398,32 +459,6 @@ var Options = function() {
     this.layer = function(level) {
         layer = level;
     }
-}
-
-function printMap() {
-    var data = '';
-    for(z = 0; z < 4; z++) {
-        for(y = 0; y < localY; y++) {
-            for(x = 0; x < localX; x++) {
-                for(n = 0; n < 2; n++) {
-                    if (terrain[x][y][z] != "") {
-                        data += terrain[x][y][z][n];
-                    } else {
-                        data += '--';
-                    }
-                }
-                if (x == 29 && y == 19) {
-                    data = data + '|\n';
-                } else if (x == 29){
-                    data = data + ':\n';
-                } else {
-                    data = data + '+';
-                }
-            }
-        }
-    }
-    alert(name.value);
-    console.log(data);
 }
 
 /* ------------ CHANGELOG ------------*/

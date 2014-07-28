@@ -76,6 +76,8 @@ section#preview > section.content > div{
     border:2px solid black;
 }
 section#preview > section.content > div > div{
+    width:20px;
+    height:20px;
     position:absolute;
     top:15px;
     left:15px;
@@ -172,131 +174,100 @@ section#tileset .tile:hover{
 }
 
 /* ----------- SECTION: CHANGELOG ----------- */
-#changelog{
+section#changelog{
     width:600px;
     position:relative;
     border:none;
     background-color:transparent;
     overflow:visible;
 }
-
-#changelogContainer{
-    width:600px;
-    height:240px;
+section#changelog > section.content{
+    height:206px;
+    position:absolute;
+    padding: 0px 6px 6px 6px;
+}
+section#changelog > section:not(.pull-out) > div{
+    display:inline-block;
+}
+section#changelog table{
+    height:100%;
     position:relative;
-    padding:5px 9px;
-    margin:-5px -7px;
-    background:url("../images/changelogBackground.png") no-repeat center;
-    z-index:2;
-}
-
-#changelogTableContainer{
-    width:600px;
-    height:240px;
-    padding:0px 6px;
-    margin:-6px 0px;
-    overflow:hidden;
-}
-
-#changelogTable{
     border-collapse:collapse;
     padding:0px;
-    width:588px;
-    position:relative;
     font-size:14px;
 }
 
-#changelogTableHeader{
-    table-layout:fixed;
-    display:block;
-}
-
-#changelogTableBody{
-    width:605px;
-    height:201px;
+section#changelog tbody{
+    width:600px;
     table-layout:fixed;
     display:block;
     overflow-y:scroll;
     overflow-x:hidden;
     padding-right:20px;
+    margin-right:-32px;
     font-size:12px;
     color:rgba(255,255,255,0.4);
 }
 
-#changelogTable th{
-    height:35px;
-    padding-left:2px;
-    text-shadow:0px 0px 10px rgba(20,89,19,0.8);
-}
-
-#changelogTable th, #changelogTable td{
-    padding:1px;
-}
-
-#changelogTable th:first-child div, #changelogTable td:first-child div{
+section#changelog div.first.column{
     width:20px;
 }
 
-#changelogTable th:nth-child(2) div, #changelogTable td:nth-child(2) div{
+section#changelog div.second.column{
     width:20px;
 }
 
-#changelogTable th:nth-child(3) div, #changelogTable td:nth-child(3) div{
+section#changelog div.third.column{
     width:60px;
 }
 
-#changelogTable th:nth-child(4) div, #changelogTable td:nth-child(4) div{
+section#changelog div.fourth.column{
     width:120px;
 }
 
-#changelogTable th:nth-child(5) div, #changelogTable td:nth-child(5) div{
+section#changelog div.fifth.column{
     width:120px;
 }
 
-#changelogTable th:nth-child(6) div, #changelogTable td:nth-child(6) div{
+section#changelog div.sixth.column{
     width:229px;
 }
 
-#changelogTable th:nth-child(7) div, #changelogTable td:nth-child(7) div{
+section#changelog div.seventh.column{
     width:229px;
 }
 
-#changelogTable tbody{
-    border-left:1px solid rgba(0,0,0,0.25);
-    font-size:12px;
-    font-family:"Courier New", Courier, monospace;
-}
-
-#changelogTable tbody tr td{
+section#changelog > section.content td{
     border-right:1px solid rgba(0,0,0,0.25);
     overflow:hidden;
 }
 
-#changelogTable tbody tr:nth-child(even){
+section#changelog tbody tr:nth-child(even){
     background-color:rgba(50,50,50,0.25);
 }
 
-#changelogTable tbody tr:nth-child(odd){
+section#changelog tbody tr:nth-child(odd){
     background-color:rgba(90,90,90,0.25);
 }
 
 /* ----------- SECTION: CHANGELOG OPTIONS ----------- */
-#changelogOptions{
+section#changelog > section.pull-out{
     width:179px;
     height:209px;
     position:absolute;
-    left:443px;
-    top:33px;
+    margin-left:438px;
+    overflow:visible;
     background:url("../images/slideOutMenu.png") no-repeat center;
     transition: left 0.35s ease-out;
     -webkit-transition: left 0.35s ease-out;
+    z-index:-1;
 }
 
-#changelogOptions.translate{
+section#changelog > section.pull-out .translate{
     left:603px;
 }
 
-#changelogOptionsOpen{
+section#changelog > section.pull-out #changelog_open{
     width:58px;
     height:209px;
     position:absolute;
@@ -304,23 +275,23 @@ section#tileset .tile:hover{
     background:url("../images/slideOut.png") no-repeat center;
 }
 
-#changelogOptions .toggle{
+section#changelog > section.pull-out .toggle{
     width:20px;
     height:30px;
     position:absolute;
 }
 
-#changelogOptions .toggle.left{
+section#changelog .toggle.left{
     top:90px;
     left:1px;
     background:url("../images/slideOutClose_normal.png") no-repeat center;
 }
 
-#changelogOptions .toggle.left:hover{
+section#changelog .toggle.left:hover{
     background:url("../images/slideOutClose_scroll.png") no-repeat center;
 }
 
-#changelogOptions .toggle.right{
+div.toggle.right{
     top:93px;
     left:171px;
     background:url("../images/slideOutOpen_normal.png") no-repeat center;
@@ -329,19 +300,19 @@ section#tileset .tile:hover{
     -webkit-transition: left,opacity 0.35s ease-out;
 }
 
-#changelogOptions .toggle.right:hover{
+div.toggle.right:hover{
     background:url("../images/slideOutOpen_scroll.png") no-repeat center;
 }
 
-#changelogOptions .toggle.right.hidden{
+section#changelog > section.pull-out .toggle.right.hidden{
     opacity:0.0;
 }
 
-#changelogOptionsContent{
+section#changelog > section.pull-out #changelog_options{
     margin: 35px 0px 34px 35px;
 }
 
-#changelogOptionsContent p{
+section#changelog > section.pull-out p{
     margin:-1px 0px;
     font-family:Arial, Helvetica, sans-serif;
     text-align:left;
@@ -350,6 +321,6 @@ section#tileset .tile:hover{
     text-shadow:0px 0px 10px rgba(20,89,19,0.8);
 }
 
-#changelogOptionsContent input{
+section#changelog > section.pull-out input{
     margin-right:5px;
 }
