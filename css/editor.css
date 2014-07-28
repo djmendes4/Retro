@@ -257,6 +257,7 @@ section#changelog section.pull-out{
     height:210px;
     position:absolute;
     top:26px;
+    left:0px;
     margin-left:438px;
     overflow:visible;
     background:url("../images/slideOutMenu.png") no-repeat center;
