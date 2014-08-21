@@ -1,6 +1,6 @@
 /* GLOBAL RULES */
 body{
-    background:url(../img/bg/bg.jpg) repeat left top;
+    background:url(../images/bg.jpg) repeat left top;
     padding:0px;
     margin:0px;
     text-align:center;
@@ -266,7 +266,7 @@ section#changelog section.pull-out{
     z-index:0;
 }
 section#changelog section.pull-out.translate{
-    left:162px;
+    left:160px;
 }
 section#changelog section.pull-out #changelog_open{
     width:58px;
