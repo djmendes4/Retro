@@ -266,7 +266,11 @@ section#changelog section.pull-out{
     z-index:0;
 }
 section#changelog section.pull-out.translate{
+<<<<<<< HEAD
     left:160px;
+=======
+    left:162px;
+>>>>>>> GuileGames/gh-pages
 }
 section#changelog section.pull-out #changelog_open{
     width:58px;
