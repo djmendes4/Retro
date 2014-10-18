@@ -1,0 +1,144 @@
+.terrain.img{
+  background-image:url(../images/terrain.png);
+}
+.terrain.x--.y--.img{
+  background:transparent;
+}
+.terrain.img.temp{
+  opacity:0.75;
+}
+.terrain.x00.y00.img{
+  background-position:0px 0px;
+}
+.terrain.x00.y01.img{
+  background-position:0px -20px;
+}
+.terrain.x00.y02.img{
+  background-position:0px -40px;
+}
+.terrain.x01.y00.img{
+  background-position:-20px 0px;
+}
+.terrain.x01.y01.img{
+  background-position:-20px -20px;
+}
+.terrain.x01.y02.img{
+  background-position:-20px -40px;
+}
+.terrain.x02.y00.img{
+  background-position:-40px 0px;
+}
+.terrain.x02.y01.img{
+  background-position:-40px -20px;
+}
+.terrain.x02.y02.img{
+  background-position:-40px -40px;
+}
+.terrain.x03.y00.img{
+  background-position:-60px 0px;
+}
+.terrain.x03.y01.img{
+  background-position:-60px -20px;
+}
+.terrain.x03.y02.img{
+  background-position:-60px -40px;
+}
+.terrain.x04.y00.img{
+  background-position:-80px 0px;
+}
+.terrain.x04.y01.img{
+  background-position:-80px -20px;
+}
+.terrain.x04.y02.img{
+  background-position:-80px -40px;
+}
+.terrain.x05.y00.img{
+  background-position:-100px 0px;
+}
+.terrain.x05.y01.img{
+  background-position:-100px -20px;
+}
+.terrain.x05.y02.img{
+  background-position:-100px -40px;
+}
+.terrain.x06.y00.img{
+  background-position:-120px 0px;
+}
+.terrain.x06.y01.img{
+  background-position:-120px -20px;
+}
+.terrain.x06.y02.img{
+  background-position:-120px -40px;
+}
+.terrain.x07.y00.img{
+  background-position:-140px 0px;
+}
+.terrain.x07.y01.img{
+  background-position:-140px -20px;
+}
+.terrain.x07.y02.img{
+  background-position:-140px -40px;
+}
+.terrain.x08.y00.img{
+  background-position:-160px 0px;
+}
+.terrain.x08.y01.img{
+  background-position:-160px -20px;
+}
+.terrain.x08.y02.img{
+  background-position:-160px -40px;
+}
+.terrain.x09.y00.img{
+  background-position:-180px 0px;
+}
+.terrain.x09.y01.img{
+  background-position:-180px -20px;
+}
+.terrain.x09.y02.img{
+  background-position:-180px -40px;
+}
+.terrain.x10.y00.img{
+  background-position:-200px 0px;
+}
+.terrain.x10.y01.img{
+  background-position:-200px -20px;
+}
+.terrain.x10.y02.img{
+  background-position:-200px -40px;
+}
+.terrain.x11.y00.img{
+  background-position:-220px 0px;
+}
+.terrain.x11.y01.img{
+  background-position:-220px -20px;
+}
+.terrain.x11.y02.img{
+  background-position:-220px -40px;
+}
+.terrain.x12.y00.img{
+  background-position:-240px 0px;
+}
+.terrain.x12.y01.img{
+  background-position:-240px -20px;
+}
+.terrain.x12.y02.img{
+  background-position:-240px -40px;
+}
+.terrain.x13.y00.img{
+  background-position:-260px 0px;
+}
+.terrain.x13.y01.img{
+  background-position:-260px -20px;
+}
+.terrain.x13.y02.img{
+  background-position:-260px -40px;
+}
+.terrain.x14.y00.img{
+  background-position:-280px 0px;
+}
+.terrain.x14.y01.img{
+  background-position:-280px -20px;
+}
+.terrain.x14.y02.img{
+  background-position:-280px -40px;
+}

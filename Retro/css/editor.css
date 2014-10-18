@@ -1,0 +1,319 @@
+/* GLOBAL RULES */
+body{
+    background:url(../images/bg.jpg) repeat left top;
+    padding:0px;
+    margin:0px;
+    text-align:center;
+    font-family:"Arial Black", Gadget, sans-serif;
+}
+header{
+    height:50px;
+    position:relative;
+    font-size:28px;
+    font-weight:bold;
+    text-shadow:0px 0px 8px rgba(50,180,50,1.0);
+}
+footer{
+    height:50px;
+    position:relative;
+}
+
+/* SECTION RULES BY ID */
+section#container{
+    width:1000px;
+    position:relative;
+    margin:auto;
+    margin-top:80px;
+}
+section#preview{
+    width:400px;
+}
+section#map{
+    width:195px;
+}
+section#options{
+    width:395px;
+}
+section#terrain{
+    width:600px;
+    font-size:0px;
+    border-radius:0px;
+}
+section#tileset{
+    width:395px;
+}
+section#changelog{
+    width:600px;
+    position:relative;
+    margin-right: 399px;
+}
+
+/* SECTION RULES BY CLASS */
+section.row{
+    position:relative;
+    background:url(../images/section_border_bottom.png), url(../images/section_border_bottom.png), url(../images/section_border_left.png), url(../images/section_border_right.png), url(../images/section_background.jpg);
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y, repeat;
+    background-position:left top, left bottom, left top, right top, center;
+    box-shadow:0px 0px 8px 2px black;
+    border-radius:4px 4px 2px 2px;
+    display:inline-block;
+}
+section.top.row{
+    height:110px;
+    overflow:hidden;
+}
+section.middle.row{
+    height:400px;
+    overflow:hidden;
+}
+section.bottom.row{
+    height:240px;
+    position:relative;
+    z-index:2;
+}
+section.subtitle{
+    height:26px;
+    padding-top:2px;
+    background:url(../images/section_subtitle.jpg) no-repeat center bottom;
+    box-shadow:0px 4px 12px 0px rgba(0,0,0,0.45) inset;
+    text-shadow:0px 0px 6px rgba(50,180,50,0.6);
+}
+section.content{
+    padding:6px;
+    box-shadow:0px -6px 12px 0px rgba(0,0,0,0.40);
+    color:white;
+}
+section.pull-out{
+    /* guessing? */
+}
+
+/* ---------- SECTION: PREVIEW ---------- */
+section#preview section.content{
+    padding-top:10px;
+}
+section#preview section > div{
+    position:relative;
+    width:50px;
+    display:inline-block;
+    margin:0px 10px;
+}
+section#preview section.content > div{
+    height:50px;
+    margin:0px 8px;
+    border:2px solid black;
+}
+section#preview section.content > div > div{
+    width:20px;
+    height:20px;
+    position:absolute;
+    top:15px;
+    left:15px;
+    -ms-transform:scale(2.5);
+    -webkit-transform:scale(2.5);
+    transform:scale(2.5);
+}
+
+/* ---------- SECTION: OPTIONS ---------- */
+section#options section.content{
+    font-size:14px;
+    text-shadow:0px 0px 6px rgba(50,180,50,0.4);
+}
+section#options section.content input[type=button]{
+    background-color:#555;
+    border-radius:18px;
+    border:2px solid #222;
+    font-weight:bold;
+}
+section#options section.content #options_dark{
+    display:none;
+}
+
+/* ---------- SECTION: MAPS ---------- */
+section#map section.content{
+    padding-top:10px;
+}
+section#map section.content input{
+    background-color:#555;
+    border:2px solid #222;
+    font-weight:bold;
+}
+section#map section.content input[type=text]{
+    width:32px;
+    border-radius:3px;
+    text-align:center;
+}
+section#map section.content input[type=button]{
+    width:80px;
+    border-radius:18px;
+}
+
+/* ---------- SECTION: TERRAIN ---------- */
+section#terrain section.content{
+    padding:0px;
+    margin:0px;
+}
+section#terrain section.content > div{
+    position:absolute;
+}
+section#terrain section.content .terrain{
+    width:20px;
+    height:20px;
+    display:inline-block;
+}
+section#terrain section.content .grid{
+    width:19px;
+    height:19px;
+    border-right:1px solid #000;
+    border-bottom:1px solid #000;
+}
+
+/* ---------- SECTION: TILESETS ---------- */
+section#tileset section.content{
+    padding:6px 12px;
+    text-align:left;
+    font-size:0px;
+}
+section#tileset section.content .tile{
+    width:20px;
+    height:20px;
+    background-color:#000;
+    display:inline-block;
+    position:relative;
+    margin:1px;
+    text-align:left;
+}
+section#tileset section.content .tile:hover{
+    outline:1px solid yellow;
+}
+
+/* ----------- SECTION: CHANGELOG ----------- */
+section#changelog section.content{
+    height:206px;
+    position:absolute;
+    padding: 0px 6px 6px 6px;
+}
+section#changelog section.content > div{
+    display:inline-block;
+}
+section#changelog section.content table{
+    height:100%;
+    position:relative;
+    border-collapse:collapse;
+    padding:0px;
+    font-size:14px;
+}
+section#changelog section.content tbody{
+    width:600px;
+    table-layout:fixed;
+    display:block;
+    overflow-y:scroll;
+    overflow-x:hidden;
+    padding-right:20px;
+    margin-right:-32px;
+    font-size:12px;
+    color:rgba(255,255,255,0.4);
+}
+section#changelog section div{
+    display:inline-block;
+}
+section#changelog section div.first.column{
+    width:20px;
+}
+section#changelog section div.second.column{
+    width:20px;
+}
+section#changelog section div.third.column{
+    width:60px;
+}
+section#changelog section div.fourth.column{
+    width:120px;
+}
+section#changelog section div.fifth.column{
+    width:120px;
+}
+section#changelog section div.sixth.column{
+    width:229px;
+}
+section#changelog section div.seventh.column{
+    width:229px;
+}
+
+section#changelog section.content td{
+    border-right:1px solid rgba(0,0,0,0.25);
+    overflow:hidden;
+}
+
+section#changelog tbody tr:nth-child(even){
+    background-color:rgba(50,50,50,0.25);
+}
+
+section#changelog tbody tr:nth-child(odd){
+    background-color:rgba(90,90,90,0.25);
+}
+
+/* ----------- SECTION: CHANGELOG OPTIONS ----------- */
+section#changelog section.pull-out{
+    width:180px;
+    height:210px;
+    position:absolute;
+    top:26px;
+    left:0px;
+    margin-left:438px;
+    overflow:visible;
+    background:url("../images/slideOutMenu.png") no-repeat center;
+    transition: left 0.35s ease-out;
+    -webkit-transition: left 0.35s ease-out;
+    z-index:0;
+}
+section#changelog section.pull-out.translate{
+    left:162px;
+}
+section#changelog section.pull-out #changelog_open{
+    width:58px;
+    height:209px;
+    position:absolute;
+    left:140px;
+    background:url("../images/slideOut.png") no-repeat center;
+}
+section#changelog section.pull-out .toggle{
+    width:20px;
+    height:30px;
+    position:absolute;
+}
+section#changelog section.pull-out .toggle.left{
+    top:90px;
+    left:1px;
+    background:url("../images/slideOutClose_normal.png") no-repeat center;
+}
+section#changelog section.pull-out .toggle.left:hover{
+    background:url("../images/slideOutClose_scroll.png") no-repeat center;
+}
+section#changelog section.pull-out .toggle.right{
+    top:93px;
+    left:171px;
+    background:url("../images/slideOutOpen_normal.png") no-repeat center;
+    z-index:10;
+    transition: left,opacity 0.35s ease-out;
+    -webkit-transition: left,opacity 0.35s ease-out;
+}
+section#changelog section.pull-out .toggle.right:hover{
+    background:url("../images/slideOutOpen_scroll.png") no-repeat center;
+}
+section#changelog section.pull-out .toggle.right.hidden{
+    opacity:0.0;
+}
+section#changelog section.pull-out #changelog_options{
+    margin: 35px 0px 34px 35px;
+}
+section#changelog section.pull-out p{
+    margin:-1px 0px;
+    font-family:Arial, Helvetica, sans-serif;
+    text-align:left;
+    font-weight:bold;
+    color:black;
+    text-shadow:0px 0px 10px rgba(20,89,19,0.8);
+}
+section#changelog section.pull-out input{
+    margin-right:5px;
+}
+

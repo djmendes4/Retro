@@ -1,0 +1,49 @@
+body {
+	background-color:#222;
+}
+
+@font-face {
+	font-family:"hitman";
+	src:url(./fonts/Hitman.ttf) format("truetype");
+}
+
+#container {
+	min-width:800px;
+	max-width:1024px;
+	height:auto;
+	margin:0 auto;
+	position:relative;
+	top:50px;
+	padding:12px;
+}
+
+header {
+	width:inherit;
+	height:100px;
+	margin-bottom:6px;
+	background-image:url(./images/gg_logo.png) no-repeat center center;
+}
+
+p {
+	font-family:"hitman";
+	font-size:32px;
+	padding:0px;
+	margin:0px;
+}
+
+#content {
+	max-width:1200px;
+	height:600px;
+	margin:0 auto;
+}
+
+footer {
+	width:inherit;
+	height:28px;
+	margin-top:6px;
+}
+
+header, footer, #container, #content {
+	background-color:rgba(60,150,60,0.4);
+	border-radius:6px;
+}
