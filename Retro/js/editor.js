@@ -257,6 +257,8 @@ var Map = function() {
         var hexY = Number(parseInt(y)).toString(16);
         var url = './map/' + hexX + '' + hexY + '.TERRAIN';
 
+		console.log(url);
+
         var tempData = this.loadMap(url);
         this.parse(tempData);
     }

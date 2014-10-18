@@ -14,10 +14,10 @@ var key_sp=false;
 //   if (window.XMLHttpRequest){x=new XMLHttpRequest();}
 //   else{x=new ActiveXObject("Microsoft.XMLHTTP");}
 //   x.onreadystatechange = function(){
-//     if (x.readyState == 4 && x.status == 200) {  
+//     if (x.readyState == 4 && x.status == 200) {
 //       callback(x.responseText);
 //     }
-//   };			  	
+//   };
 //   x.open("GET", url, false);
 //   //x.setRequestHeader("Authorization", auth);
 //   x.send();
@@ -90,20 +90,20 @@ function onKeyUp(event){
 
 var input = function(){
 
-  // 1 key   
-  if ((key_w)&&(!key_a)&&(!key_s)&&(!key_d)){person.move("N");} 
+  // 1 key
+  if ((key_w)&&(!key_a)&&(!key_s)&&(!key_d)){person.move("N");}
   else if ((!key_w)&&(key_a)&&(!key_s)&&(!key_d)){person.move("W");}
   else if ((!key_w)&&(!key_a)&&(key_s)&&(!key_d)){person.move("S");}
   else if ((!key_w)&&(!key_a)&&(!key_s)&&(key_d)){person.move("E");}
 
   // 2 keys
-  else if ((key_w)&&(key_a)&&(!key_s)&&(!key_d)){person.move("NW");} 
+  else if ((key_w)&&(key_a)&&(!key_s)&&(!key_d)){person.move("NW");}
   else if ((key_w)&&(!key_a)&&(!key_s)&&(key_d)){person.move("NE");}
   else if ((!key_w)&&(key_a)&&(key_s)&&(!key_d)){person.move("SW");}
   else if ((!key_w)&&(!key_a)&&(key_s)&&(key_d)){person.move("SE");}
   // 3 keys
-    
-  else if ((key_w)&&(key_a)&&(!key_s)&&(key_d)){person.move("N");} 
+
+  else if ((key_w)&&(key_a)&&(!key_s)&&(key_d)){person.move("N");}
   else if ((key_w)&&(key_a)&&(key_s)&&(!key_d)){person.move("W");}
   else if ((!key_w)&&(key_a)&&(key_s)&&(key_d)){person.move("S");}
   else if ((key_w)&&(!key_a)&&(key_s)&&(key_d)){person.move("E");}
@@ -151,7 +151,7 @@ var Action = function(a){
 var Person = function(){
   var x = 50;
   var y = 50;
-  var speed = 1; 
+  var speed = 1;
   var s = "SS";
   var c = 0;
   var a = {
@@ -185,7 +185,7 @@ var Person = function(){
     a[s].tick();
   }
 
-  this.draw = function(){  
+  this.draw = function(){
     var img = a[s].img() + " sprite2";
     scr.draw(x,y,img);
   }
@@ -269,7 +269,7 @@ var Screen = function(div){
 var Map = function(){
   var dd = [];
   var map_url = "";
-  
+
   var parse_map = function(data){
     var zdat = data.replace(/(\r\n|\n|\r)/gm,"").split("|");
     for(z = 0;z < zdat.length;z++){
@@ -290,7 +290,7 @@ var Map = function(){
     map_url = url;
     get(map_url, parse_map);
   }
-  
+
   this.draw = function(){
     var data = "";
     scrbg.clear();
