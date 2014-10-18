@@ -11,79 +11,137 @@
 
     <body>
         <section id="container">
+            <header>Terrain Editor</header>
 
 
-            <section id="formType">
-                <select id="chooseFormType" autofocus>
-                    <option value="0" selected>Add Item</option>
-                    <option value="1">Add Worker</option>
-                    <option value="2">Add Resource</option>
-                </select>
+            <section id="preview" class="top row">
+                <section class="subtitle">
+                    <div>All</div>
+                    <div>0</div>
+                    <div>1</div>
+                    <div>2</div>
+                    <div>3</div>
+                </section>
+                <section class="content">
+                    <div>
+                        <div class="layer0 terrain img"></div>
+                        <div class="layer1 terrain img"></div>
+                        <div class="layer2 terrain img"></div>
+                        <div class="layer3 terrain img"></div>
+                    </div>
+                    <div>
+                        <div class="layer0 terrain img"></div>
+                    </div>
+                    <div>
+                        <div class="layer1 terrain img"></div>
+                    </div>
+                    <div>
+                        <div class="layer2 terrain img"></div>
+                    </div>
+                    <div>
+                        <div class="layer3 terrain img"></div>
+                    </div>
+                </section>
             </section>
 
 
-            <section id="formContainer">
-
-
-                <header id="formName">Add Item</header>
-
-
-				<section id="itemName">
-					<input type="text" value="Item Name" default="Item Name"></input>
-				</section>
-
-
-				<section id="reagents">
-					<section class="subheader">
-						Reagents<input type="button"></input>
-					</section>
-					<section class="subsection">
-						<input class="opaque" type="text" value="Item Name" default="Item Name"></input>
-						<input class="opaque" type="number" value="0" default="Quantity"></input>
-					</section>
-				</section>
-
-
-            </section>
-
-<!--
-            <section class="column one">
-                <section class="subtitle"><div>Reagents</div><input class="add reagant" type="button"></input></section>
-                <input class="" type="text" name="reagent1"></input>
-                <input class="hidden" type="text" name="reagent2"></input>
-                <input class="hidden" type="text" name="reagent3"></input>
-                <input class="hidden" type="text" name="reagent4"></input>
-
-                <section class="subtitle"><div>Dependencies</div><input class="add dependency" type="button"></input></section>
-                <input type="text" name="dependency1"></input>
-                <input class="hidden" type="text" name="dependency2"></input>
-
-                <section class="subtitle"><div>Reagent For</div><input class="add reagentFor" type="button"></input></section>
-
-            </section>
--->
-
-
-<!--
-            <section class="column two">
-                <section class="subtitle"><div>Quantity</div></section>
-                <input class="" type="number" name="reagentAmount1" min="0" max="100"></input>
-                <input class="hidden" type="number" name="reagentAmount2" min="0" max="100"></input>
-                <input class="hidden" type="number" name="reagentAmount3" min="0" max="100"></input>
-                <input class="hidden" type="number" name="reagentAmount4" min="0" max="100"></input>
-
-                <section class="subtitle"><div>Quantity</div></section>
-                <input type="number" name="dependencyAmount1" class="number" min="0" max="1000"></input><br/>
-                <input type="number" name="dependencyAmount2" class="number" min="0" max="1000"></input><br/>
+            <section id="map" class="top row">
+                <section class="subtitle">Save & Load</section>
+                <section class="content">
+                    <input id="map_saveX" type="text" onchange="map.validate(event);">
+                    <input id="map_saveY" type="text" onchange="map.validate(event);">
+                    <input id="map_save" type="button" onclick="map.save();" value="Save Map">
+                    <input id="map_loadX" type="text" onchange="map.validate(event);">
+                    <input id="map_loadY" type="text" onchange="map.validate(event);">
+                    <input id="map_load" type="button" onclick="map.load();" value="Load Map">
+                </section>
             </section>
 
 
-            <input type="text" name="reagentFor1"></input><input type="number" name="reagentForAmount1" class="number" min="0" max="20"></input><br/>
-            <input type="text" name="reagentFor2"></input><input type="number" name="reagentForAmount2" class="number" min="0" max="20"></input><br/>
-            <input type="text" name="reagentFor3"></input><input type="number" name="reagentForAmount3" class="number" min="0" max="20"></input><br/>
-            <input type="text" name="reagentFor4"></input><input type="number" name="reagentForAmount4" class="number" min="0" max="20"></input><br/>
--->
+            <section id="options" class="top row">
+                <section class="subtitle">Options</section>
+                <section class="content">
+                    <div>
+                        Layer:
+                        <input id="options_layer0" type="radio" onchange="options.layer(0);" name="layer" value="0" checked>0
+                        <input id="options_layer1" type="radio" onchange="options.layer(1);" name="layer" value="1" disabled>1
+                        <input id="options_layer2" type="radio" onchange="options.layer(2);" name="layer" value="2" disabled>2
+                        <input id="options_layer3" type="radio" onchange="options.layer(3);" name="layer" value="3" disabled>3
+                    </div>
+                    <div><input id="options_light" class="mode" type="button" onclick="options.light();" value="Light Mode"></div>
+                    <div><input id="options_dark" class="mode" type="button" onclick="options.dark();" value="Dark Mode"></div>
+                    <div>
+                        <input id="options_toggleGrid" type="checkbox" onchange="options.grid();" checked>Show Grid
+                        <input id="options_togglePreview" type="checkbox" onchange="options.preview();" checked>Show Preview
+                    </div>
+                </section>
+            </section>
+
+
+            <section id="terrain" class="middle row">
+                <section class="content">
+                    <div id="terrain_layer0"></div>
+                    <div id="terrain_layer1"></div>
+                    <div id="terrain_layer2"></div>
+                    <div id="terrain_layer3"></div>
+                </section>
+            </section>
+
+
+            <section id="tileset" class="middle row"></section>
+
+
+            <section id="changelog">
+                <section class="bottom row">
+                    <section class="subtitle">
+                        <div class="first column"></div>
+                        <div class="second column">#</div>
+                        <div class="third column">ID</div>
+                        <div class="fourth column">Class</div>
+                        <div class="fifth column">Action</div>
+                        <div class="sixth column">Description</div>
+                        <div class="seventh column">Details</div>
+                    </section>
+                    <section class="content">
+                        <table>
+                            <tbody id="changelogTableBody"></tbody>
+                        </table>
+                    </section>
+                </section>
+                <section class="pull-out">
+                    <div class="toggle left"></div>
+                    <div class="toggle right"></div>
+                    <div id="changelog_open"></div>
+                    <div id="changelog_options">
+                        <p><input id="changelogEventNumber" class="changelog" name="eventNumber" type="checkbox" disabled="true" onchange="changelog.changeWidth('EventNumber',1)" checked>Event #</p>
+                        <p><input id="changelogActionNumber" class="changelog" name="actionNumber" type="checkbox" onchange="changelog.changeWidth('ActionNumber',2)" checked>Action #</p>
+                        <p><input id="changelogID" class="changelog" name="id" type="checkbox" disabled="true" onchange="changelog.changeWidth('ID',3)" checked>ID</p>
+                        <p><input id="changelogClass" class="changelog" name="class" type="checkbox" onchange="changelog.changeWidth('Class',4);" checked>Class</p>
+                        <p><input id="changelogAction" class="changelog" name="action" type="checkbox" disabled="true" onchange="changelog.changeWidth('Action',5)" checked>Action</p>
+                        <p><input id="changelogDescription" class="changelog" name="description" type="checkbox" disabled="true" onchange="changelog.changeWidth('Description',6)" checked>Description</p>
+                        <p><input id="changelogDetails" class="changelog" name="descriptionDetails" type="checkbox" onchange="changelog.changeWidth('Details',7)">Details</p>
+                    </div>
+                </section>
+            </section>
+
+
+        <footer></footer>
         </section>
+    <script>
+        var map = new Map();
+        var options = new Options();
+        var paintByArrows = new PaintByArrows();
+        var paintByDrag = new PaintByDrag();
+        var preview = new Preview();
+
+        map.initialize();
+        map.load(0,0); //standard tileset
+        map.load(128,128); //standard grass map
+
+        options.grid();
+        preview.layers(0,0);
+    </script>
+
     </body>
 
 </html>
