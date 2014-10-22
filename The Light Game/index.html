@@ -10,22 +10,20 @@
 
     <body>
         <section id="container">
-            <header>Heat Transfer Game Mechanics</header>
+            <header></header>
 
-            <section id="terrain" class="middle row">
-                <section class="content">
-                    <div id="terrain"></div>
-                </section>
-            </section>
-
+			<section id="terrain"></section>
+			<section id="left"></section>
+			<section id="tiles"></section>
+			
         	<footer></footer>
         </section>
 
     <script>
-		var map = new Map();
-		map.initialize();
-
-		var gradient = new Gradient();
+		var initialize = new Initialize();
+		
+		initialize.createGrid();
+		initialize.createTileset();
     </script>
 
     </body>
