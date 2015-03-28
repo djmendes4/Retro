@@ -324,7 +324,7 @@ var scr = new Screen("game");
 var scrbg = new Screen("gamebg");
 var person = new Person();
 var mp = new Map();
-mp.lload("./map/8080.TERRAIN");
+mp.lload("../map/8080.TERRAIN");
 mp.draw();
 
 setInterval(tick,1000/60);
