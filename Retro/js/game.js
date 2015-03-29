@@ -47,7 +47,7 @@ var key_sp=false;
 
 function onKeyDown(event){
   var keyCode = event.keyCode;
-  //console.log(keyCode);
+  console.log(keyCode);
   switch(keyCode){
     case 87: //w
       key_w = true;
@@ -107,6 +107,7 @@ var input = function(){
   else if ((key_w)&&(key_a)&&(key_s)&&(!key_d)){person.move("W");}
   else if ((!key_w)&&(key_a)&&(key_s)&&(key_d)){person.move("S");}
   else if ((key_w)&&(!key_a)&&(key_s)&&(key_d)){person.move("E");}
+  else if ((key_w)&&(key_a)&&(key_s)&&(key_d)){person.stand();}
   else {person.stand();}
 
   if (key_sp){
